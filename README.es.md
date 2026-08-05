@@ -3,7 +3,7 @@
   <p><b>Un sistema interactivo de mapas del campus y navegación híbrida.</b></p>
 </div>
 
-InterMaps es un proyecto de diseñado para resolver los problemas de orientación y logística dentro del campus, proporciona un mapa centralizado e interactivo que detalla la ubicación exacta de edificios, rutas al aire libre, aulas, oficinas y laboratorios.
+InterMaps es un proyecto de ingeniería diseñado para resolver los retos de orientación y logística dentro del campus. Proporciona un mapa centralizado e interactivo que detalla la ubicación exacta de edificios, rutas al aire libre, aulas, oficinas y laboratorios.
 
 El sistema opera bajo una arquitectura de monorepositorio, diseñado para ejecutarse localmente en hardware embebido (pantallas de kiosco) y dinámicamente en dispositivos móviles.
 
