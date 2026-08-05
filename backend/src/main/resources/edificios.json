@@ -1,0 +1,982 @@
+[
+  {
+    "nombre": "1",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Servicios Escolares Ventanillas",
+        "piso": 1
+      },
+      {
+        "nombre": "División de Estudios Profesionales",
+        "piso": 1
+      },
+      {
+        "nombre": "Coordinación de Lenguas Extraneras",
+        "piso": 1
+      },
+      {
+        "nombre": "Comunicación y Difusión",
+        "piso": 1
+      },
+      {
+        "nombre": "Recursos Humanos",
+        "piso": 2
+      },
+      {
+        "nombre": "Atención a Proveedores",
+        "piso": 2
+      },
+      {
+        "nombre": "Recepción a las oficinas del Director y Director de Planeación",
+        "piso": 2
+      },
+      {
+        "nombre": "Sala de Juntas",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "3",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Laboratorio CEA",
+        "tipo": "LABORATORIO",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula J",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Sala de Maestros (Aula K)",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "4",
+    "alias": [],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Estación de Radio",
+        "alias": [
+          "radio"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Almacén",
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "5",
+    "alias": [],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Laboratorio de Ingeniería Industrial",
+        "piso": 1
+      },
+      {
+        "nombre": "Actividades Extraescolares",
+        "alias": [
+          "extraescolares",
+          "actividades extra"
+        ],
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "6",
+    "alias": [],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Comedor de Trabajadores",
+        "alias": [
+          "comedor"
+        ],
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "7",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Bebedero",
+        "alias": [
+          "agua"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula J",
+        "tipo": "AULA",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "8",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Ciencias Económico Administrativas (CEA)",
+        "piso": 1
+      },
+      {
+        "nombre": "Sala de Maestros",
+        "piso": 1
+      },
+      {
+        "nombre": "Copias e Impresiones",
+        "alias": [
+          "papeleria"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Aula A",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula B",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula C",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula D",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "9",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Delegación Sindical",
+        "piso": 1
+      },
+      {
+        "nombre": "Prefectura",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Laboratorio de Química",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Laboratorio de Física",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "10",
+    "alias": [
+      "cafeteria"
+    ],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Cafetería",
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "11",
+    "alias": [
+      "biblioteca"
+    ],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Biblioteca (Centro de Información)",
+        "piso": 1
+      },
+      {
+        "nombre": "Sala de Titulación",
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "12",
+    "alias": [
+      "laboratorio de ingenieria electrica"
+    ],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Laboratorio de Ingenieria Electronica",
+        "tipo": "LABORATORIO",
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "14",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Desarrollo Academico",
+        "piso": 1
+      },
+      {
+        "nombre": "Auditorio",
+        "piso": 1
+      },
+      {
+        "nombre": "Tienda",
+        "piso": 1
+      },
+      {
+        "nombre": "Enfermería",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "15",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Sociedad de Alumnos",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "16",
+    "alias": [],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Laboratorio de Electromecánica",
+        "tipo": "LABORATORIO",
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "18",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aulas IE",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Sala de Maestros",
+        "piso": 1
+      },
+      {
+        "nombre": "Oficinas IEE",
+        "piso": 1
+      },
+      {
+        "nombre": "Cubículos de Docentes de IE de ISC",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Bebedero",
+        "piso": 1
+      },
+      {
+        "nombre": "Auditorio",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula 1",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula 2",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula K",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula J",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula L",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Sala de Estudiantes",
+        "piso": 2
+      },
+      {
+        "nombre": "Laboratorios",
+        "tipo": "LABORATORIO",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "19",
+    "alias": [],
+    "pisosTotales": 1,
+    "espacios": [
+      {
+        "nombre": "Oficina de Servicio Social",
+        "piso": 1
+      },
+      {
+        "nombre": "Departamento de Gestión Tecnológica y Vinculación",
+        "piso": 1
+      },
+      {
+        "nombre": "Oficina de Prácticas y Promoción Profesional",
+        "piso": 1
+      },
+      {
+        "nombre": "Planeación Programación y Presupuestación",
+        "piso": 1
+      },
+      {
+        "nombre": "Educación Continua (Sala 3)",
+        "piso": 1
+      },
+      {
+        "nombre": "Eléctrica y Electrónica",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      }
+    ]
+  },
+  {
+    "nombre": "20",
+    "alias": [
+      "laboratorio de computo"
+    ],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Jefatura de Laboratorio",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Sala de Maestros",
+        "piso": 2
+      },
+      {
+        "nombre": "Jefatura de Centro de Cómputo",
+        "piso": 2
+      },
+      {
+        "nombre": "SITE",
+        "piso": 2
+      },
+      {
+        "nombre": "Laboratorio de Redes",
+        "piso": 2
+      },
+      {
+        "nombre": "Centro de Cómputo",
+        "piso": 2
+      },
+      {
+        "nombre": "Capítulo Linux",
+        "piso": 2
+      },
+      {
+        "nombre": "Mantenimiento de Equipos",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "22",
+    "alias": [],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Bebedero",
+        "alias": [
+          "agua"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Auditorio",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula M",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula L",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula K",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula J",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Oficinas y Cubículos de Ciencias Básicas",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "23",
+    "alias": [
+      "nodos",
+      "nodo"
+    ],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Nodo A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodo B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodo C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodo D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodo E",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodo F",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Nodos 1 Oficinas",
+        "piso": 2
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 2
+      },
+      {
+        "nombre": "2 Laboratorios",
+        "tipo": "LABORATORIO",
+        "piso": 2
+      },
+      {
+        "nombre": "Terraza",
+        "piso": 2
+      }
+    ]
+  },
+  {
+    "nombre": "24",
+    "alias": [
+      "pisos"
+    ],
+    "pisosTotales": 2,
+    "espacios": [
+      {
+        "nombre": "Aula A",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula B",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula C",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula D",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula E",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula F",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula G",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula H",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula I",
+        "tipo": "AULA",
+        "piso": 1
+      },
+      {
+        "nombre": "Sistemas Computacionales Oficinas",
+        "piso": 1
+      },
+      {
+        "nombre": "Baños",
+        "alias": [
+          "sanitario",
+          "sanitarios"
+        ],
+        "piso": 1
+      },
+      {
+        "nombre": "Auditorio",
+        "piso": 1
+      },
+      {
+        "nombre": "Aula J",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula K",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula L",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula M",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula N",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula O",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula P",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula Q",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula R",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula S",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula T",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula U",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Aula Y",
+        "tipo": "AULA",
+        "piso": 2
+      },
+      {
+        "nombre": "Oficinas de Ingeniería Industrial",
+        "piso": 2
+      }
+    ]
+  }
+]

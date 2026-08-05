@@ -1,0 +1,44 @@
+# InterMaps
+
+## Resumen
+Backend Spring Boot para la navegación espacial del Tecnológico: modela edificios, plantas y espacios, expone búsqueda y autocompletado, y resuelve destinos navegables a partir de `rutas.geojson`.
+
+## Stack tecnológico
+- Java 17
+- Spring Boot 4.1.0
+- Spring Web (endpoints REST)
+- Spring Data JPA
+- SQLite (sqlite-jdbc + hibernate-community-dialects)
+- Lombok
+- Jakarta Validation
+- H2 (solo tests)
+- DevTools (runtime)
+
+## Estructura de carpetas (com.intermaps)
+- controller: endpoints REST. Solo recibe y devuelve DTOs. Marca parámetros con @Valid.
+- service: lógica de negocio. Única capa que habla con los repositorios.
+- mapper: conversión Entidad <-> DTO.
+- dto: records de Java; datos que entran y salen del controlador.
+- entity: clases @Entity / @Table que mapean la base de datos. Nunca salen del backend.
+- repository: acceso a datos (Spring Data JPA).
+- util: helpers genéricos (GeoUtils).
+
+## Reglas de arquitectura
+1. No usar @Autowired sobre variables de clase. Usar private final y constructor, o @RequiredArgsConstructor de Lombok.
+2. Logs con @Slf4j de Lombok.
+3. Todos los DTOs deben ser records de Java.
+4. Las entidades (@Entity / @Table) jamás cruzan al cliente; todo dato de un @RestController es un DTO.
+5. Flujo unidireccional: Controller -> Service -> Repository.
+6. En repositorios, si la tabla puede crecer indefinidamente, nunca List<T> findAll(); usar Page<T> findAll(Pageable pageable).
+7. No validar nulos o formatos con if/else en servicios. Usar anotaciones de Jakarta Validation (@NotNull, @NotBlank, @Size) en los DTOs y @Valid en los controladores.
+
+## Dominio
+- Edificio: nombre oficial, alias y sinónimos; varias plantas; espacios interiores y exteriores.
+- Planta: pertenece a un solo edificio.
+- Espacio: pertenece a una planta (interior) o tiene geolocalización propia vía rutas.geojson (exterior).
+- Navegación: con ruta propia en rutas.geojson -> destino directo; sin ruta -> entrada del edificio.
+- Búsqueda: normaliza texto (minúsculas, sin acentos), coincide por prefijo y contención, prioriza espacios salvo intención clara de edificio. Sinónimos con moderación.
+- Frontend de solo lectura en esta fase.
+
+## Testing
+JUnit (spring-boot-starter-test) con H2 para los repositorios.
