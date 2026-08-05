@@ -1,1 +1,1 @@
-prender el react native
+prender el react native para movil
