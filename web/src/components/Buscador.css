@@ -1,0 +1,18 @@
+.input-buscador-principal {
+
+}
+
+.input-buscador-principal:focus {
+}
+
+.contenedor-buscador {
+}
+
+.contenedor-buscador-relativo {
+    position: relative;
+}
+.dropdown-resultados {
+    position: absolute;
+    z-index: 1000;
+}
+
