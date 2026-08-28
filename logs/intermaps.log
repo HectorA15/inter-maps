@@ -1,0 +1,246 @@
+2026-08-28T12:47:54.305-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 21.0.12 with PID 7864 (C:\Users\crusc\IdeaProjects\InterMaps\backend\target\classes started by crusc in C:\Users\crusc\IdeaProjects\InterMaps)
+2026-08-28T12:47:54.312-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-08-28T12:47:54.362-06:00  INFO 7864 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-28T12:47:54.362-06:00  INFO 7864 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-28T12:47:54.955-06:00  INFO 7864 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-28T12:47:55.008-06:00  INFO 7864 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 5 JPA repository interfaces.
+2026-08-28T12:47:55.532-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-28T12:47:55.547-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-28T12:47:55.548-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-28T12:47:55.592-06:00  INFO 7864 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1230 ms
+2026-08-28T12:47:55.678-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-28T12:47:55.877-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@35c2b1ed
+2026-08-28T12:47:55.883-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-28T12:47:56.043-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-28T12:47:56.123-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-28T12:47:56.629-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-28T12:47:56.713-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-28T12:47:57.749-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-28T12:47:57.756-06:00  INFO 7864 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T12:47:57.830-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-28T12:47:58.681-06:00  WARN 7864 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-28T12:47:58.955-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-28T12:47:58.960-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Started InterMapsApplication in 5.089 seconds (process running for 8.865)
+2026-08-28T12:47:58.963-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Iniciando la carga de edificios y espacios...
+2026-08-28T12:47:59.663-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Edificios, plantas y espacios cargados correctamente.
+2026-08-28T12:48:00.654-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'g' pero no existe ese Edificio en la base de datos.
+2026-08-28T12:48:00.656-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'c' pero no existe ese Edificio en la base de datos.
+2026-08-28T12:48:00.843-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-08-28T12:48:25.859-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-28T12:48:25.859-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-28T12:48:25.862-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-08-28T12:48:26.030-06:00  WARN 7864 --- [InterMaps] [http-nio-8080-exec-1] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-08-28T12:50:40.611-06:00  WARN 7864 --- [InterMaps] [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-08-28T12:50:43.765-06:00  WARN 7864 --- [InterMaps] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-08-28T13:27:41.943-06:00  INFO 7864 --- [InterMaps] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2026-08-28T13:27:41.950-06:00  INFO 7864 --- [InterMaps] [Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-28T13:27:41.958-06:00  INFO 7864 --- [InterMaps] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-08-28T13:27:41.965-06:00  INFO 7864 --- [InterMaps] [Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T13:27:41.970-06:00  INFO 7864 --- [InterMaps] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-28T13:27:41.972-06:00  INFO 7864 --- [InterMaps] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-28T13:27:42.136-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 21.0.12 with PID 7864 (C:\Users\crusc\IdeaProjects\InterMaps\backend\target\classes started by crusc in C:\Users\crusc\IdeaProjects\InterMaps)
+2026-08-28T13:27:42.137-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-08-28T13:27:42.390-06:00  INFO 7864 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-28T13:27:42.412-06:00  INFO 7864 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 5 JPA repository interfaces.
+2026-08-28T13:27:42.537-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-28T13:27:42.538-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-28T13:27:42.539-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-28T13:27:42.569-06:00  INFO 7864 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 429 ms
+2026-08-28T13:27:42.595-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-08-28T13:27:42.597-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.sqlite.jdbc4.JDBC4Connection@6bf24dda
+2026-08-28T13:27:42.597-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-08-28T13:27:42.671-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-28T13:27:42.713-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-28T13:27:42.716-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-28T13:27:42.845-06:00  INFO 7864 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-28T13:27:42.846-06:00  INFO 7864 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T13:27:42.996-06:00  WARN 7864 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-28T13:27:43.081-06:00  INFO 7864 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-28T13:27:43.084-06:00  INFO 7864 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Started InterMapsApplication in 0.99 seconds (process running for 2392.989)
+2026-08-28T13:27:43.085-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Iniciando la carga de edificios y espacios...
+2026-08-28T13:27:43.160-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-28T13:27:43.160-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-28T13:27:43.160-06:00  INFO 7864 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-08-28T13:27:43.487-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Edificios, plantas y espacios cargados correctamente.
+2026-08-28T13:27:44.324-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '1' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.324-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'g' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.325-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'c' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.325-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '23' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.326-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '24' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.326-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '20' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.326-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '14' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.327-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.327-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.328-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.328-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.328-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.330-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '22' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.330-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '18' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.330-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.330-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.331-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.331-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.332-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '6' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.332-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '7' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.332-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.333-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.333-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.333-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.334-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.335-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.335-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.335-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '16' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.336-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '12' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.336-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '10' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.337-06:00 ERROR 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '11' pero no existe ese Edificio en la base de datos.
+2026-08-28T13:27:44.337-06:00  INFO 7864 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-08-28T13:27:44.349-06:00  INFO 7864 --- [InterMaps] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-08-28T13:45:50.641-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 21.0.12 with PID 17128 (C:\Users\crusc\IdeaProjects\InterMaps\backend\target\classes started by crusc in C:\Users\crusc\IdeaProjects\InterMaps)
+2026-08-28T13:45:50.646-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-08-28T13:45:50.703-06:00  INFO 17128 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-28T13:45:50.703-06:00  INFO 17128 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-28T13:45:51.558-06:00  INFO 17128 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-28T13:45:51.616-06:00  INFO 17128 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 5 JPA repository interfaces.
+2026-08-28T13:45:52.190-06:00  INFO 17128 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-28T13:45:52.211-06:00  INFO 17128 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-28T13:45:52.211-06:00  INFO 17128 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-28T13:45:52.264-06:00  INFO 17128 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1560 ms
+2026-08-28T13:45:52.360-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-28T13:45:52.574-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@391d1f8
+2026-08-28T13:45:52.576-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-28T13:45:52.771-06:00  INFO 17128 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-28T13:45:52.844-06:00  INFO 17128 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-28T13:45:53.294-06:00  INFO 17128 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-28T13:45:53.365-06:00  INFO 17128 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-28T13:45:54.314-06:00  INFO 17128 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-28T13:45:54.323-06:00  INFO 17128 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T13:45:54.405-06:00  INFO 17128 --- [InterMaps] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-28T13:45:55.456-06:00  WARN 17128 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-28T13:45:55.774-06:00  WARN 17128 --- [InterMaps] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-28T13:45:55.776-06:00  INFO 17128 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T13:45:55.779-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-28T13:45:55.780-06:00  INFO 17128 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-28T13:45:55.790-06:00  INFO 17128 --- [InterMaps] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-28T13:45:55.807-06:00 ERROR 17128 --- [InterMaps] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-28T14:18:50.534-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 21.0.12 with PID 19072 (C:\Users\crusc\IdeaProjects\InterMaps\backend\target\classes started by crusc in C:\Users\crusc\IdeaProjects\InterMaps)
+2026-08-28T14:18:50.537-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-08-28T14:18:50.572-06:00  INFO 19072 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-28T14:18:50.572-06:00  INFO 19072 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-28T14:18:51.200-06:00  INFO 19072 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-28T14:18:51.269-06:00  INFO 19072 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 5 JPA repository interfaces.
+2026-08-28T14:18:51.729-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-28T14:18:51.742-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-28T14:18:51.742-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-28T14:18:51.781-06:00  INFO 19072 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1208 ms
+2026-08-28T14:18:51.855-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-28T14:18:52.055-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@74932abb
+2026-08-28T14:18:52.057-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-28T14:18:52.245-06:00  INFO 19072 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-28T14:18:52.309-06:00  INFO 19072 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-28T14:18:52.733-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-28T14:18:52.795-06:00  INFO 19072 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-28T14:18:53.663-06:00  INFO 19072 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-28T14:18:53.670-06:00  INFO 19072 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T14:18:53.731-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-28T14:18:54.505-06:00  WARN 19072 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-28T14:18:54.759-06:00  INFO 19072 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-28T14:18:54.763-06:00  INFO 19072 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Started InterMapsApplication in 4.643 seconds (process running for 5.465)
+2026-08-28T14:18:54.767-06:00  INFO 19072 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Iniciando la carga de edificios y espacios...
+2026-08-28T14:18:55.565-06:00  INFO 19072 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Edificios, plantas y espacios cargados correctamente.
+2026-08-28T14:18:56.838-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '1' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.840-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'g' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.840-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'c' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.841-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '23' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.841-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '24' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.841-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '20' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.842-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '14' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.842-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.843-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.843-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.844-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.844-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.845-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '22' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.845-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '18' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.845-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.845-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.846-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.846-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.847-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '6' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.847-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '7' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.848-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.849-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.849-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.850-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.850-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.851-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.851-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.852-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '16' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.852-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '12' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.853-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '10' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.853-06:00 ERROR 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '11' pero no existe ese Edificio en la base de datos.
+2026-08-28T14:18:56.853-06:00  INFO 19072 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-08-28T14:19:01.998-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-28T14:19:01.998-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-28T14:19:02.000-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
