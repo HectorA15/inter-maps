@@ -9,7 +9,7 @@ export interface Espacio {
     alias: string[];
     piso: number;
 }
-
+ n
 // Mapeo estricto de EdificioDTO[cite: 6]
 export interface Edificio {
     id: number;
@@ -41,7 +41,7 @@ export interface SpringPage<T> {
     totalPages: number;
     totalElements: number;
     size: number;
-    number: number;
+    number: number;  vbv
     first: boolean;
     numberOfElements: number;
     empty: boolean;

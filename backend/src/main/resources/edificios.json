@@ -1,7 +1,7 @@
 [
   {
-    "nombre": "1",
-    "alias": [],
+    "nombre": "Edificio 1",
+    "alias": ["1"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -39,8 +39,8 @@
     ]
   },
   {
-    "nombre": "3",
-    "alias": [],
+    "nombre": "Edificio 3",
+    "alias": ["3"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -114,8 +114,8 @@
     ]
   },
   {
-    "nombre": "4",
-    "alias": [],
+    "nombre": "Edificio 4",
+    "alias": ["4"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -132,8 +132,8 @@
     ]
   },
   {
-    "nombre": "5",
-    "alias": [],
+    "nombre": "Edificio 5",
+    "alias": ["5"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -151,8 +151,8 @@
     ]
   },
   {
-    "nombre": "6",
-    "alias": [],
+    "nombre": "Edificio 6",
+    "alias": ["6"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -165,8 +165,8 @@
     ]
   },
   {
-    "nombre": "7",
-    "alias": [],
+    "nombre": "Edificio 7",
+    "alias": ["7"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -229,8 +229,8 @@
     ]
   },
   {
-    "nombre": "8",
-    "alias": [],
+    "nombre": "Edificio 8",
+    "alias": ["8"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -267,8 +267,8 @@
     ]
   },
   {
-    "nombre": "9",
-    "alias": [],
+    "nombre": "Edificio 9",
+    "alias": ["9"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -313,8 +313,9 @@
     ]
   },
   {
-    "nombre": "10",
+    "nombre": "Edificio 10",
     "alias": [
+      "10",
       "cafeteria"
     ],
     "pisosTotales": 1,
@@ -326,8 +327,9 @@
     ]
   },
   {
-    "nombre": "11",
+    "nombre": "Edificio 11",
     "alias": [
+      "11",
       "biblioteca"
     ],
     "pisosTotales": 1,
@@ -343,8 +345,9 @@
     ]
   },
   {
-    "nombre": "12",
+    "nombre": "Edificio 12",
     "alias": [
+      "12",
       "laboratorio de ingenieria electrica"
     ],
     "pisosTotales": 1,
@@ -357,8 +360,8 @@
     ]
   },
   {
-    "nombre": "14",
-    "alias": [],
+    "nombre": "Edificio 14",
+    "alias": ["14"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -405,8 +408,8 @@
     ]
   },
   {
-    "nombre": "15",
-    "alias": [],
+    "nombre": "Edificio 15",
+    "alias": ["15"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -461,8 +464,8 @@
     ]
   },
   {
-    "nombre": "16",
-    "alias": [],
+    "nombre": "Edificio 16",
+    "alias": ["16"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -473,8 +476,8 @@
     ]
   },
   {
-    "nombre": "18",
-    "alias": [],
+    "nombre": "Edificio 18",
+    "alias": ["18"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -572,8 +575,8 @@
     ]
   },
   {
-    "nombre": "19",
-    "alias": [],
+    "nombre": "Edificio 19",
+    "alias": ["19"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -611,8 +614,9 @@
     ]
   },
   {
-    "nombre": "20",
+    "nombre": "Edificio 20",
     "alias": [
+      "20",
       "laboratorio de computo"
     ],
     "pisosTotales": 2,
@@ -685,8 +689,8 @@
     ]
   },
   {
-    "nombre": "22",
-    "alias": [],
+    "nombre": "Edificio 22",
+    "alias": ["22"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -780,8 +784,9 @@
     ]
   },
   {
-    "nombre": "23",
+    "nombre": "Edificio 23",
     "alias": [
+      "23",
       "nodos",
       "nodo"
     ],
@@ -841,8 +846,9 @@
     ]
   },
   {
-    "nombre": "24",
+    "nombre": "Edificio 24",
     "alias": [
+      "24",
       "pisos"
     ],
     "pisosTotales": 2,

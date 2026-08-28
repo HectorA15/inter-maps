@@ -27,9 +27,10 @@ export const CatalogoService = {
         return response.data;
     },
 
-    buscar: async (nombre: string): Promise<SearchResult[]> => {
+    buscar: async (nombre: string, signal?: AbortSignal): Promise<SearchResult[]> => {
         const response = await api.get<SearchResult[]>("/catalogo/buscar", {
             params: { nombre },
+            signal,
         });
         return response.data;
     },
