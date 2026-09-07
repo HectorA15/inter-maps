@@ -4,7 +4,7 @@
 Backend Spring Boot para la navegación espacial del Tecnológico: modela edificios, plantas y espacios, expone búsqueda y autocompletado, y resuelve destinos navegables a partir de `rutas.geojson`.
 
 ## Stack tecnológico
-- Java 17
+- Java 25
 - Spring Boot 4.1.0
 - Spring Web (endpoints REST)
 - Spring Data JPA

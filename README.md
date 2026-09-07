@@ -19,7 +19,7 @@ The system operates under a monorepo architecture, designed to run locally on em
 
 ## Tech Stack
 **Backend Engine**
-* Java 17
+* Java 25
 * Spring Boot 4.1.0
 * SQLite 
 
@@ -35,7 +35,7 @@ The system operates under a monorepo architecture, designed to run locally on em
 
 ##  Requirements
 Ensure your development environment has the following installed:
-* [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [JDK 25](https://www.oracle.com/java/technologies/javase/jdk25-archive-downloads.html)
 * [Maven](https://maven.apache.org/)
 * [Node.js](https://nodejs.org/en) (v18 or higher)
 
