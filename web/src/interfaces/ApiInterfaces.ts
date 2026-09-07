@@ -9,7 +9,7 @@ export interface Espacio {
     alias: string[];
     piso: number;
 }
- n
+
 // Mapeo estricto de EdificioDTO[cite: 6]
 export interface Edificio {
     id: number;
@@ -36,12 +36,12 @@ export interface ApiError {
 // Envoltorio de Paginación de Spring Boot
 export interface SpringPage<T> {
     content: T[];
-    pageable: any;
+    pageable: unknown;
     last: boolean;
     totalPages: number;
     totalElements: number;
     size: number;
-    number: number;  vbv
+    number: number;
     first: boolean;
     numberOfElements: number;
     empty: boolean;
@@ -50,7 +50,7 @@ export interface SpringPage<T> {
 // Mapeo estricto del estándar GeoJSON que definiste en Java
 export interface RutaGeoJson {
     type: 'Feature';
-    properties: Record<string, any>;
+    properties: Record<string, unknown>;
     geometry: {
         type: 'LineString';
         coordinates: [number, number][]; // Un arreglo de tuplas matemáticas [longitud, latitud]

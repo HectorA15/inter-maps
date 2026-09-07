@@ -244,3 +244,11 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2026-08-28T14:19:01.998-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-08-28T14:19:01.998-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-08-28T14:19:02.000-06:00  INFO 19072 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-28T22:59:47.397-06:00  WARN 19072 --- [InterMaps] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-08-28T23:01:19.352-06:00  WARN 19072 --- [InterMaps] [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource health for request '/health'.]
+2026-08-28T23:01:19.508-06:00  WARN 19072 --- [InterMaps] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-08-28T23:48:16.443-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-28T23:48:16.477-06:00  INFO 19072 --- [InterMaps] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-08-28T23:48:16.522-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-28T23:48:16.584-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-28T23:48:16.597-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

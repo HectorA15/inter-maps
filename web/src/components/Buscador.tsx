@@ -46,6 +46,11 @@ export function Buscador({
     const query = textoBusqueda.trim();
 
     if (!query) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- limpieza sincrona necesaria al vaciar input
+      setResultados([]);
+      setCargando(false);
+      setMostrarDropdown(false);
+      setIndiceSeleccionado(-1);
       return;
     }
 
@@ -139,16 +144,14 @@ export function Buscador({
     setMostrarDropdown(false);
   };
 
-  // Función para capitalizar el nombre según las reglas especificadas
+  // Normaliza solo prefijo "aula" para consistencia, preserva el resto tal cual viene del backend
   const capitalizarNombre = (nombre: string): string => {
     if (!nombre) return nombre;
-    const textoNormalizado = nombre.trim().toLowerCase();
-
-    if (textoNormalizado.startsWith("aula ")) {
-      return "Aula " + textoNormalizado.substring(5).toUpperCase();
+    const trimmed = nombre.trim();
+    if (trimmed.toLowerCase().startsWith("aula ")) {
+      return "Aula " + trimmed.substring(5).trim().toUpperCase();
     }
-
-    return textoNormalizado.charAt(0).toUpperCase() + textoNormalizado.slice(1);
+    return trimmed;
   };
 
   return (

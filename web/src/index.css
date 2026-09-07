@@ -1,0 +1,17 @@
+/* Base necesaria para que MapLibre ocupe 100vh sin colapsar */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden; /* evita scroll doble con el mapa a pantalla completa */
+}
+
+/* Asegura que el canvas de MapLibre llene su contenedor */
+.maplibregl-map {
+  width: 100%;
+  height: 100%;
+}

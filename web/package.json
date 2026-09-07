@@ -13,9 +13,12 @@
   },
   "dependencies": {
     "axios": "^1.19.0",
+    "maplibre-gl": "^6.6.0",
+    "pmtiles": "^4.5.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-icons": "^5.7.0"
+    "react-icons": "^5.7.0",
+    "react-map-gl": "^8.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
