@@ -252,3 +252,74 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2026-08-28T23:48:16.522-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-08-28T23:48:16.584-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-08-28T23:48:16.597-06:00  INFO 19072 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-07T18:03:28.615-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 21.0.12.1 with PID 27313 (/home/hector/projects/personal/inter-maps/backend/target/classes started by hector in /home/hector/projects/personal/inter-maps)
+2026-09-07T18:03:28.618-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-07T18:03:28.657-06:00  INFO 27313 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-07T18:03:28.657-06:00  INFO 27313 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-07T18:03:29.109-06:00  INFO 27313 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-07T18:03:29.153-06:00  INFO 27313 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 5 JPA repository interfaces.
+2026-09-07T18:03:29.553-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-09-07T18:03:29.566-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-07T18:03:29.567-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-07T18:03:29.596-06:00  INFO 27313 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 938 ms
+2026-09-07T18:03:29.696-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-07T18:03:29.842-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@669b1625
+2026-09-07T18:03:29.844-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-07T18:03:29.984-06:00  INFO 27313 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-07T18:03:30.020-06:00  INFO 27313 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-07T18:03:30.275-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-07T18:03:30.321-06:00  INFO 27313 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-07T18:03:30.883-06:00  INFO 27313 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-07T18:03:30.888-06:00  INFO 27313 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-07T18:03:30.942-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-07T18:03:31.603-06:00  WARN 27313 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-07T18:03:31.827-06:00  INFO 27313 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-09-07T18:03:31.834-06:00  INFO 27313 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Started InterMapsApplication in 3.548 seconds (process running for 3.843)
+2026-09-07T18:03:31.838-06:00  INFO 27313 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Iniciando la carga de edificios y espacios...
+2026-09-07T18:03:32.482-06:00  INFO 27313 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Edificios, plantas y espacios cargados correctamente.
+2026-09-07T18:03:33.492-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '1' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.494-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'g' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.495-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice 'c' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.496-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '23' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.497-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '24' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.498-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '20' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.498-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '14' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.500-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.501-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.502-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.503-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.504-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '15' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.506-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '22' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.508-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '18' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.509-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.511-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '3' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.512-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.513-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '5' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.516-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '6' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.517-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '7' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.518-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.519-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '8' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.520-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.521-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '9' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.523-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.524-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.525-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '19' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.526-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '16' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.527-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '12' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.529-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '10' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.530-06:00 ERROR 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '11' pero no existe ese Edificio en la base de datos.
+2026-09-07T18:03:33.530-06:00  INFO 27313 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-09-07T18:03:57.419-06:00  INFO 27313 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-07T18:03:57.419-06:00  INFO 27313 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-07T18:03:57.420-06:00  INFO 27313 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
