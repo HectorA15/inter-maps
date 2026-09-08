@@ -1,37 +1,33 @@
+import { useState } from "react";
+import type { SearchResult } from "./interfaces/ApiInterfaces";
+import { Buscador } from "./components/Buscador";
+import { MapaCampus } from "./components/MapaCampus";
+import { PanelInfo } from "./components/PanelInfo";
+import { ColorTema } from "./components/ColorTema";
 
-
-import type { SearchResult } from './interfaces/ApiInterfaces';
-import { Buscador } from './components/Buscador';
-import { MapaCampus } from './components/MapaCampus';
 function App() {
+  const [edificioSeleccionado, setEdificioSeleccionado] =
+    useState<SearchResult | null>(null);
+
   const handleSelect = (item: SearchResult) => {
-    console.log("Seleccionado:", item);
+    setEdificioSeleccionado(item);
   };
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      {/* 1. El mapa ocupa todo el fondo */}
+    <div className="relative w-screen h-screen overflow-hidden">
       <MapaCampus />
 
-      {/* 2. Barra superior: buscador ocupa todo el ancho hasta 640px, en movil se adapta */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '16px',
-          left: '0',
-          right: '0',
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '0 16px',
-          boxSizing: 'border-box',
-          zIndex: 10,
-          pointerEvents: 'none',
-        }}
-      >
-        <div style={{ width: '100%', maxWidth: '640px', pointerEvents: 'auto' }}>
+      <div className="absolute top-5 right-4 z-10">
+        <ColorTema />
+      </div>
+      {/* Contenedor del buscador */}
+      <div className="absolute top-4 left-0 right-0 flex justify-center px-4 z-10 pointer-events-none">
+        <div className="w-full max-w-screen-sm pointer-events-auto">
           <Buscador onSelect={handleSelect} />
         </div>
       </div>
+
+      <PanelInfo item={edificioSeleccionado} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import type { ViteDevServer } from 'vite'
 import type { IncomingMessage, ServerResponse } from 'http'
+import tailwindcss from '@tailwindcss/vite'
 
 // Plugin minimo para servir .pmtiles con soporte Range, requerido por pmtiles Protocol (FetchSource)
 // Vite dev no envia 206 por defecto; sin esto el mapa queda en fondo negro y error en consola.
@@ -49,10 +50,8 @@ function pmtilesRangePlugin() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), pmtilesRangePlugin()],
-  // Fix para maplibre-gl worker en dev: Vite debe servir el worker con MIME correcto
-  // El worker NO debe ser pre-bundled por esbuild, por eso se excluye.
-  // Incluirlo causaba "file does not exist at .vite/deps/maplibre-gl-worker.mjs" y MIME vacio.
+  plugins: [react(), pmtilesRangePlugin(), tailwindcss()],
+
   worker: {
     format: 'es',
   },

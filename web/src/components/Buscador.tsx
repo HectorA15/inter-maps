@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import type { SearchResult } from "../interfaces/ApiInterfaces";
 import { CatalogoService } from "../services/apiClient";
 import { MdDomain, MdPlace } from "react-icons/md";
-import "./Buscador.css";
 
 interface BuscadorProps {
   datos?: SearchResult[];
@@ -155,10 +154,14 @@ export function Buscador({
   };
 
   return (
-    <div className="contenedor-buscador-relativo" ref={contenedorRef}>
-      <div className="input-wrapper">
+    <div
+      className="relative w-full max-w-[640px] font-sans"
+      ref={contenedorRef}
+    >
+      {/* Contenedor del input con estados hover y focus-within */}
+      <div className="relative flex items-center w-full bg-white border border-[#dfe1e5] rounded-full shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:shadow-[0_2px_10px_rgba(32,33,36,0.2)] hover:border-transparent focus-within:shadow-[0_2px_10px_rgba(32,33,36,0.2)] focus-within:border-transparent transition duration-200 ease-out px-3.5 h-11 box-border">
         <svg
-          className="icono-buscar"
+          className="text-[#9aa0a6] mr-2.5 select-none shrink-0"
           aria-hidden="true"
           width="18"
           height="18"
@@ -172,8 +175,9 @@ export function Buscador({
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
+
         <input
-          className="input-buscador"
+          className="flex-1 border-none outline-none text-[15px] text-[#202124] bg-transparent p-0 placeholder-[#80868b]"
           type="text"
           placeholder={placeholder}
           value={textoBusqueda}
@@ -181,7 +185,6 @@ export function Buscador({
             const valor = e.target.value;
             setTextoBusqueda(valor);
 
-            // Si el texto está vacío, limpiamos los estados directamente aquí
             if (!valor.trim()) {
               setResultados([]);
               setCargando(false);
@@ -193,10 +196,17 @@ export function Buscador({
           onKeyDown={manejarKeyDown}
           autoComplete="off"
         />
-        {cargando && <div className="spinner-cargando" title="Cargando..." />}
+
+        {cargando && (
+          <div
+            className="w-4 h-4 border-2 border-[#e8eaed] border-t-[#1a73e8] rounded-full animate-spin ml-1.5 shrink-0"
+            title="Cargando..."
+          />
+        )}
+
         {!cargando && textoBusqueda && (
           <button
-            className="boton-limpiar"
+            className="bg-transparent border-none text-[#70757a] text-sm cursor-pointer p-1 ml-1.5 rounded-full flex items-center justify-center transition-colors duration-150 ease-out hover:bg-[#f1f3f4] hover:text-[#202124]"
             onClick={limpiarBusqueda}
             title="Limpiar"
             aria-label="Limpiar busqueda"
@@ -218,29 +228,31 @@ export function Buscador({
       </div>
 
       {mostrarDropdown && (
-        <ul className="dropdown-resultados">
+        <ul className="absolute top-[calc(100%+6px)] left-0 right-0 z-[1000] bg-white rounded z-xl shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-[#e0e0e0] list-none m-0 py-2 max-h-[320px] overflow-y-auto">
           {resultados.length > 0 ? (
             resultados.map((item, idx) => (
               <li
                 key={`${item.tipo}-${item.id}-${idx}`}
-                className={`item-resultado ${idx === indiceSeleccionado ? "seleccionado" : ""}`}
+                className={`shrink-0 flex items-center px-4 py-2.5 cursor-pointer text-sm text-[#3c4043] transition-colors duration-100 ease-out hover:bg-[#f1f3f4] ${
+                  idx === indiceSeleccionado ? "bg-[#f1f3f4]" : ""
+                }`}
                 onClick={() => seleccionarItem(item)}
                 onMouseEnter={() => setIndiceSeleccionado(idx)}
               >
-                <span>
+                <span className="mr-2 text-gray-500">
                   {item.tipo === "EDIFICIO" ? (
-                    <MdDomain size={20} className="icono-resultado" />
+                    <MdDomain size={20} />
                   ) : (
-                    <MdPlace size={20} className="icono-resultado" />
+                    <MdPlace size={20} />
                   )}
                 </span>
-                <span className="nombre-resultado">
+                <span className="truncate">
                   {capitalizarNombre(item.nombre)}
                 </span>
               </li>
             ))
           ) : (
-            <li className="item-sin-resultados">
+            <li className="px-4 py-3.5 text-sm text-[#70757a] text-center italic">
               Sin resultados para "{textoBusqueda}"
             </li>
           )}
