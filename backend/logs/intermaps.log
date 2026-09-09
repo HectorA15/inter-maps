@@ -66,3 +66,6 @@
 2026-09-08T16:15:03.746-06:00 ERROR 21120 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '10' pero no existe ese Edificio en la base de datos.
 2026-09-08T16:15:03.746-06:00 ERROR 21120 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Inconsistencia de datos: El GeoJSON dice '11' pero no existe ese Edificio en la base de datos.
 2026-09-08T16:15:03.746-06:00  INFO 21120 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-09-08T18:05:07.068-06:00  INFO 21120 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-08T18:05:07.068-06:00  INFO 21120 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-08T18:05:07.069-06:00  INFO 21120 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

@@ -1,16 +1,26 @@
 import type { SearchResult } from "../interfaces/ApiInterfaces";
-
+import { useState } from "react";
 interface PanelInfoProps {
   item: SearchResult | null;
 }
 
 export function PanelInfo({ item }: PanelInfoProps) {
+  const [colapsado, setColapsado] = useState(false);
+
+  // Estado auxiliar para rastrear si el item cambió
+  const [idAnterior, setIdAnterior] = useState(item?.id);
+
+  // Lógica de reseteo durante la fase de renderizado
+  if (item?.id !== idAnterior) {
+    setIdAnterior(item?.id); // Actualizamos la memoria
+    setColapsado(false); // Forzamos a que el panel se abra
+  }
   return (
     <div
       className={`
         fixed top-0 left-0 w-80 h-full bg-white shadow-2xl z-50 p-6
         transform transition-transform duration-300 ease-out
-        ${item ? "translate-x-0" : "-translate-x-full"}
+        ${item && !colapsado ? "translate-x-0" : "-translate-x-full"}
     `}
     >
       {item && (
@@ -21,6 +31,15 @@ export function PanelInfo({ item }: PanelInfoProps) {
           <p className="text-sm text-gray-500 uppercase">Tipo: {item.tipo}</p>
         </>
       )}
+
+      <button
+        className="absolute top-1/2 -translate-y-1/2 left-full flex justify-center items-center rounded-e-md bg-transparent border-y border-r border-gray-200 shadow-md w-3 h-[30%] text-gray-400 hover:text-gray-500 transition-colors cursor-pointer hover:bg-gray-100"
+        onClick={() => {
+          setColapsado(!colapsado);
+        }}
+      >
+        <div className="w-[2px] h-1/2 bg-current rounded-full"></div>
+      </button>
     </div>
   );
 }

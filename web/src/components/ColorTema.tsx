@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
+interface ColorTemaProps {
+  temaActual: "claro" | "oscuro";
+  onCambiarTema: (nuevoTema: "claro" | "oscuro") => void;
+}
 
-export function ColorTema() {
-  const [tema, setTema] = useState<"claro" | "oscuro">("claro");
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (event: MediaQueryListEvent) => {
-      setTema(event.matches ? "oscuro" : "claro");
-    };
-
-    // Establecer el tema inicial basado en la preferencia del sistema
-    setTema(mediaQuery.matches ? "oscuro" : "claro");
-
-    // Escuchar cambios en la preferencia del sistema
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
-  }, []);
-
+export function ColorTema({ temaActual, onCambiarTema }: ColorTemaProps) {
   return (
     <div className="flex w-16 h-8 bg-gray-200 rounded-[8px] overflow-hidden border border-gray-300">
-      {/* Boton Izquierdo (Sol) - Modo Claro */}
-      <button className="flex-1 flex justify-center items-center bg-gray-200 text-gray-400 hover:bg-gray-300 transition-colors">
+      {/* Botón Izquierdo (Sol) */}
+      <button
+        onClick={() => onCambiarTema("claro")}
+        className={`flex-1 flex justify-center items-center transition-colors cursor-pointer ${
+          temaActual === "claro"
+            ? "bg-gray-400 text-gray-900 shadow-inner" // Estado Activo
+            : "bg-gray-200 text-gray-400 hover:bg-gray-300" // Estado Inactivo
+        }`}
+        aria-label="Activar modo claro"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -50,8 +42,16 @@ export function ColorTema() {
       {/* Línea divisoria */}
       <div className="w-px bg-gray-300"></div>
 
-      {/* Boton Derecho (Luna) - Modo Oscuro */}
-      <button className="flex-1 flex justify-center items-center bg-gray-400 text-gray-900 shadow-inner">
+      {/* Botón Derecho (Luna) */}
+      <button
+        onClick={() => onCambiarTema("oscuro")}
+        className={`flex-1 flex justify-center items-center transition-colors cursor-pointer ${
+          temaActual === "oscuro"
+            ? "bg-gray-400 text-gray-900 shadow-inner" // Estado Activo
+            : "bg-gray-200 text-gray-400 hover:bg-gray-300" // Estado Inactivo
+        }`}
+        aria-label="Activar modo oscuro"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

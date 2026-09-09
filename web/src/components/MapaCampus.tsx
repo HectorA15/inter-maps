@@ -4,7 +4,7 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-
+import type { SearchResult } from "../interfaces/ApiInterfaces"; // 1. Importa el contrato global
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
 const protocol = new Protocol();
@@ -199,17 +199,16 @@ const estiloClaro: StyleSpecification = {
     },
   ],
 };
+interface MapaCampusProps {
+  onEdificioClick: (item: SearchResult) => void;
+}
 
-export function MapaCampus() {
+export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
   const [viewState, setViewState] = useState(FALLBACK_CENTER);
   const [bounds, setBounds] =
     useState<[number, number, number, number]>(FALLBACK_BOUNDS);
-  const [seleccionado, setSeleccionado] = useState<{
-    fid: number;
-    nombre: string;
-  } | null>(null);
 
-  // Autoajuste: lee el header del pmtiles en runtime y sincroniza viewState+bounds.
+  // lee el header del pmtiles en runtime y sincroniza viewState+bounds.
   useEffect(() => {
     let cancelado = false;
     const source = new FetchSource("/guadalupe.pmtiles");
@@ -262,11 +261,16 @@ export function MapaCampus() {
         };
         const fid = props.fid ?? -1;
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
-        setSeleccionado({ fid, nombre: String(nombre) });
-        console.log("[MapaCampus] seleccionado:", props);
+
+        onEdificioClick({
+          id: fid,
+          nombre: String(nombre),
+          tipo: "EDIFICIO", // Estandarizamos el flag
+        });
+        console.log("[MapaCampus] click emitido hacia App:", props);
       }
     },
-    [],
+    [onEdificioClick],
   );
 
   return (
@@ -280,7 +284,7 @@ export function MapaCampus() {
         mapStyle={estiloClaro}
         maxBounds={bounds}
         minZoom={13}
-        maxZoom={19}
+        maxZoom={21}
         onError={(e: unknown) => {
           const msg = e instanceof Error ? e.message : String(e);
           console.error("[MapaCampus] MapLibre error:", msg, e);
@@ -291,23 +295,6 @@ export function MapaCampus() {
         style={{ width: "100%", height: "100%" }}
         reuseMaps
       />
-      {seleccionado && (
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white border border-gray-300 rounded-lg p-3 shadow-md min-w-[240px] flex justify-between items-center gap-3">
-          <div>
-            <div className="text-gray-800 font-semibold text-sm mb-1">
-              {seleccionado.nombre}
-            </div>
-            <div className=" text-gray-500 text-xs">ID: {seleccionado.fid}</div>
-          </div>
-          <button
-            className="text-gray-500 hover:text-gray-700 focus:outline-none bg-transparent border-none cursor-pointer text-lg"
-            onClick={() => setSeleccionado(null)}
-            aria-label="Cerrar"
-          >
-            ×
-          </button>
-        </div>
-      )}
     </div>
   );
 }
