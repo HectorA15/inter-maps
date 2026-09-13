@@ -52,6 +52,19 @@ function pmtilesRangePlugin() {
 export default defineConfig({
   plugins: [react(), pmtilesRangePlugin(), tailwindcss()],
 
+  // En desarrollo, Vite reenvía las peticiones de /api al backend.
+  // Esto permite que el navegador utilice el mismo origen y evita configurar
+  // una URL distinta en cada máquina del equipo.
+  server: {
+    host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_PROXY_TARGET || 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    },
+  },
+
   worker: {
     format: 'es',
   },

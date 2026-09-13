@@ -83,7 +83,7 @@ function App() {
       .catch((error: Error) => {
         console.error("Error al buscar el edificio en la BD:", error);
       });
-  }, [lugarSeleccionado]);
+  }, [lugarSeleccionado, edificioDetalle]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white dark:bg-gray-900">
