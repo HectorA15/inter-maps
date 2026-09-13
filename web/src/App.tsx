@@ -63,15 +63,24 @@ function App() {
 
   // Escuchamos el clic y vamos a la base de datos
   useEffect(() => {
-    if (!lugarSeleccionado || lugarSeleccionado.tipo !== "EDIFICIO") return;
-    if (lugarSeleccionado.id < 1) return;
+    if (!lugarSeleccionado || lugarSeleccionado.id < 1) return;
+    if (lugarSeleccionado.tipo === "ZONA") return;
     // Los clics del mapa ya entregan el detalle completo y no necesitan
     // repetir la petición al backend.
-    if (edificioDetalle?.id === lugarSeleccionado.id && edificioDetalle.pisos.length > 0) {
+    if (
+      lugarSeleccionado.tipo === "EDIFICIO" &&
+      edificioDetalle?.id === lugarSeleccionado.id &&
+      edificioDetalle.pisos.length > 0
+    ) {
       return;
     }
 
-    CatalogoService.obtenerEdificio(lugarSeleccionado.id)
+    const obtenerDetalle =
+      lugarSeleccionado.tipo === "ESPACIO"
+        ? CatalogoService.obtenerEdificioDeEspacio(lugarSeleccionado.id)
+        : CatalogoService.obtenerEdificio(lugarSeleccionado.id);
+
+    obtenerDetalle
       .then((data: Edificio) => {
         // Normalizamos la respuesta para que el panel nunca intente renderizar
         // una colección ausente si el backend devuelve un DTO incompleto.
@@ -84,7 +93,7 @@ function App() {
       .catch((error: Error) => {
         console.error("Error al buscar el edificio en la BD:", error);
       });
-  }, [lugarSeleccionado, edificioDetalle]);
+  }, [lugarSeleccionado]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white dark:bg-gray-900">
