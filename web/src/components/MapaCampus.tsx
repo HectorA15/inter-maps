@@ -5,6 +5,7 @@ import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { SearchResult } from "../interfaces/ApiInterfaces"; // 1. Importa el contrato global
+
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
 const protocol = new Protocol();
@@ -63,6 +64,10 @@ const estiloClaro: StyleSpecification = {
     "campus-edificios": {
       type: "geojson",
       data: "/edificios.geojson",
+    },
+    "campus-agua": {
+      type: "geojson",
+      data: "/agua.geojson",
     },
   },
   layers: [
@@ -156,6 +161,19 @@ const estiloClaro: StyleSpecification = {
         "line-dasharray": [4, 2],
       },
     },
+
+    // ---> AGREGA ESTE NUEVO BLOQUE AQUÍ <---
+    // Cuerpos de agua internos del campus
+    {
+      id: "campus-agua-fill",
+      type: "fill",
+      source: "campus-agua", // Debe llamarse EXACTAMENTE como tu llave en 'sources'
+      paint: {
+        "fill-color": "#a8d8f0", // Mismo color que usas para el agua del basemap
+        "fill-opacity": 0.9,
+      },
+    },
+
     // Asfalto / vialidades internas - gris medio, mas oscuro que tierra pero claro que edificios
     {
       id: "campus-asfalto",

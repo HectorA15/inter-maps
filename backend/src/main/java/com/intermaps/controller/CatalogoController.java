@@ -66,4 +66,6 @@ public class CatalogoController {
         return ResponseEntity.ok(catalogoService.obtenerEdificio(id));
     }
 
+    
+
 }

@@ -1,5 +1,6 @@
 import type { SearchResult } from "../interfaces/ApiInterfaces";
 import { useState } from "react";
+import { Tabs } from "./Tabs";
 interface PanelInfoProps {
   item: SearchResult | null;
 }
@@ -37,9 +38,13 @@ export function PanelInfo({ item }: PanelInfoProps) {
         onClick={() => {
           setColapsado(!colapsado);
         }}
-      >
-        <div className="w-[2px] h-1/2 bg-current rounded-full"></div>
-      </button>
+      ></button>
+
+      <Tabs
+        tabs={["Tab 1", "Tab 2", "Tab 3"]}
+        activeTab="Tab 1"
+        onTabChange={() => {}}
+      />
     </div>
   );
 }
