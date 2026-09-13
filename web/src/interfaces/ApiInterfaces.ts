@@ -21,7 +21,7 @@ export interface Edificio {
   id: number;
   nombre: string;
   alias: string[];
-  espacios: Espacio[];
+  pisos: Piso[];
 }
 
 // Mapeo estricto de SearchResultDTO[cite: 12]

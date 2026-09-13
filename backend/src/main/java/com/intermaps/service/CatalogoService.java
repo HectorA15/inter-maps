@@ -54,6 +54,19 @@ public class CatalogoService {
 
     }
 
+    public EdificioDTO obtenerEdificioPorNombre(String nombre) {
+        String nombreNormalizado = com.intermaps.util.GeoUtils.normalizarTexto(nombre).toLowerCase();
+        return edificioRepository.buscarPorNombreOAlias(nombre).stream()
+                .filter(edificio -> edificio.getNombre().equalsIgnoreCase(nombreNormalizado)
+                        || edificio.getAlias().stream()
+                        .anyMatch(alias -> com.intermaps.util.GeoUtils.normalizarTexto(alias)
+                                .equalsIgnoreCase(nombreNormalizado)))
+                .findFirst()
+                .map(EdificioMapper::toDTO)
+                .orElseThrow(() -> new RecursoNoEncontradoException(
+                        "No se encontró ningún edificio con el nombre: " + nombre));
+    }
+
     /**
      * Consulta el id del espacio en la base de datos y lo mapea para convertirlo a un DTO
      *

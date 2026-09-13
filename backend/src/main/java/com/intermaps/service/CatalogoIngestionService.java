@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 /**
@@ -39,10 +42,38 @@ public class CatalogoIngestionService implements CommandLineRunner {
     @Value("classpath:edificios.json")
     private Resource edificiosFile;
 
+    @Value("classpath:edificios.geojson")
+    private Resource edificiosGeoJsonFile;
+
+    @Value("${intermaps.frontend.map-path:../web/public/edificios.geojson}")
+    private String frontendMapPath = "../web/public/edificios.geojson";
+
     @Override
     public void run(String @NonNull ... args) {
         log.info("Iniciando la carga de edificios y espacios...");
+        copiarEdificiosAlFrontend();
         iniciarEdificios();
+    }
+
+    private void copiarEdificiosAlFrontend() {
+        if (edificiosGeoJsonFile == null) {
+            log.warn("No se configuró el GeoJSON de edificios; se omite la copia al frontend.");
+            return;
+        }
+
+        Path destino = Path.of(frontendMapPath).toAbsolutePath().normalize();
+        try {
+            Path directorio = destino.getParent();
+            if (directorio != null) {
+                Files.createDirectories(directorio);
+            }
+            try (var inputStream = edificiosGeoJsonFile.getInputStream()) {
+                Files.copy(inputStream, destino, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            }
+            log.info("GeoJSON de edificios copiado al frontend: {}", destino);
+        } catch (IOException e) {
+            throw new IllegalStateException("No se pudo copiar el GeoJSON al frontend: " + destino, e);
+        }
     }
 
     /**
@@ -80,7 +111,6 @@ public class CatalogoIngestionService implements CommandLineRunner {
      */
     private void procesarEdificio(EdificioRaw edificioRaw) {
         Edificio edificioNuevo = new Edificio();
-        edificioNuevo.setId(edificioRaw.id());
         edificioNuevo.setNombre(GeoUtils.normalizarTexto(edificioRaw.nombre()));
         edificioNuevo.setAlias(edificioRaw.alias() == null ? Set.of() : new LinkedHashSet<>(edificioRaw.alias()));
 
@@ -117,6 +147,5 @@ public class CatalogoIngestionService implements CommandLineRunner {
 
         edificioRepository.save(edificioGuardado);
     }
-
 
 }

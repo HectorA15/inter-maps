@@ -1,8 +1,8 @@
-import type { SearchResult } from "../interfaces/ApiInterfaces";
+import type { Edificio } from "../interfaces/ApiInterfaces";
 import { useState } from "react";
 import { Tabs } from "./Tabs";
 interface PanelInfoProps {
-  item: SearchResult | null;
+  item: Edificio | null;
 }
 
 export function PanelInfo({ item }: PanelInfoProps) {
@@ -29,7 +29,6 @@ export function PanelInfo({ item }: PanelInfoProps) {
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             {item.nombre}
           </h2>
-          <p className="text-sm text-gray-500 uppercase">Tipo: {item.tipo}</p>
         </>
       )}
 
@@ -40,11 +39,13 @@ export function PanelInfo({ item }: PanelInfoProps) {
         }}
       ></button>
 
-      <Tabs
-        tabs={["Tab 1", "Tab 2", "Tab 3"]}
-        activeTab="Tab 1"
-        onTabChange={() => {}}
-      />
+      {item && (
+        <Tabs
+          tabs={item.pisos.map((piso) => piso.nombre)}
+          activeTab="Tab 1"
+          onTabChange={() => {}}
+        />
+      )}
     </div>
   );
 }

@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import type { SearchResult } from "./interfaces/ApiInterfaces";
+import type { SearchResult, Edificio } from "./interfaces/ApiInterfaces";
 import { Buscador } from "./components/Buscador";
 import { MapaCampus } from "./components/MapaCampus";
 import { PanelInfo } from "./components/PanelInfo";
 import { ColorTema } from "./components/ColorTema";
+import { CatalogoService } from "./services/apiClient";
 
 function App() {
-  const [edificioSeleccionado, setEdificioSeleccionado] =
+  // 1. Lo que selecciona el mapa o buscador (Superficial)
+  const [lugarSeleccionado, setLugarSeleccionado] =
     useState<SearchResult | null>(null);
 
-  // para inicializar el tema según la preferencia del sistema operativo
+  // 2. Lo que necesita el panel (Profundo, con pisos y espacios)
+  const [edificioDetalle, setEdificioDetalle] = useState<Edificio | null>(null);
+
   const [tema, setTema] = useState<"claro" | "oscuro">(() => {
     if (typeof window !== "undefined") {
       return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -19,7 +23,6 @@ function App() {
     return "claro";
   });
 
-  // para escuchar cambios del sistema operativo
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (event: MediaQueryListEvent) => {
@@ -29,7 +32,6 @@ function App() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  // para inyectar la clase 'dark' al HTML para que Tailwind funcione
   useEffect(() => {
     const root = document.documentElement;
     if (tema === "oscuro") {
@@ -39,16 +41,37 @@ function App() {
     }
   }, [tema]);
 
+  // Cuando el mapa hace clic, actualizamos el lugar superficial
   const handleSelect = (item: SearchResult) => {
-    setEdificioSeleccionado(item);
+    setLugarSeleccionado(item);
   };
+
+  // 3. LA MAGIA: Escuchamos el clic y vamos a la base de datos
+  useEffect(() => {
+    if (!lugarSeleccionado) {
+      if (edificioDetalle !== null) {
+        setEdificioDetalle(null);
+      }
+      return;
+    }
+
+    if (lugarSeleccionado.tipo === "EDIFICIO") {
+      CatalogoService.obtenerEdificio(lugarSeleccionado.id)
+        .then((data: Edificio) => {
+          setEdificioDetalle(data); // Guardamos la info completa
+        })
+        .catch((error: Error) => {
+          console.error("Error al buscar el edificio en la BD:", error);
+          setEdificioDetalle(null);
+        });
+    }
+  }, [lugarSeleccionado]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white dark:bg-gray-900">
       <MapaCampus onEdificioClick={handleSelect} />
 
       <div className="absolute top-5 right-4 z-10">
-        {/* 4. Le pasamos el estado actual y la función para cambiarlo */}
         <ColorTema temaActual={tema} onCambiarTema={setTema} />
       </div>
 
@@ -58,7 +81,8 @@ function App() {
         </div>
       </div>
 
-      <PanelInfo item={edificioSeleccionado} />
+      {/* 4. Le pasamos el detalle completo al panel, no el superficial */}
+      <PanelInfo item={edificioDetalle} />
     </div>
   );
 }

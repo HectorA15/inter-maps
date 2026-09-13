@@ -15,8 +15,9 @@ public class EdificioMapper {
                 edificio.getId(),
                 edificio.getNombre(),
                 new ArrayList<>(edificio.getAlias()),
-                edificio.getEspacios().stream()
-                        .map(EspacioMapper::toDTO)
+
+                edificio.getPlantas().stream()
+                        .map(PlantaMapper::toDTO)
                         .toList()
         );
     }

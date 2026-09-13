@@ -22,6 +22,13 @@ export const CatalogoService = {
         return response.data;
     },
 
+    obtenerEdificioPorNombre: async (nombre: string): Promise<Edificio> => {
+        const response = await api.get<Edificio>("/catalogo/edificio", {
+            params: { nombre },
+        });
+        return response.data;
+    },
+
     obtenerEspacio: async (id: number): Promise<Espacio> => {
         const response = await api.get<Espacio>(`/catalogo/espacio/${id}`);
         return response.data;

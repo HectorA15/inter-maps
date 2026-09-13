@@ -5,6 +5,7 @@ import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { SearchResult } from "../interfaces/ApiInterfaces"; // 1. Importa el contrato global
+import { CatalogoService } from "../services/apiClient";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -265,7 +266,7 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
   );
 
   const handleClick = useCallback(
-    (e: ViewStateChangeEvent["target"] extends never ? never : unknown) => {
+  async (e: ViewStateChangeEvent["target"] extends never ? never : unknown) => {
       // react-map-gl pasa MapLayerMouseEvent con features
       const event = e as unknown as {
         features?: Array<{ properties: Record<string, unknown> }>;
@@ -276,16 +277,24 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
           fid?: number;
           nombre_zona?: string;
           nombre?: string;
+          tipo_edificio?: string;
         };
-        const fid = props.fid ?? -1;
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
-
-        onEdificioClick({
-          id: fid,
-          nombre: String(nombre),
-          tipo: "EDIFICIO", // Estandarizamos el flag
-        });
-        console.log("[MapaCampus] click emitido hacia App:", props);
+        if (
+          String(props.nombre_zona ?? "").trim() &&
+          String(props.tipo_edificio ?? "").toLowerCase() === "edificio"
+        ) {
+          try {
+            const edificio = await CatalogoService.obtenerEdificioPorNombre(String(nombre));
+            onEdificioClick({
+              id: edificio.id,
+              nombre: edificio.nombre,
+              tipo: "EDIFICIO",
+            });
+          } catch (error) {
+            console.error("[MapaCampus] no se pudo resolver el edificio:", nombre, error);
+          }
+        }
       }
     },
     [onEdificioClick],
