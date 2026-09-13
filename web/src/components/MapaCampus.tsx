@@ -4,7 +4,7 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { SearchResult } from "../interfaces/ApiInterfaces"; // 1. Importa el contrato global
+import type { Edificio, SearchResult } from "../interfaces/ApiInterfaces";
 import { CatalogoService } from "../services/apiClient";
 
 // Registro del protocolo pmtiles.
@@ -219,7 +219,7 @@ const estiloClaro: StyleSpecification = {
   ],
 };
 interface MapaCampusProps {
-  onEdificioClick: (item: SearchResult) => void;
+  onEdificioClick: (item: SearchResult, detalle?: Edificio) => void;
 }
 
 export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
@@ -295,13 +295,18 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
               id: edificio.id,
               nombre: edificio.nombre,
               tipo: "EDIFICIO",
-            });
+            }, edificio);
           } catch (error) {
             console.error(
               "[MapaCampus] no se pudo resolver el edificio:",
               nombre,
               error,
             );
+            onEdificioClick({
+              id: props.fid ?? -1,
+              nombre: String(nombre),
+              tipo: "EDIFICIO",
+            });
           }
             return;
           }

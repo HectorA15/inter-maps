@@ -42,7 +42,7 @@ function App() {
   }, [tema]);
 
   // Cuando el mapa hace clic, actualizamos el lugar superficial
-  const handleSelect = (item: SearchResult) => {
+  const handleSelect = (item: SearchResult, detalle?: Edificio) => {
     // Mostramos el panel inmediatamente mientras se carga el detalle del edificio.
     // También evita dejar el detalle anterior si se selecciona una zona o espacio.
     setEdificioDetalle({
@@ -51,12 +51,24 @@ function App() {
       alias: [],
       pisos: [],
     });
+    if (detalle) {
+      setEdificioDetalle({
+        ...detalle,
+        alias: Array.isArray(detalle.alias) ? detalle.alias : [],
+        pisos: Array.isArray(detalle.pisos) ? detalle.pisos : [],
+      });
+    }
     setLugarSeleccionado(item);
   };
 
   // Escuchamos el clic y vamos a la base de datos
   useEffect(() => {
     if (!lugarSeleccionado || lugarSeleccionado.tipo !== "EDIFICIO") return;
+    // Los clics del mapa ya entregan el detalle completo y no necesitan
+    // repetir la petición al backend.
+    if (edificioDetalle?.id === lugarSeleccionado.id && edificioDetalle.pisos.length > 0) {
+      return;
+    }
 
     CatalogoService.obtenerEdificio(lugarSeleccionado.id)
       .then((data: Edificio) => {
