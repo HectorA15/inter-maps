@@ -43,28 +43,29 @@ function App() {
 
   // Cuando el mapa hace clic, actualizamos el lugar superficial
   const handleSelect = (item: SearchResult) => {
+    if (item.tipo !== "EDIFICIO") {
+      setEdificioDetalle({
+        id: item.id,
+        nombre: item.nombre,
+        alias: [],
+        pisos: [],
+      });
+    }
     setLugarSeleccionado(item);
   };
 
-  // 3. LA MAGIA: Escuchamos el clic y vamos a la base de datos
+  // Escuchamos el clic y vamos a la base de datos
   useEffect(() => {
-    if (!lugarSeleccionado) {
-      if (edificioDetalle !== null) {
-        setEdificioDetalle(null);
-      }
-      return;
-    }
+    if (!lugarSeleccionado || lugarSeleccionado.tipo !== "EDIFICIO") return;
 
-    if (lugarSeleccionado.tipo === "EDIFICIO") {
-      CatalogoService.obtenerEdificio(lugarSeleccionado.id)
-        .then((data: Edificio) => {
-          setEdificioDetalle(data); // Guardamos la info completa
-        })
-        .catch((error: Error) => {
-          console.error("Error al buscar el edificio en la BD:", error);
-          setEdificioDetalle(null);
-        });
-    }
+    CatalogoService.obtenerEdificio(lugarSeleccionado.id)
+      .then((data: Edificio) => {
+        setEdificioDetalle(data); // Guardamos la info completa
+      })
+      .catch((error: Error) => {
+        console.error("Error al buscar el edificio en la BD:", error);
+        setEdificioDetalle(null);
+      });
   }, [lugarSeleccionado]);
 
   return (

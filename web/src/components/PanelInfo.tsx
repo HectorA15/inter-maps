@@ -8,14 +8,6 @@ interface PanelInfoProps {
 export function PanelInfo({ item }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
 
-  // Estado auxiliar para rastrear si el item cambió
-  const [idAnterior, setIdAnterior] = useState(item?.id);
-
-  // Lógica de reseteo durante la fase de renderizado
-  if (item?.id !== idAnterior) {
-    setIdAnterior(item?.id); // Actualizamos la memoria
-    setColapsado(false); // Forzamos a que el panel se abra
-  }
   return (
     <div
       className={`
@@ -39,7 +31,7 @@ export function PanelInfo({ item }: PanelInfoProps) {
         }}
       ></button>
 
-      {item && (
+      {item && item.pisos.length > 0 && (
         <Tabs
           tabs={item.pisos.map((piso) => piso.nombre)}
           activeTab="Tab 1"

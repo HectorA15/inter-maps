@@ -2647,3 +2647,49 @@ Caused by: org.hibernate.StaleObjectStateException: Row was already updated or d
 2026-09-12T23:01:47.018-06:00  INFO 31859 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-09-12T23:01:47.018-06:00  INFO 31859 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-09-12T23:01:47.019-06:00  INFO 31859 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-09-12T23:11:01.361-06:00  INFO 31859 --- [InterMaps] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-12T23:11:01.365-06:00  INFO 31859 --- [InterMaps] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-12T23:11:01.368-06:00  INFO 31859 --- [InterMaps] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-12T23:11:01.370-06:00  INFO 31859 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-12T23:11:01.372-06:00  INFO 31859 --- [InterMaps] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-12T23:11:05.374-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Starting InterMapsApplication using Java 25.0.4.1 with PID 37237 (/home/hector/projects/personal/inter-maps/backend/target/classes started by hector in /home/hector/projects/personal/inter-maps/backend)
+2026-09-12T23:11:05.376-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-12T23:11:05.408-06:00  INFO 37237 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-12T23:11:05.408-06:00  INFO 37237 --- [InterMaps] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-12T23:11:05.785-06:00  INFO 37237 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-12T23:11:05.820-06:00  INFO 37237 --- [InterMaps] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 5 JPA repository interfaces.
+2026-09-12T23:11:06.111-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-09-12T23:11:06.119-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-12T23:11:06.120-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-12T23:11:06.138-06:00  INFO 37237 --- [InterMaps] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 730 ms
+2026-09-12T23:11:06.191-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-12T23:11:06.244-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@574323f2
+2026-09-12T23:11:06.246-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-12T23:11:06.335-06:00  INFO 37237 --- [InterMaps] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-12T23:11:06.363-06:00  INFO 37237 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-12T23:11:06.592-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-12T23:11:06.626-06:00  INFO 37237 --- [InterMaps] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:intermaps.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.53.2
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-12T23:11:07.119-06:00  INFO 37237 --- [InterMaps] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-12T23:11:07.124-06:00  INFO 37237 --- [InterMaps] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-12T23:11:07.166-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-12T23:11:07.682-06:00  WARN 37237 --- [InterMaps] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-12T23:11:07.835-06:00  INFO 37237 --- [InterMaps] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-09-12T23:11:07.838-06:00  INFO 37237 --- [InterMaps] [restartedMain] com.intermaps.InterMapsApplication       : Started InterMapsApplication in 2.755 seconds (process running for 3.025)
+2026-09-12T23:11:07.840-06:00  INFO 37237 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Iniciando la carga de edificios y espacios...
+2026-09-12T23:11:07.841-06:00  INFO 37237 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : GeoJSON de edificios copiado al frontend: /home/hector/projects/personal/inter-maps/web/public/edificios.geojson
+2026-09-12T23:11:08.310-06:00  INFO 37237 --- [InterMaps] [restartedMain] c.i.service.CatalogoIngestionService     : Edificios, plantas y espacios cargados correctamente.
+2026-09-12T23:11:08.985-06:00  INFO 37237 --- [InterMaps] [restartedMain] c.i.service.MapaIngestionService         : Ingesta topológica completada exitosamente.
+2026-09-12T23:11:11.420-06:00  INFO 37237 --- [InterMaps] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-12T23:11:11.420-06:00  INFO 37237 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-12T23:11:11.422-06:00  INFO 37237 --- [InterMaps] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

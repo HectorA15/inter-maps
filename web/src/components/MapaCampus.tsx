@@ -266,7 +266,9 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
   );
 
   const handleClick = useCallback(
-  async (e: ViewStateChangeEvent["target"] extends never ? never : unknown) => {
+    async (
+      e: ViewStateChangeEvent["target"] extends never ? never : unknown,
+    ) => {
       // react-map-gl pasa MapLayerMouseEvent con features
       const event = e as unknown as {
         features?: Array<{ properties: Record<string, unknown> }>;
@@ -280,20 +282,35 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
           tipo_edificio?: string;
         };
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
-        if (
-          String(props.nombre_zona ?? "").trim() &&
-          String(props.tipo_edificio ?? "").toLowerCase() === "edificio"
-        ) {
+        if (String(nombre).trim()) {
+          if (
+            String(props.tipo_edificio ?? "").trim().toLowerCase() ===
+            "edificio"
+          ) {
           try {
-            const edificio = await CatalogoService.obtenerEdificioPorNombre(String(nombre));
+            const edificio = await CatalogoService.obtenerEdificioPorNombre(
+              String(nombre),
+            );
             onEdificioClick({
               id: edificio.id,
               nombre: edificio.nombre,
               tipo: "EDIFICIO",
             });
           } catch (error) {
-            console.error("[MapaCampus] no se pudo resolver el edificio:", nombre, error);
+            console.error(
+              "[MapaCampus] no se pudo resolver el edificio:",
+              nombre,
+              error,
+            );
           }
+            return;
+          }
+
+          onEdificioClick({
+            id: props.fid ?? -1,
+            nombre: String(nombre),
+            tipo: String(props.tipo_edificio ?? "ZONA"),
+          });
         }
       }
     },
