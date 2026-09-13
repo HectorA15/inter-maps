@@ -64,6 +64,7 @@ function App() {
   // Escuchamos el clic y vamos a la base de datos
   useEffect(() => {
     if (!lugarSeleccionado || lugarSeleccionado.tipo !== "EDIFICIO") return;
+    if (lugarSeleccionado.id < 1) return;
     // Los clics del mapa ya entregan el detalle completo y no necesitan
     // repetir la petición al backend.
     if (edificioDetalle?.id === lugarSeleccionado.id && edificioDetalle.pisos.length > 0) {

@@ -438,7 +438,7 @@
       "properties": {
         "fid": 22,
         "nombre_zona": "Edificio 22",
-        "tipo_edificio": "Edficio"
+        "tipo_edificio": "Edificio"
       },
       "geometry": {
         "type": "MultiPolygon",
