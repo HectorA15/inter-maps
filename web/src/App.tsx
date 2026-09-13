@@ -42,20 +42,40 @@ function App() {
   }, [tema]);
 
   // Cuando el mapa hace clic, actualizamos el lugar superficial
-  const handleSelect = (item: SearchResult, detalle?: Edificio) => {
-    // Mostramos el panel inmediatamente mientras se carga el detalle del edificio.
-    // También evita dejar el detalle anterior si se selecciona una zona o espacio.
-    setEdificioDetalle({
-      id: item.id,
-      nombre: item.nombre,
-      alias: [],
-      pisos: [],
-    });
+  const handleSelect = async (item: SearchResult, detalle?: Edificio) => {
+    if (item.tipo === "ESPACIO") {
+      setEdificioDetalle(null);
+      setLugarSeleccionado(null);
+      try {
+        const edificio = await CatalogoService.obtenerEdificioDeEspacio(item.id);
+        setEdificioDetalle({
+          ...edificio,
+          alias: Array.isArray(edificio.alias) ? edificio.alias : [],
+          pisos: Array.isArray(edificio.pisos) ? edificio.pisos : [],
+        });
+        setLugarSeleccionado({
+          id: edificio.id,
+          nombre: edificio.nombre,
+          tipo: "EDIFICIO",
+        });
+      } catch (error) {
+        console.error("Error al buscar el edificio del espacio:", error);
+      }
+      return;
+    }
+
     if (detalle) {
       setEdificioDetalle({
         ...detalle,
         alias: Array.isArray(detalle.alias) ? detalle.alias : [],
         pisos: Array.isArray(detalle.pisos) ? detalle.pisos : [],
+      });
+    } else {
+      setEdificioDetalle({
+        id: item.id,
+        nombre: item.nombre,
+        alias: [],
+        pisos: [],
       });
     }
     setLugarSeleccionado(item);
