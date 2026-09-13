@@ -7,6 +7,7 @@ interface PanelInfoProps {
 
 export function PanelInfo({ item }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
+  const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
 
   return (
     <div
@@ -31,9 +32,9 @@ export function PanelInfo({ item }: PanelInfoProps) {
         }}
       ></button>
 
-      {item && item.pisos.length > 0 && (
+      {item && pisos.length > 0 && (
         <Tabs
-          tabs={item.pisos.map((piso) => piso.nombre)}
+          tabs={pisos.map((piso) => piso.nombre)}
           activeTab="Tab 1"
           onTabChange={() => {}}
         />

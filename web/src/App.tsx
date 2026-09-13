@@ -43,14 +43,14 @@ function App() {
 
   // Cuando el mapa hace clic, actualizamos el lugar superficial
   const handleSelect = (item: SearchResult) => {
-    if (item.tipo !== "EDIFICIO") {
-      setEdificioDetalle({
-        id: item.id,
-        nombre: item.nombre,
-        alias: [],
-        pisos: [],
-      });
-    }
+    // Mostramos el panel inmediatamente mientras se carga el detalle del edificio.
+    // También evita dejar el detalle anterior si se selecciona una zona o espacio.
+    setEdificioDetalle({
+      id: item.id,
+      nombre: item.nombre,
+      alias: [],
+      pisos: [],
+    });
     setLugarSeleccionado(item);
   };
 
@@ -60,11 +60,16 @@ function App() {
 
     CatalogoService.obtenerEdificio(lugarSeleccionado.id)
       .then((data: Edificio) => {
-        setEdificioDetalle(data); // Guardamos la info completa
+        // Normalizamos la respuesta para que el panel nunca intente renderizar
+        // una colección ausente si el backend devuelve un DTO incompleto.
+        setEdificioDetalle({
+          ...data,
+          alias: Array.isArray(data.alias) ? data.alias : [],
+          pisos: Array.isArray(data.pisos) ? data.pisos : [],
+        });
       })
       .catch((error: Error) => {
         console.error("Error al buscar el edificio en la BD:", error);
-        setEdificioDetalle(null);
       });
   }, [lugarSeleccionado]);
 
