@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Edificio, Espacio, SearchResult, SpringPage, RutaGeoJson } from "../interfaces/ApiInterfaces";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL || "/api/v1",
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
@@ -22,14 +22,22 @@ export const CatalogoService = {
         return response.data;
     },
 
+    obtenerEdificioPorNombre: async (nombre: string): Promise<Edificio> => {
+        const response = await api.get<Edificio>("/catalogo/edificio", {
+            params: { nombre },
+        });
+        return response.data;
+    },
+
     obtenerEspacio: async (id: number): Promise<Espacio> => {
         const response = await api.get<Espacio>(`/catalogo/espacio/${id}`);
         return response.data;
     },
 
-    buscar: async (nombre: string): Promise<SearchResult[]> => {
+    buscar: async (nombre: string, signal?: AbortSignal): Promise<SearchResult[]> => {
         const response = await api.get<SearchResult[]>("/catalogo/buscar", {
             params: { nombre },
+            signal,
         });
         return response.data;
     },

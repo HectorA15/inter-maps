@@ -19,7 +19,7 @@ El sistema opera bajo una arquitectura de monorepositorio, diseñado para ejecut
 
 ## Stack Tecnológico
 **Motor Backend**
-* Java 17
+* Java 25
 * Spring Boot 4.1.0
 * SQLite 
 
@@ -35,7 +35,7 @@ El sistema opera bajo una arquitectura de monorepositorio, diseñado para ejecut
 
 ## Prerrequisitos
 Asegúrese de tener instalado lo siguiente en su entorno de desarrollo:
-* [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [JDK 25](https://www.oracle.com/java/technologies/javase/jdk25-archive-downloads.html)
 * [Maven](https://maven.apache.org/)
 * [Node.js](https://nodejs.org/en) (v18 o superior)
 

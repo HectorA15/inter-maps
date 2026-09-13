@@ -9,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +23,9 @@ import java.util.List;
 public class CatalogoController {
 
     private final CatalogoService catalogoService;
+
+    @Value("classpath:edificios.geojson")
+    private Resource edificiosGeoJson;
 
     /**
      * Endpoint para obtener una lista paginada de edificios.
@@ -55,6 +61,11 @@ public class CatalogoController {
         return ResponseEntity.ok(catalogoService.obtenerEspacio(id));
     }
 
+    @GetMapping("/edificio")
+    public ResponseEntity<EdificioDTO> obtenerEdificioPorNombre(@RequestParam String nombre) {
+        return ResponseEntity.ok(catalogoService.obtenerEdificioPorNombre(nombre));
+    }
+
     /**
      * Endpoint para obtener un edificio por su ID.
      *
@@ -64,6 +75,11 @@ public class CatalogoController {
     @GetMapping("/edificio/{id}")
     public ResponseEntity<EdificioDTO> obtenerEdificio(@PathVariable Long id) {
         return ResponseEntity.ok(catalogoService.obtenerEdificio(id));
+    }
+
+    @GetMapping(value = "/mapa/edificios", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Resource> obtenerEdificiosGeoJson() {
+        return ResponseEntity.ok(edificiosGeoJson);
     }
 
 }

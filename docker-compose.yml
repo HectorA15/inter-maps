@@ -1,0 +1,34 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    environment:
+      # El backend conserva SQLite en el volumen de desarrollo.
+      SPRING_DATASOURCE_URL: jdbc:sqlite:/app/backend/intermaps.db
+      INTERMAPS_FRONTEND_MAP_PATH: /app/web/public/edificios.geojson
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app/backend
+      - ./web/public:/app/web/public
+      - maven-cache:/root/.m2
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    environment:
+      # El nombre "backend" solo se utiliza dentro de la red de Compose.
+      VITE_API_PROXY_TARGET: http://backend:8080
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web:/app
+      - frontend-node-modules:/app/node_modules
+
+volumes:
+  maven-cache:
+  frontend-node-modules:

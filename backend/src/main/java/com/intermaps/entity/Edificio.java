@@ -41,6 +41,8 @@ public class Edificio {
     @OneToMany(mappedBy = "edificio", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Espacio> espacios = new ArrayList<>();
 
+
+    
     public void agregarPlanta(Planta planta) {
         if (planta == null) {
             return;

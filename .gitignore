@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.env
+
+# Archivos generados localmente por el backend.
+backend/intermaps.db
+backend/logs/

@@ -1,7 +1,7 @@
 [
   {
-    "nombre": "1",
-    "alias": [],
+    "nombre": "Edificio 1",
+    "alias": ["1"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -39,8 +39,8 @@
     ]
   },
   {
-    "nombre": "3",
-    "alias": [],
+    "nombre": "Edificio 3",
+    "alias": ["3"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -60,10 +60,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "tipo": "AULA",
         "piso": 1
       },
@@ -114,15 +111,13 @@
     ]
   },
   {
-    "nombre": "4",
-    "alias": [],
+    "nombre": "Vigilancia",
+    "alias": ["4"],
     "pisosTotales": 1,
     "espacios": [
       {
         "nombre": "Estación de Radio",
-        "alias": [
-          "radio"
-        ],
+        "alias": ["radio"],
         "piso": 1
       },
       {
@@ -132,8 +127,8 @@
     ]
   },
   {
-    "nombre": "5",
-    "alias": [],
+    "nombre": "Edificio 5",
+    "alias": ["5"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -142,31 +137,26 @@
       },
       {
         "nombre": "Actividades Extraescolares",
-        "alias": [
-          "extraescolares",
-          "actividades extra"
-        ],
+        "alias": ["extraescolares", "actividades extra"],
         "piso": 1
       }
     ]
   },
   {
-    "nombre": "6",
-    "alias": [],
+    "nombre": "Edificio 6",
+    "alias": ["6"],
     "pisosTotales": 1,
     "espacios": [
       {
         "nombre": "Comedor de Trabajadores",
-        "alias": [
-          "comedor"
-        ],
+        "alias": ["comedor"],
         "piso": 1
       }
     ]
   },
   {
-    "nombre": "7",
-    "alias": [],
+    "nombre": "Edificio 7",
+    "alias": ["7"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -196,9 +186,7 @@
       },
       {
         "nombre": "Bebedero",
-        "alias": [
-          "agua"
-        ],
+        "alias": ["agua"],
         "piso": 1
       },
       {
@@ -229,8 +217,8 @@
     ]
   },
   {
-    "nombre": "8",
-    "alias": [],
+    "nombre": "Edificio 8",
+    "alias": ["8"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -243,9 +231,7 @@
       },
       {
         "nombre": "Copias e Impresiones",
-        "alias": [
-          "papeleria"
-        ],
+        "alias": ["papeleria"],
         "piso": 1
       },
       {
@@ -267,8 +253,8 @@
     ]
   },
   {
-    "nombre": "9",
-    "alias": [],
+    "nombre": "Edificio 9",
+    "alias": ["9"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -281,10 +267,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -313,10 +296,8 @@
     ]
   },
   {
-    "nombre": "10",
-    "alias": [
-      "cafeteria"
-    ],
+    "nombre": "Cafeteria",
+    "alias": ["10", "cafeteria"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -326,10 +307,8 @@
     ]
   },
   {
-    "nombre": "11",
-    "alias": [
-      "biblioteca"
-    ],
+    "nombre": "Biblioteca",
+    "alias": ["11", "biblioteca"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -343,10 +322,8 @@
     ]
   },
   {
-    "nombre": "12",
-    "alias": [
-      "laboratorio de ingenieria electrica"
-    ],
+    "nombre": "Edificio 12",
+    "alias": ["12", "laboratorio de ingenieria electrica"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -357,8 +334,8 @@
     ]
   },
   {
-    "nombre": "14",
-    "alias": [],
+    "nombre": "Edificio 14",
+    "alias": ["14"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -405,8 +382,8 @@
     ]
   },
   {
-    "nombre": "15",
-    "alias": [],
+    "nombre": "Edificio 15",
+    "alias": ["15"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -461,8 +438,8 @@
     ]
   },
   {
-    "nombre": "16",
-    "alias": [],
+    "nombre": "Edificio 16",
+    "alias": ["16"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -473,8 +450,8 @@
     ]
   },
   {
-    "nombre": "18",
-    "alias": [],
+    "nombre": "Edificio 18",
+    "alias": ["18"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -496,10 +473,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -572,8 +546,8 @@
     ]
   },
   {
-    "nombre": "19",
-    "alias": [],
+    "nombre": "Edificio 19",
+    "alias": ["19"],
     "pisosTotales": 1,
     "espacios": [
       {
@@ -602,19 +576,14 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       }
     ]
   },
   {
-    "nombre": "20",
-    "alias": [
-      "laboratorio de computo"
-    ],
+    "nombre": "Edificio 20",
+    "alias": ["20", "laboratorio de computo"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -648,10 +617,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -685,8 +651,8 @@
     ]
   },
   {
-    "nombre": "22",
-    "alias": [],
+    "nombre": "Centro de calidad",
+    "alias": ["22"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -726,17 +692,12 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
       {
         "nombre": "Bebedero",
-        "alias": [
-          "agua"
-        ],
+        "alias": ["agua"],
         "piso": 1
       },
       {
@@ -780,11 +741,8 @@
     ]
   },
   {
-    "nombre": "23",
-    "alias": [
-      "nodos",
-      "nodo"
-    ],
+    "nombre": "Nodos",
+    "alias": ["23", "nodos", "nodo"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -823,10 +781,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 2
       },
       {
@@ -841,10 +796,8 @@
     ]
   },
   {
-    "nombre": "24",
-    "alias": [
-      "pisos"
-    ],
+    "nombre": "Edificio 24",
+    "alias": ["24", "pisos"],
     "pisosTotales": 2,
     "espacios": [
       {
@@ -898,10 +851,7 @@
       },
       {
         "nombre": "Baños",
-        "alias": [
-          "sanitario",
-          "sanitarios"
-        ],
+        "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
       {

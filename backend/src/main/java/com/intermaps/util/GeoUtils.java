@@ -34,6 +34,6 @@ public class GeoUtils {
         // Descompone caracteres acentuados en base + acento
         String nfd = Normalizer.normalize(texto, Normalizer.Form.NFD);
         // Elimina los acentos (diacríticos)
-        return nfd.replaceAll("\\p{M}", "").toLowerCase();
+        return nfd.replaceAll("\\p{M}", "");
     }
 }

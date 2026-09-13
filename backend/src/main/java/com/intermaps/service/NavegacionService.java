@@ -9,7 +9,6 @@ import com.intermaps.repository.NodoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,6 @@ import static com.intermaps.util.GeoUtils.calcularDistanciaEnMetros;
 @Slf4j
 @Service
 @Order(3)
-@ConditionalOnProperty(name = "intermaps.ingestion.enabled", havingValue = "true", matchIfMissing = true)
 public class NavegacionService implements CommandLineRunner {
 
     private final AristaRepository aristaRepository;

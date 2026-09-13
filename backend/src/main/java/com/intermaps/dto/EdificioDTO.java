@@ -10,6 +10,6 @@ public record EdificioDTO(
         Long id,
         String nombre,
         List<String> alias,
-        List<EspacioDTO> espacios
+        List<PlantaDTO> pisos
 ) {
 }
