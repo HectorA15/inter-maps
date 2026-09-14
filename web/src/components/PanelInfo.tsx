@@ -1,14 +1,17 @@
 import type { Edificio } from "../interfaces/ApiInterfaces";
+import type { SearchResult } from "../interfaces/ApiInterfaces";
 import { useState } from "react";
 import { Tabs } from "./Tabs";
+import {Imagen} from "./Imagenes"
 interface PanelInfoProps {
   item: Edificio | null;
+  Busqueda:SearchResult | null
 }
 
-export function PanelInfo({ item }: PanelInfoProps) {
+function PanelInfo({ item,Busqueda }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
   const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
-
+    const datoParaImagen = Busqueda || item
   return (
     <div
       className={`
@@ -32,6 +35,13 @@ export function PanelInfo({ item }: PanelInfoProps) {
         }}
       ></button>
 
+
+        <Imagen dato={datoParaImagen}>
+
+        </Imagen>
+
+
+
       {item && pisos.length > 0 && (
         <Tabs
           tabs={pisos.map((piso) => piso.nombre)}
@@ -42,3 +52,5 @@ export function PanelInfo({ item }: PanelInfoProps) {
     </div>
   );
 }
+
+export default PanelInfo
