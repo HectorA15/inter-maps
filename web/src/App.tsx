@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { SearchResult, Edificio } from "./interfaces/ApiInterfaces";
 import { Buscador } from "./components/Buscador";
 import { MapaCampus } from "./components/MapaCampus";
-import { PanelInfo } from "./components/PanelInfo";
+import PanelInfo from "./components/PanelInfo";
 import { ColorTema } from "./components/ColorTema";
 import { CatalogoService } from "./services/apiClient";
 
