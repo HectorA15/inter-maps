@@ -1,22 +1,18 @@
 import type { Edificio } from "../interfaces/ApiInterfaces";
-import { useEffect, useState } from "react";
+import type { SearchResult } from "../interfaces/ApiInterfaces";
+import { useState } from "react";
 import { Tabs } from "./Tabs";
+import {Imagen} from "./Imagenes"
 interface PanelInfoProps {
   item: Edificio | null;
+  Busqueda:SearchResult | null
 }
 
-export function PanelInfo({ item }: PanelInfoProps) {
+function PanelInfo({ item,Busqueda }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
   const [pisoActivo, setPisoActivo] = useState("");
   const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
-  const pisoSeleccionado =
-    pisos.find((piso) => piso.nombre === pisoActivo) ?? pisos[0];
-
-  useEffect(() => {
-    setPisoActivo(item?.pisos?.[0]?.nombre ?? "");
-    setColapsado(false);
-  }, [item]);
-
+    const datoParaImagen = Busqueda || item
   return (
     <div
       className={`
@@ -39,6 +35,13 @@ export function PanelInfo({ item }: PanelInfoProps) {
           setColapsado(!colapsado);
         }}
       ></button>
+
+
+        <Imagen dato={datoParaImagen}>
+
+        </Imagen>
+
+
 
       {item && pisos.length > 0 && (
         <>
@@ -80,3 +83,5 @@ export function PanelInfo({ item }: PanelInfoProps) {
     </div>
   );
 }
+
+export default PanelInfo
