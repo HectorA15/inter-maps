@@ -9,11 +9,17 @@ import com.intermaps.mapper.EspacioMapper;
 import com.intermaps.mapper.SearchMapper;
 import com.intermaps.repository.EdificioRepository;
 import com.intermaps.repository.EspacioRepository;
+import com.intermaps.util.GeoUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,6 +35,10 @@ public class CatalogoService {
 
     private final EdificioRepository edificioRepository;
     private final EspacioRepository espacioRepository;
+    private final ObjectMapper objectMapper;
+
+    @Value("classpath:edificios.geojson")
+    private Resource edificiosGeoJson;
 
     /**
      * Consulta los edificios en la base de datos de forma paginada y los transforma a DTOs.
@@ -80,6 +90,12 @@ public class CatalogoService {
                 .orElseThrow(() -> new RecursoNoEncontradoException("No se encontró ningún espacio con el ID: " + id));
     }
 
+    public EdificioDTO obtenerEdificioDeEspacio(Long id) {
+        return espacioRepository.findById(id)
+                .map(espacio -> EdificioMapper.toDTO(espacio.getEdificio()))
+                .orElseThrow(() -> new RecursoNoEncontradoException("No se encontró ningún espacio con el ID: " + id));
+    }
+
     /**
      * Busca resultados de búsqueda por nombre en edificios y espacios.
      *
@@ -87,10 +103,37 @@ public class CatalogoService {
      * @return Una Lista de SearchResultDTO que contiene los resultados mezclados de edificios y espacios de la búsqueda
      */
     public List<SearchResultDTO> obtenerSearchResult(String nombre) {
-        return Stream.concat(
+        List<SearchResultDTO> resultadosCatalogo = Stream.concat(
                 edificioRepository.buscarPorNombreOAlias(nombre).stream().map(SearchMapper::toDTO),
                 espacioRepository.buscarPorNombreOAlias(nombre).stream().map(SearchMapper::toDTO)
         ).toList();
+
+        String termino = GeoUtils.normalizarTexto(nombre).toLowerCase();
+        List<SearchResultDTO> resultadosZonas = buscarZonas(termino);
+        return Stream.concat(resultadosCatalogo.stream(), resultadosZonas.stream()).toList();
+    }
+
+    private List<SearchResultDTO> buscarZonas(String termino) {
+        try (var inputStream = edificiosGeoJson.getInputStream()) {
+            JsonNode features = objectMapper.readTree(inputStream).path("features");
+            return java.util.stream.StreamSupport.stream(features.spliterator(), false)
+                    .map(feature -> feature.path("properties"))
+                    .filter(properties -> "deportes".equalsIgnoreCase(
+                            properties.path("tipo_edificio").asText().trim()))
+                    .filter(properties -> {
+                        String nombre = GeoUtils.normalizarTexto(
+                                properties.path("nombre_zona").asText()).toLowerCase();
+                        String nombreAlternativo = nombre.replace("baseball", "beisbol");
+                        return nombre.contains(termino) || nombreAlternativo.contains(termino);
+                    })
+                    .map(properties -> new SearchResultDTO(
+                            properties.path("fid").asLong(),
+                            properties.path("nombre_zona").asText(),
+                            "ZONA"))
+                    .toList();
+        } catch (IOException e) {
+            throw new IllegalStateException("No se pudieron buscar las zonas del mapa.", e);
+        }
     }
 
 }

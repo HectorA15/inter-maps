@@ -1,28 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Iniciando entorno de desarrollo para InterMaps..."
 
-# Levantar el Backend (Spring Boot con Maven Wrapper) en segundo plano
+if ! command -v java >/dev/null 2>&1; then
+    echo "Error: Java 25 o compatible no está instalado." >&2
+    exit 1
+fi
+
+if ! command -v npm >/dev/null 2>&1; then
+    echo "Error: Node.js y npm no están instalados." >&2
+    exit 1
+fi
+
+if [ ! -d "$ROOT_DIR/web/node_modules" ]; then
+    echo "==> Instalando dependencias del frontend..."
+    (cd "$ROOT_DIR/web" && npm ci)
+fi
+
 echo "==> Iniciando Backend (Spring Boot)..."
-cd backend
-./mvnw spring-boot:run &
+(cd "$ROOT_DIR/backend" && ./mvnw spring-boot:run) &
 BACKEND_PID=$!
 
-# Levantar el Frontend Web (Vite) en segundo plano
 echo "==> Iniciando Frontend Web..."
-cd ../web
-npm run dev &
+(cd "$ROOT_DIR/web" && npm run dev) &
 WEB_PID=$!
 
-# Función para apagar todo limpiamente si presionas Ctrl+C
 cleanup() {
     echo ""
     echo "Apagando servicios..."
-    kill $BACKEND_PID $WEB_PID 2>/dev/null
+    kill "$BACKEND_PID" "$WEB_PID" 2>/dev/null || true
     exit 0
 }
 
 trap cleanup SIGINT
+trap cleanup SIGTERM
 
-# Mantener el script activo esperando procesos
-wait
+wait "$BACKEND_PID" "$WEB_PID"

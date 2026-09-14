@@ -61,6 +61,11 @@ public class CatalogoController {
         return ResponseEntity.ok(catalogoService.obtenerEspacio(id));
     }
 
+    @GetMapping("/espacio/{id}/edificio")
+    public ResponseEntity<EdificioDTO> obtenerEdificioDeEspacio(@PathVariable Long id) {
+        return ResponseEntity.ok(catalogoService.obtenerEdificioDeEspacio(id));
+    }
+
     @GetMapping("/edificio")
     public ResponseEntity<EdificioDTO> obtenerEdificioPorNombre(@RequestParam String nombre) {
         return ResponseEntity.ok(catalogoService.obtenerEdificioPorNombre(nombre));

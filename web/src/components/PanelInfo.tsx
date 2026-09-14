@@ -10,6 +10,7 @@ interface PanelInfoProps {
 
 function PanelInfo({ item,Busqueda }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
+  const [pisoActivo, setPisoActivo] = useState("");
   const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
     const datoParaImagen = Busqueda || item
   return (
@@ -43,11 +44,41 @@ function PanelInfo({ item,Busqueda }: PanelInfoProps) {
 
 
       {item && pisos.length > 0 && (
-        <Tabs
-          tabs={pisos.map((piso) => piso.nombre)}
-          activeTab="Tab 1"
-          onTabChange={() => {}}
-        />
+        <>
+          <Tabs
+            tabs={pisos.map((piso) => piso.nombre)}
+            activeTab={pisoSeleccionado?.nombre ?? ""}
+            onTabChange={setPisoActivo}
+          />
+          {pisoSeleccionado && (
+            <div className="mt-4 space-y-2 overflow-y-auto max-h-[calc(100vh-180px)]">
+              {pisoSeleccionado.espacios.length > 0 ? (
+                pisoSeleccionado.espacios.map((espacio) => (
+                  <div
+                    key={espacio.id}
+                    className="rounded border border-gray-200 p-3"
+                  >
+                    <p className="font-medium text-gray-800">
+                      {espacio.nombre}
+                    </p>
+                    {espacio.tipo && (
+                      <p className="text-xs text-gray-500">{espacio.tipo}</p>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p className="text-sm text-gray-500">
+                  No hay espacios registrados en este piso.
+                </p>
+              )}
+            </div>
+          )}
+        </>
+      )}
+      {item && pisos.length === 0 && (
+        <p className="text-sm text-gray-500">
+          No hay pisos registrados para este edificio.
+        </p>
       )}
     </div>
   );
