@@ -286,31 +286,32 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
         };
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
         if (String(nombre).trim()) {
-          if (
-            String(props.tipo_edificio ?? "").trim().toLowerCase() ===
-            "edificio"
-          ) {
-          try {
-            const edificio = await CatalogoService.obtenerEdificioPorNombre(
-              String(nombre),
-            );
-            onEdificioClick({
-              id: edificio.id,
-              nombre: edificio.nombre,
-              tipo: "EDIFICIO",
-            }, edificio);
-          } catch (error) {
-            console.error(
-              "[MapaCampus] no se pudo resolver el edificio:",
-              nombre,
-              error,
-            );
-            onEdificioClick({
-              id: props.fid ?? -1,
-              nombre: String(nombre),
-              tipo: "EDIFICIO",
-            });
-          }
+          const tipo = String(props.tipo_edificio ?? "").trim().toLowerCase();
+          if (tipo === "edificio") {
+            try {
+              const edificio = await CatalogoService.obtenerEdificioPorNombre(
+                String(nombre),
+              );
+              onEdificioClick(
+                {
+                  id: edificio.id,
+                  nombre: edificio.nombre,
+                  tipo: "EDIFICIO",
+                },
+                edificio,
+              );
+            } catch (error) {
+              console.error(
+                "[MapaCampus] no se pudo resolver el edificio por nombre:",
+                nombre,
+                error,
+              );
+              onEdificioClick({
+                id: props.fid ?? -1,
+                nombre: String(nombre),
+                tipo: "EDIFICIO",
+              });
+            }
             return;
           }
 

@@ -42,20 +42,40 @@ function App() {
   }, [tema]);
 
   // Cuando el mapa hace clic, actualizamos el lugar superficial
-  const handleSelect = (item: SearchResult, detalle?: Edificio) => {
-    // Mostramos el panel inmediatamente mientras se carga el detalle del edificio.
-    // También evita dejar el detalle anterior si se selecciona una zona o espacio.
-    setEdificioDetalle({
-      id: item.id,
-      nombre: item.nombre,
-      alias: [],
-      pisos: [],
-    });
+  const handleSelect = async (item: SearchResult, detalle?: Edificio) => {
+    if (item.tipo === "ESPACIO") {
+      setEdificioDetalle(null);
+      setLugarSeleccionado(null);
+      try {
+        const edificio = await CatalogoService.obtenerEdificioDeEspacio(item.id);
+        setEdificioDetalle({
+          ...edificio,
+          alias: Array.isArray(edificio.alias) ? edificio.alias : [],
+          pisos: Array.isArray(edificio.pisos) ? edificio.pisos : [],
+        });
+        setLugarSeleccionado({
+          id: edificio.id,
+          nombre: edificio.nombre,
+          tipo: "EDIFICIO",
+        });
+      } catch (error) {
+        console.error("Error al buscar el edificio del espacio:", error);
+      }
+      return;
+    }
+
     if (detalle) {
       setEdificioDetalle({
         ...detalle,
         alias: Array.isArray(detalle.alias) ? detalle.alias : [],
         pisos: Array.isArray(detalle.pisos) ? detalle.pisos : [],
+      });
+    } else {
+      setEdificioDetalle({
+        id: item.id,
+        nombre: item.nombre,
+        alias: [],
+        pisos: [],
       });
     }
     setLugarSeleccionado(item);
@@ -63,14 +83,24 @@ function App() {
 
   // Escuchamos el clic y vamos a la base de datos
   useEffect(() => {
-    if (!lugarSeleccionado || lugarSeleccionado.tipo !== "EDIFICIO") return;
+    if (!lugarSeleccionado || lugarSeleccionado.id < 1) return;
+    if (lugarSeleccionado.tipo === "ZONA") return;
     // Los clics del mapa ya entregan el detalle completo y no necesitan
     // repetir la petición al backend.
-    if (edificioDetalle?.id === lugarSeleccionado.id && edificioDetalle.pisos.length > 0) {
+    if (
+      lugarSeleccionado.tipo === "EDIFICIO" &&
+      edificioDetalle?.id === lugarSeleccionado.id &&
+      edificioDetalle.pisos.length > 0
+    ) {
       return;
     }
 
-    CatalogoService.obtenerEdificio(lugarSeleccionado.id)
+    const obtenerDetalle =
+      lugarSeleccionado.tipo === "ESPACIO"
+        ? CatalogoService.obtenerEdificioDeEspacio(lugarSeleccionado.id)
+        : CatalogoService.obtenerEdificio(lugarSeleccionado.id);
+
+    obtenerDetalle
       .then((data: Edificio) => {
         // Normalizamos la respuesta para que el panel nunca intente renderizar
         // una colección ausente si el backend devuelve un DTO incompleto.
