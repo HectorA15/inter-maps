@@ -6,8 +6,7 @@ import type { ViteDevServer } from "vite";
 import type { IncomingMessage, ServerResponse } from "http";
 import tailwindcss from "@tailwindcss/vite";
 
-// Plugin minimo para servir .pmtiles con soporte Range, requerido por pmtiles Protocol (FetchSource)
-// Vite dev no envia 206 por defecto; sin esto el mapa queda en fondo negro y error en consola.
+// Plugin minimo para servir .pmtiles con soporte Range
 function pmtilesRangePlugin() {
   return {
     name: "pmtiles-range",
@@ -23,7 +22,6 @@ function pmtilesRangePlugin() {
           if (!fs.existsSync(filePath)) return next();
           const stat = fs.statSync(filePath);
           const range = req.headers.range;
-          // pmtiles siempre pide Range: bytes=start-end
           if (range) {
             const match = /bytes=(\d+)-(\d*)/.exec(range);
             if (match) {
@@ -41,7 +39,6 @@ function pmtilesRangePlugin() {
               return;
             }
           }
-          // sin Range: respuesta normal
           res.writeHead(200, {
             "Content-Length": stat.size,
             "Accept-Ranges": "bytes",
@@ -66,33 +63,6 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-  },
-
-  // ---> AÑADIMOS ESTO PARA PRODUCCIÓN EN VERCEL <---
-  build: {
-    rollupOptions: {
-      output: {
-        // Obliga a renombrar todos los chunks y entry files a .js puro
-        chunkFileNames: "assets/[name]-[hash].js",
-        entryFileNames: "assets/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash].[ext]",
-      },
-    },
-  },
-
-  worker: {
-    format: "iife",
-    // Por si Vite empaqueta el worker por separado, forzamos también aquí el .js
-    rollupOptions: {
-      output: {
-        entryFileNames: "assets/worker-[name]-[hash].js",
-        chunkFileNames: "assets/worker-[name]-[hash].js",
-      },
-    },
-  },
-
-  optimizeDeps: {
-    exclude: ["maplibre-gl"],
   },
 
   // @ts-expect-error vitest types no incluidos en vite UserConfig
