@@ -33,6 +33,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
       className={`
         fixed top-0 left-0 w-80 h-full bg-white shadow-2xl z-50 p-6
         transform transition-transform duration-300 ease-out
+        ${item && !colapsado ? "panel-slide-in" : ""}
         ${item && !colapsado ? "translate-x-0" : "-translate-x-full"}
     `}
     >
