@@ -81,7 +81,7 @@ export default defineConfig({
   },
 
   worker: {
-    format: "es",
+    format: "iife",
     // Por si Vite empaqueta el worker por separado, forzamos también aquí el .js
     rollupOptions: {
       output: {
