@@ -5,8 +5,11 @@ import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.js?url";
-(maplibregl as any).setWorkerUrl(workerUrl);
+// Eliminamos el import local que causa conflictos en Vite.
+// Inyectamos el Worker directamente desde un CDN público.
+(maplibregl as any).setWorkerUrl(
+  "https://unpkg.com/maplibre-gl/dist/maplibre-gl-worker.js",
+);
 
 import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
