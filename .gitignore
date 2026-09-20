@@ -33,6 +33,8 @@ build/
 .vscode/
 
 .env
+web/.env.*
+!web/.env.example
 
 # Archivos generados localmente por el backend.
 backend/intermaps.db

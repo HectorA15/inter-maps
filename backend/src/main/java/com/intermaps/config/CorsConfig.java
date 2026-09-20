@@ -18,7 +18,7 @@ public class CorsConfig implements WebMvcConfigurer {
         */
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")  // en un futuro cambiar a algo como "https://InterMaps.com"
-                .allowedMethods("GET", "POST", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(false)
                 .maxAge(3600);
