@@ -266,13 +266,17 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
     [],
   );
     const CentradoMapa = useCallback(() => {
-        setViewState(FALLBACK_CENTER);
+        setViewState((estadoAnterior) => ({
+            ...estadoAnterior,
+            longitude: FALLBACK_CENTER.longitude,
+            latitude: FALLBACK_CENTER.latitude
+        }));
     }, []);
   const handleClick = useCallback(
     async (
       e: ViewStateChangeEvent["target"] extends never ? never : unknown,
     ) => {
-      // react-map-gl pasa MapLayerMouseEvent con features
+        // react-map-gl pasa MapLayerMouseEvent con features
       const event = e as unknown as {
         features?: Array<{ properties: Record<string, unknown> }>;
       };
