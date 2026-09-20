@@ -4,8 +4,8 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Edificio, SearchResult } from "../interfaces/ApiInterfaces";
-import { CatalogoService } from "../services/apiClient";
+import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
+import { CatalogoService } from "../../services/apiClient";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -283,7 +283,9 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
         };
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
         if (String(nombre).trim()) {
-          const tipo = String(props.tipo_edificio ?? "").trim().toLowerCase();
+          const tipo = String(props.tipo_edificio ?? "")
+            .trim()
+            .toLowerCase();
           if (tipo === "edificio") {
             try {
               const edificio = await CatalogoService.obtenerEdificioPorNombre(

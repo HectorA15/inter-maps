@@ -1,26 +1,32 @@
-import type { Edificio } from "../interfaces/ApiInterfaces";
-import type { SearchResult } from "../interfaces/ApiInterfaces";
-import { useState, useEffect } from "react";
+import type { Edificio } from "../../interfaces/ApiInterfaces";
+import type { SearchResult } from "../../interfaces/ApiInterfaces";
+import { useState } from "react";
 import { Tabs } from "./Tabs";
 import { Imagen } from "./Imagenes";
+import EspaciosPiso from "./EspaciosPiso";
+
 interface PanelInfoProps {
   item: Edificio | null;
-  Busqueda: SearchResult | null;
+  busqueda: SearchResult | null;
 }
 
-function PanelInfo({ item, Busqueda }: PanelInfoProps) {
+function PanelInfo({ item, busqueda }: PanelInfoProps) {
   const [colapsado, setColapsado] = useState(false);
   const [pisoActivo, setPisoActivo] = useState("");
+  const [idAnterior, setIdAnterior] = useState(item?.id);
+
   const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
-  const datoParaImagen = Busqueda || item;
+  const datoParaImagen = busqueda || item;
+
+  // verifica si el id del edifcio seleccionado cambio
+  if (item?.id !== idAnterior) {
+    setIdAnterior(item?.id);
+    setColapsado(false);
+    setPisoActivo(pisos[0]?.nombre ?? "");
+  }
 
   const pisoSeleccionado =
     pisos.find((piso) => piso.nombre === pisoActivo) ?? pisos[0];
-
-  useEffect(() => {
-    setPisoActivo(item?.pisos?.[0]?.nombre ?? "");
-    setColapsado(false);
-  }, [item]);
 
   return (
     <div
@@ -30,14 +36,6 @@ function PanelInfo({ item, Busqueda }: PanelInfoProps) {
         ${item && !colapsado ? "translate-x-0" : "-translate-x-full"}
     `}
     >
-      {item && (
-        <>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            {item.nombre}
-          </h2>
-        </>
-      )}
-
       <button
         className="absolute top-1/2 -translate-y-1/2 left-full flex justify-center items-center rounded-e-md bg-transparent border-y border-r border-gray-200 shadow-md w-3 h-[30%] text-gray-400 hover:text-gray-500 transition-colors cursor-pointer hover:bg-gray-100"
         onClick={() => {
@@ -47,6 +45,14 @@ function PanelInfo({ item, Busqueda }: PanelInfoProps) {
 
       <Imagen dato={datoParaImagen}></Imagen>
 
+      {item && (
+        <>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            {item.nombre}
+          </h2>
+        </>
+      )}
+
       {item && pisos.length > 0 && (
         <>
           <Tabs
@@ -54,29 +60,7 @@ function PanelInfo({ item, Busqueda }: PanelInfoProps) {
             activeTab={pisoSeleccionado?.nombre ?? ""}
             onTabChange={setPisoActivo}
           />
-          {pisoSeleccionado && (
-            <div className="mt-4 space-y-2 overflow-y-auto max-h-[calc(100vh-180px)]">
-              {pisoSeleccionado.espacios.length > 0 ? (
-                pisoSeleccionado.espacios.map((espacio) => (
-                  <div
-                    key={espacio.id}
-                    className="rounded border border-gray-200 p-3"
-                  >
-                    <p className="font-medium text-gray-800">
-                      {espacio.nombre}
-                    </p>
-                    {espacio.tipo && (
-                      <p className="text-xs text-gray-500">{espacio.tipo}</p>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-gray-500">
-                  No hay espacios registrados en este piso.
-                </p>
-              )}
-            </div>
-          )}
+          <EspaciosPiso pisoActivo={pisoActivo} edificio={item} />
         </>
       )}
       {item && pisos.length === 0 && (
