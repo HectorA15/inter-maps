@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: docker/backend.Dockerfile
+      target: build
+    working_dir: /app/backend
+    command: ["./mvnw", "spring-boot:run"]
     environment:
       # El backend conserva SQLite en el volumen de desarrollo.
       SPRING_DATASOURCE_URL: jdbc:sqlite:/app/backend/intermaps.db
