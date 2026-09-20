@@ -3,14 +3,6 @@ import Map, { type ViewStateChangeEvent } from "react-map-gl/maplibre";
 import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
-import "maplibre-gl/dist/maplibre-gl.css";
-
-// Eliminamos el import local que causa conflictos en Vite.
-// Inyectamos el Worker directamente desde un CDN público.
-(maplibregl as any).setWorkerUrl(
-  "https://unpkg.com/maplibre-gl/dist/maplibre-gl-worker.js",
-);
-
 import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
 
