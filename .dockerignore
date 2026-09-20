@@ -1,0 +1,13 @@
+.git
+.github
+.idea
+.vscode
+
+backend/target
+backend/intermaps.db
+backend/logs
+web/node_modules
+web/dist
+
+*.log
+*.db

@@ -59,9 +59,9 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
-        "tipo": "AULA",
+        "tipo": "SANITARIO",
         "piso": 1
       },
       {
@@ -266,7 +266,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
@@ -472,7 +472,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
@@ -575,7 +575,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       }
@@ -616,7 +616,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
@@ -691,7 +691,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },
@@ -780,7 +780,7 @@
         "piso": 2
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 2
       },
@@ -850,7 +850,7 @@
         "piso": 1
       },
       {
-        "nombre": "Baños",
+        "nombre": "Sanitario",
         "alias": ["sanitario", "sanitarios"],
         "piso": 1
       },

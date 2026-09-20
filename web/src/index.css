@@ -14,6 +14,20 @@ body {
   overflow: hidden; /* evita scroll doble con el mapa a pantalla completa */
 }
 
+@keyframes panel-slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.panel-slide-in {
+  animation: panel-slide-in 300ms ease-out;
+}
+
 /* Asegura que el canvas de MapLibre llene su contenedor */
 .maplibregl-map {
   width: 100%;

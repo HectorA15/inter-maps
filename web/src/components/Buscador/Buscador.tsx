@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import type { SearchResult } from "../interfaces/ApiInterfaces";
-import { CatalogoService } from "../services/apiClient";
+import { useState, useEffect, useMemo, useRef } from "react";
+import type { SearchResult } from "../../interfaces/ApiInterfaces";
+import { CatalogoService } from "../../services/apiClient";
 import { MdDomain, MdPlace } from "react-icons/md";
 
 interface BuscadorProps {
@@ -21,7 +21,27 @@ export function Buscador({
   const [indiceSeleccionado, setIndiceSeleccionado] = useState<number>(-1);
 
   const contenedorRef = useRef<HTMLDivElement>(null);
-  const seleccionPendiente = useRef(false);
+
+  const resultadosLocales = useMemo(() => {
+    const query = textoBusqueda
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    if (!datos || datos.length === 0 || !query) return [];
+
+    return datos.filter((item) => {
+      const nombreNorm = item.nombre
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      return nombreNorm.includes(query);
+    });
+  }, [datos, textoBusqueda]);
+
+  const resultadosVisibles =
+    datos && datos.length > 0 ? resultadosLocales : resultados;
 
   // Cerrar el dropdown al hacer clic fuera del componente
   useEffect(() => {
@@ -45,34 +65,12 @@ export function Buscador({
     const query = textoBusqueda.trim();
 
     if (!query) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- limpieza sincrona necesaria al vaciar input
-      setResultados([]);
-      setCargando(false);
-      setMostrarDropdown(false);
-      setIndiceSeleccionado(-1);
       return;
     }
 
-    // Si se pasaron datos estáticos locales, filtrar localmente ignorando acentos
+    // El filtrado local se deriva durante el render; aquí solo se manejan
+    // búsquedas remotas y sus efectos secundarios.
     if (datos && datos.length > 0) {
-      if (seleccionPendiente.current) {
-        seleccionPendiente.current = false;
-        return;
-      }
-      const queryNorm = query
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-      const filtrados = datos.filter((item) => {
-        const nombreNorm = item.nombre
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase();
-        return nombreNorm.includes(queryNorm);
-      });
-      setResultados(filtrados);
-      setMostrarDropdown(true);
-      setIndiceSeleccionado(-1);
       return;
     }
 
@@ -104,7 +102,6 @@ export function Buscador({
 
   // Función para seleccionar un item del dropdown
   const seleccionarItem = (item: SearchResult) => {
-    seleccionPendiente.current = true;
     setTextoBusqueda(capitalizarNombre(item.nombre));
     setMostrarDropdown(false);
     if (onSelect) {
@@ -114,22 +111,25 @@ export function Buscador({
 
   // Manejar navegación con teclado (ArrowUp, ArrowDown, Enter, Escape)
   const manejarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!mostrarDropdown || resultados.length === 0) return;
+    if (!mostrarDropdown || resultadosVisibles.length === 0) return;
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setIndiceSeleccionado((prev) =>
-        prev < resultados.length - 1 ? prev + 1 : 0,
+        prev < resultadosVisibles.length - 1 ? prev + 1 : 0,
       );
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setIndiceSeleccionado((prev) =>
-        prev > 0 ? prev - 1 : resultados.length - 1,
+        prev > 0 ? prev - 1 : resultadosVisibles.length - 1,
       );
     } else if (e.key === "Enter") {
       e.preventDefault();
-      if (indiceSeleccionado >= 0 && indiceSeleccionado < resultados.length) {
-        seleccionarItem(resultados[indiceSeleccionado]);
+      if (
+        indiceSeleccionado >= 0 &&
+        indiceSeleccionado < resultadosVisibles.length
+      ) {
+        seleccionarItem(resultadosVisibles[indiceSeleccionado]);
       }
     } else if (e.key === "Escape") {
       setMostrarDropdown(false);
@@ -190,6 +190,9 @@ export function Buscador({
               setCargando(false);
               setMostrarDropdown(false);
               setIndiceSeleccionado(-1);
+            } else if (datos && datos.length > 0) {
+              setMostrarDropdown(true);
+              setIndiceSeleccionado(-1);
             }
           }}
           onFocus={() => textoBusqueda.trim() && setMostrarDropdown(true)}
@@ -229,8 +232,8 @@ export function Buscador({
 
       {mostrarDropdown && (
         <ul className="absolute top-[calc(100%+6px)] left-0 right-0 z-[1000] bg-white rounded z-xl shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-[#e0e0e0] list-none m-0 py-2 max-h-[320px] overflow-y-auto">
-          {resultados.length > 0 ? (
-            resultados.map((item, idx) => (
+          {resultadosVisibles.length > 0 ? (
+            resultadosVisibles.map((item, idx) => (
               <li
                 key={`${item.tipo}-${item.id}-${idx}`}
                 className={`shrink-0 flex items-center px-4 py-2.5 cursor-pointer text-sm text-[#3c4043] transition-colors duration-100 ease-out hover:bg-[#f1f3f4] ${
