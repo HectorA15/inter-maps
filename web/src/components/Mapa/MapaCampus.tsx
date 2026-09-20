@@ -4,21 +4,16 @@ import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
-import maplibregl from "maplibre-gl/dist/maplibre-gl-csp";
-import workerUrl from "maplibre-gl/dist/maplibre-gl-csp-worker?url";
+import * as maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 
 maplibregl.setWorkerUrl(workerUrl);
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
 const protocol = new Protocol();
-type MapLibreWithProtocol = typeof maplibregl & {
-  addProtocol: (name: string, handler: typeof protocol.tile) => void;
-};
 try {
-  (maplibregl as unknown as MapLibreWithProtocol).addProtocol(
-    "pmtiles",
-    protocol.tile,
-  );
+  maplibregl.addProtocol("pmtiles", protocol.tile);
 } catch (e: unknown) {
   const msg = e instanceof Error ? e.message : String(e);
   if (!msg.includes("already")) {
