@@ -344,19 +344,6 @@ npm run dev
 
 También existe `./dev.sh` y configuración Docker mediante `docker-compose.yml`.
 
-## Despliegue de prueba
-
-`docker/backend.Dockerfile` usa dos etapas:
-
-- `build`: compila el JAR con Maven.
-- etapa final: ejecuta el JAR con Eclipse Temurin JRE 25 y copia `web/public/edificios.geojson` al contenedor.
-
-Render debe usar la etapa final del Dockerfile. `docker-compose.yml` usa explícitamente la etapa `build` y `spring-boot:run` para conservar el flujo de desarrollo con volúmenes y hot reload.
-
-La ingesta actual carga edificios, espacios y rutas desde `backend/src/main/resources` al arrancar. No depende de `data.sql`. Sin embargo, `schema.sql` se ejecuta con `spring.sql.init.mode=always` y elimina/recrea las tablas; por ello las anotaciones creadas en una instancia efímera se perderán al reiniciar. Para persistencia real se necesita un disco persistente o una base de datos externa.
-
-En Vercel, configurar `VITE_API_BASE_URL` con la URL pública del backend terminada en `/api/v1`. No versionar archivos `.env.production` locales.
-
 ## Convenciones de trabajo
 
 - Mantener cambios quirúrgicos y evitar refactors no relacionados.
