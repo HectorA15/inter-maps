@@ -12,8 +12,7 @@ function App() {
     edificioDetalle,
     numeroSeleccion,
     seleccionarLugar,
-  } =
-    useLugarSeleccionado();
+  } = useLugarSeleccionado();
 
   // Obtenemos el tema actual y la función para cambiar el tema desde el hook useTema.
   const { tema, cambiarTema } = useTema();
