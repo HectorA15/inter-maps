@@ -4,6 +4,10 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
+
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.js?url";
+(maplibregl as any).setWorkerUrl(workerUrl);
+
 import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
 
