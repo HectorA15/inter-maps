@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS aristas;
+DROP TABLE IF EXISTS anotaciones;
 DROP TABLE IF EXISTS espacio_aliases;
 DROP TABLE IF EXISTS espacios;
 DROP TABLE IF EXISTS nodos;
@@ -71,4 +72,19 @@ CREATE TABLE aristas (
     peso FLOAT NOT NULL,
     FOREIGN KEY (nodo_origen_id) REFERENCES nodos (id),
     FOREIGN KEY (nodo_destino_id) REFERENCES nodos (id)
+);
+
+CREATE TABLE anotaciones (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    texto VARCHAR(20),
+    tipo VARCHAR(50) NOT NULL,
+    color VARCHAR(20),
+    icono VARCHAR(50),
+    tamano INTEGER NOT NULL DEFAULT 24,
+    latitud FLOAT NOT NULL,
+    longitud FLOAT NOT NULL,
+    fecha_creacion TIMESTAMP,
+    fecha_modificacion TIMESTAMP,
+    visibilidad VARCHAR(20) NOT NULL DEFAULT 'PUBLICO'
 );

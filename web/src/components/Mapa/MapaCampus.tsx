@@ -4,8 +4,8 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Edificio, SearchResult } from "../interfaces/ApiInterfaces";
-import { CatalogoService } from "../services/apiClient";
+import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
+import { CatalogoService } from "../../services/apiClient";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -218,6 +218,7 @@ const estiloClaro: StyleSpecification = {
     },
   ],
 };
+
 interface MapaCampusProps {
   onEdificioClick: (item: SearchResult, detalle?: Edificio) => void;
 }
@@ -232,6 +233,8 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
     let cancelado = false;
     const source = new FetchSource("/guadalupe.pmtiles");
     const p = new PMTiles(source);
+
+    // lee header y actualiza bounds y viewState si no se cancela
     p.getHeader()
       .then((h) => {
         if (cancelado) return;
@@ -260,11 +263,13 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
     };
   }, []);
 
+  // Maneja el movimiento del mapa (drag, zoom, etc.)
   const handleMove = useCallback(
     (evt: ViewStateChangeEvent) => setViewState(evt.viewState),
     [],
   );
 
+  // Maneja el click en un feature del mapa (edificio o zona)
   const handleClick = useCallback(
     async (
       e: ViewStateChangeEvent["target"] extends never ? never : unknown,
@@ -273,44 +278,69 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
       const event = e as unknown as {
         features?: Array<{ properties: Record<string, unknown> }>;
       };
+
+      // toma el primer feature clickeado (si hay)
       const feature = event.features?.[0];
+
+      // Si no hay feature, no hacemos nada
+      if (!feature) return;
+
+      // Si hay propiedades, intentamos extraer el nombre y tipo
       if (feature?.properties) {
+        // Extrae propiedades relevantes del feature
         const props = feature.properties as {
           fid?: number;
           nombre_zona?: string;
           nombre?: string;
           tipo_edificio?: string;
         };
+
+        // Si es un edificio, intenta resolverlo por nombre usando el servicio de catálogo
         const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
+
+        // Solo procede si hay un nombre válido
         if (String(nombre).trim()) {
-          if (
-            String(props.tipo_edificio ?? "").trim().toLowerCase() ===
-            "edificio"
-          ) {
-          try {
-            const edificio = await CatalogoService.obtenerEdificioPorNombre(
-              String(nombre),
-            );
-            onEdificioClick({
-              id: edificio.id,
-              nombre: edificio.nombre,
-              tipo: "EDIFICIO",
-            }, edificio);
-          } catch (error) {
-            console.error(
-              "[MapaCampus] no se pudo resolver el edificio:",
-              nombre,
-              error,
-            );
-            onEdificioClick({
-              id: props.fid ?? -1,
-              nombre: String(nombre),
-              tipo: "EDIFICIO",
-            });
-          }
+          // Normaliza el tipo de edificio y decide si es un edificio o zona
+          const tipo = String(props.tipo_edificio ?? "")
+            .trim()
+            .toLowerCase();
+
+          // Si es un edificio, intenta obtener detalles del catálogo y llama a onEdificioClick con el detalle
+          if (tipo === "edificio") {
+            try {
+              // Llama al servicio para obtener el edificio por nombre
+              const edificio = await CatalogoService.obtenerEdificioPorNombre(
+                String(nombre),
+              );
+
+              // Si se encuentra el edificio, llama a onEdificioClick con el detalle
+              onEdificioClick(
+                {
+                  id: edificio.id,
+                  nombre: edificio.nombre,
+                  tipo: "EDIFICIO",
+                },
+                edificio,
+              );
+            } catch (error) {
+              // Si falla la búsqueda, loguea el error y llama a onEdificioClick con un objeto básico
+              console.error(
+                "[MapaCampus] no se pudo resolver el edificio por nombre:",
+                nombre,
+                error,
+              );
+
+              // Llama a onEdificioClick con un objeto básico si no se pudo obtener el detalle
+              onEdificioClick({
+                id: props.fid ?? -1,
+                nombre: String(nombre),
+                tipo: "EDIFICIO",
+              });
+            }
             return;
           }
 
+          // Si no es un edificio, simplemente llama a onEdificioClick con el nombre y tipo
           onEdificioClick({
             id: props.fid ?? -1,
             nombre: String(nombre),
@@ -319,6 +349,7 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
         }
       }
     },
+    // Dependencias: onEdificioClick no cambia, por lo que no hay dependencias adicionales
     [onEdificioClick],
   );
 

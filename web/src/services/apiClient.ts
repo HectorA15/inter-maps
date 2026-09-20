@@ -34,6 +34,11 @@ export const CatalogoService = {
         return response.data;
     },
 
+    obtenerEdificioDeEspacio: async (id: number): Promise<Edificio> => {
+        const response = await api.get<Edificio>(`/catalogo/espacio/${id}/edificio`);
+        return response.data;
+    },
+
     buscar: async (nombre: string, signal?: AbortSignal): Promise<SearchResult[]> => {
         const response = await api.get<SearchResult[]>("/catalogo/buscar", {
             params: { nombre },
