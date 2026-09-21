@@ -1,7 +1,7 @@
 interface BotonCentrarProps {
     onClick: () => void;
 }
-
+//El besto componente
 export function BotonCentrar({ onClick }: BotonCentrarProps) {
     return (
         <button

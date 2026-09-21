@@ -4,8 +4,9 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Edificio, SearchResult } from "../interfaces/ApiInterfaces";
-import { CatalogoService } from "../services/apiClient";
+import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
+import { CatalogoService } from "../../services/apiClient";
+import { BotonCentrar } from "../Utilles/BotonCentrado.tsx";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -260,6 +261,13 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
     };
   }, []);
 
+    const CentradoMapa = useCallback(() => {
+        setViewState((estadoAnterior) => ({
+            ...estadoAnterior,
+            longitude: FALLBACK_CENTER.longitude,
+            latitude: FALLBACK_CENTER.latitude
+        }));
+    }, []);
   const handleMove = useCallback(
     (evt: ViewStateChangeEvent) => setViewState(evt.viewState),
     [],
@@ -345,6 +353,8 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
         style={{ width: "100%", height: "100%" }}
         reuseMaps
       />
+        <BotonCentrar onClick={CentradoMapa} />
+
     </div>
   );
 }
