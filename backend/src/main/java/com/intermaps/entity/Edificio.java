@@ -3,6 +3,7 @@ package com.intermaps.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.intermaps.util.GeoUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -25,6 +26,9 @@ public class Edificio {
 
     private String nombre;
 
+    @Column(name = "nombre_busqueda", nullable = false)
+    private String nombreBusqueda;
+
     @ElementCollection
     @CollectionTable(name = "edificio_aliases", joinColumns = @JoinColumn(name = "edificio_id"))
     @Column(name = "alias")
@@ -41,8 +45,14 @@ public class Edificio {
     @OneToMany(mappedBy = "edificio", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Espacio> espacios = new ArrayList<>();
 
+    @PrePersist
+    @PreUpdate
+    private void actualizarNombreBusqueda() {
+        if (nombre != null) {
+            nombreBusqueda = GeoUtils.normalizarParaBusqueda(nombre);
+        }
+    }
 
-    
     public void agregarPlanta(Planta planta) {
         if (planta == null) {
             return;
