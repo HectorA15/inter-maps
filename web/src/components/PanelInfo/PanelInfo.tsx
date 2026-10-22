@@ -38,7 +38,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
     `}
     >
       <button
-        className="absolute top-1/2 -translate-y-1/2 left-full flex justify-center items-center rounded-e-md bg-transparent border-y border-r border-gray-200 shadow-md w-3 h-[30%] text-gray-400 hover:text-gray-500 transition-colors cursor-pointer hover:bg-gray-100"
+        className="absolute top-1/2 -translate-y-1/2 left-full flex justify-center items-center rounded-e-md bg-gray-100/80 border-y border-r border-gray-200 shadow-md w-3 h-[30%] text-gray-400 hover:text-gray-500 transition-colors cursor-pointer hover:bg-gray-100"
         onClick={() => {
           setColapsado(!colapsado);
         }}

@@ -19,8 +19,10 @@ La aplicación permite:
 - Visualizar el campus con MapLibre.
 - Consultar edificios, plantas y espacios.
 - Buscar edificios, espacios y zonas deportivas.
+- Mostrar el edificio asociado junto a cada espacio en los resultados de búsqueda.
 - Mostrar rutas GeoJSON.
 - Seleccionar lugares desde el mapa o el buscador.
+- Centrar y animar el mapa al seleccionar edificios, espacios o zonas.
 - Mostrar un panel lateral con el detalle del lugar.
 - Cambiar entre tema claro y oscuro.
 - Gestionar anotaciones geográficas persistentes para futuros globos, iconos y textos.
@@ -118,6 +120,45 @@ GET /mapa/edificios
 ```
 
 El catálogo usa entidades de edificios, plantas y espacios. Las respuestas principales son `EdificioDTO`, `PlantaDTO`, `EspacioDTO` y `SearchResultDTO`.
+
+`SearchResultDTO` contiene:
+
+```text
+id
+nombre
+tipo
+edificioNombre
+```
+
+`edificioNombre` se informa para resultados de tipo `ESPACIO` usando la relación
+`Espacio -> Edificio`. Para edificios y zonas normalmente es `null`. El frontend
+lo muestra como contexto secundario, por ejemplo `Baño — Edificio 3` o
+`Baño — Nodos`.
+
+### Nombres visibles y búsqueda sin acentos
+
+Los nombres del catálogo deben conservarse tal como deben mostrarse al usuario.
+Por ejemplo, el JSON usa `"Baño"` y no `"Bano"`. La búsqueda se normaliza por
+separado:
+
+- `nombre`: texto visible, conserva acentos y caracteres especiales.
+- `nombre_busqueda`: clave técnica sin diacríticos y en minúsculas.
+
+`GeoUtils.normalizarTexto` elimina diacríticos y
+`GeoUtils.normalizarParaBusqueda` además recorta espacios y convierte a minúsculas.
+Las entidades `Edificio` y `Espacio` regeneran `nombre_busqueda` con
+`@PrePersist` y `@PreUpdate`. No usar la normalización de búsqueda para reemplazar
+el nombre visible.
+
+Los baños del catálogo usan:
+
+```json
+{
+  "nombre": "Baño",
+  "alias": ["baño", "baños", "sanitario", "sanitarios"],
+  "tipo": "SANITARIO"
+}
+```
 
 ### Anotaciones
 
@@ -246,7 +287,11 @@ web/src/components/
 `App.tsx` pasa la misma función `seleccionarLugar` al mapa y al buscador:
 
 ```tsx
-<MapaCampus onEdificioClick={seleccionarLugar} />
+<MapaCampus
+  onEdificioClick={seleccionarLugar}
+  lugarSeleccionado={lugarSeleccionado}
+  edificioDetalle={edificioDetalle}
+/>
 <Buscador onSelect={seleccionarLugar} />
 ```
 
@@ -268,6 +313,23 @@ La `key` del panel incluye `numeroSeleccion` para que, después de cerrar el pan
 - Carga el header de `/guadalupe.pmtiles` para actualizar centro y límites.
 - Usa valores fallback si falla la lectura del header.
 - Renderiza capas locales y overlays GeoJSON.
+- Expone una configuración de navegación en `mapConfig.ts`:
+
+```ts
+export const NAVEGACION_MAPA = {
+  duracionMs: 900,
+  padding: 64,
+  zoomMaximo: 18,
+};
+```
+
+- Usa `fitBounds` para centrar la geometría seleccionada.
+- Resuelve edificios por nombre y zonas por `fid` o nombre en `mapFeatures.ts`.
+- Para un espacio, usa el edificio padre obtenido por `useLugarSeleccionado`.
+- Espera a que la fuente `campus-edificios` esté cargada antes de mover la cámara.
+- Mantiene el mapa en vista 2D: `pitch` y `maxPitch` están fijados en `0`, y
+  están deshabilitadas la rotación con mouse, la inclinación táctil y la
+  rotación con gesto de dos dedos.
 - Permite interacción sobre:
   - `campus-edificios`
   - `campus-deportes`
@@ -275,6 +337,10 @@ La `key` del panel incluye `numeroSeleccion` para que, después de cerrar el pan
   - Convierte sus propiedades a `SearchResult` usando `mapFeatures.ts`.
   - Consulta el backend solo cuando el tipo es edificio.
   - Envía zonas como deportes o entradas sin consultar un edificio inexistente.
+
+El buscador remoto usa un debounce de 100 ms y `AbortController`. Las búsquedas
+locales normalizan acentos solo para comparar, pero muestran el nombre original.
+Los resultados pueden incluir `edificioNombre` como contexto visual.
 
 Las coordenadas de anotaciones deben ser geográficas:
 
@@ -354,6 +420,10 @@ También existe `./dev.sh` y configuración Docker mediante `docker-compose.yml`
 - No ocultar errores con defaults silenciosos; registrar o propagar según el patrón existente.
 - Antes de cambiar el modelo de anotaciones, considerar autenticación, propietario y persistencia real.
 - No editar `web/node_modules`, `web/dist` ni `backend/target`.
+- Para funcionalidades independientes, preferir ramas descriptivas como
+  `feature/contexto-edificio-en-buscador`.
+- Usar mensajes de commit convencionales, por ejemplo:
+  `feat(search): mostrar edificio asociado y bloquear rotacion 3D`.
 
 IMPORTANTE. Seguir las siguientes reglas al momento de agregar codigo
 
@@ -373,3 +443,11 @@ IMPORTANTE. Seguir las siguientes reglas al momento de agregar codigo
 4. Los SVG son recursos estáticos del backend; aún no hay subida de archivos.
 5. El editor Drag & Drop todavía no existe. Primero debe funcionar el flujo de colocar, guardar, actualizar y volver a cargar.
 6. El layer de resaltado de edificios puede requerir implementación si se desea seleccionar visualmente una feature.
+7. `pisosTotales` del JSON todavía no se utiliza para construir las plantas.
+8. Los IDs definidos en el JSON de catálogo no se conservan durante la ingesta;
+   actualmente se generan según la configuración JPA, excepto los IDs de espacios
+   que se asignan explícitamente.
+9. `Edificio.sinonimos` existe en la entidad y en el esquema, pero todavía no
+   se carga desde el JSON ni participa en las búsquedas.
+10. La ingesta inicial omite la carga si ya existe algún edificio y el esquema
+    actual reinicia las tablas al arrancar; esto debe revisarse antes de producción.
