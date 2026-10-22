@@ -10,7 +10,8 @@ DROP TABLE IF EXISTS edificios;
 
 CREATE TABLE edificios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre VARCHAR(255)
+    nombre VARCHAR(255) NOT NULL,
+    nombre_busqueda VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE edificio_aliases (
@@ -36,7 +37,8 @@ CREATE TABLE plantas (
 
 CREATE TABLE espacios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre VARCHAR(255),
+    nombre VARCHAR(255) NOT NULL,
+    nombre_busqueda VARCHAR(255) NOT NULL,
     tipo VARCHAR(255),
     descripcion VARCHAR(255),
     alias VARCHAR(255),

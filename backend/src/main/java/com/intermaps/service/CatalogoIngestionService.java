@@ -111,7 +111,8 @@ public class CatalogoIngestionService implements CommandLineRunner {
      */
     private void procesarEdificio(EdificioRaw edificioRaw) {
         Edificio edificioNuevo = new Edificio();
-        edificioNuevo.setNombre(GeoUtils.normalizarTexto(edificioRaw.nombre()));
+        edificioNuevo.setNombre(edificioRaw.nombre().trim());
+        edificioNuevo.setNombreBusqueda(GeoUtils.normalizarParaBusqueda(edificioRaw.nombre()));
         edificioNuevo.setAlias(edificioRaw.alias() == null ? Set.of() : new LinkedHashSet<>(edificioRaw.alias()));
 
         final Edificio edificioGuardado = edificioRepository.save(edificioNuevo);
@@ -123,7 +124,8 @@ public class CatalogoIngestionService implements CommandLineRunner {
             Espacio espacio = new Espacio();
 
             espacio.setId(espacioRaw.id());
-            espacio.setNombre(GeoUtils.normalizarTexto(espacioRaw.nombre()));
+            espacio.setNombre(espacioRaw.nombre().trim());
+            espacio.setNombreBusqueda(GeoUtils.normalizarParaBusqueda(espacioRaw.nombre()));
             espacio.setDescripcion(espacioRaw.descripcion());
             espacio.setAlias(espacioRaw.alias() == null ? Set.of() : new LinkedHashSet<>(espacioRaw.alias()));
             espacio.setTipo(espacioRaw.tipo());

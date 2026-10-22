@@ -59,8 +59,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "tipo": "SANITARIO",
         "piso": 1
       },
@@ -266,8 +266,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -472,8 +472,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -575,8 +575,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       }
     ]
@@ -616,8 +616,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -691,8 +691,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       },
       {
@@ -780,8 +780,8 @@
         "piso": 2
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 2
       },
       {
@@ -850,8 +850,8 @@
         "piso": 1
       },
       {
-        "nombre": "Sanitario",
-        "alias": ["sanitario", "sanitarios"],
+        "nombre": "Baño",
+        "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       },
       {

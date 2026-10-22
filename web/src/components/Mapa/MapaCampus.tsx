@@ -1,11 +1,22 @@
-import { useState, useCallback, useEffect } from "react";
-import Map, { type ViewStateChangeEvent } from "react-map-gl/maplibre";
+import { useState, useCallback, useEffect, useRef } from "react";
+import Map, {
+  type MapLayerMouseEvent,
+  type MapRef,
+  type ViewStateChangeEvent,
+} from "react-map-gl/maplibre";
 import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
+import {
+  encontrarFeatureParaLugar,
+  obtenerBoundsDeFeature,
+  obtenerLugarDesdeFeature,
+  type MapFeature,
+} from "./mapFeatures";
+import { NAVEGACION_MAPA } from "./mapConfig";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -221,12 +232,21 @@ const estiloClaro: StyleSpecification = {
 
 interface MapaCampusProps {
   onEdificioClick: (item: SearchResult, detalle?: Edificio) => void;
+  lugarSeleccionado?: SearchResult | null;
+  edificioDetalle?: Edificio | null;
 }
 
-export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
+export function MapaCampus({
+  onEdificioClick,
+  lugarSeleccionado,
+  edificioDetalle,
+}: MapaCampusProps) {
   const [viewState, setViewState] = useState(FALLBACK_CENTER);
   const [bounds, setBounds] =
     useState<[number, number, number, number]>(FALLBACK_BOUNDS);
+  const [mapaListo, setMapaListo] = useState(false);
+  const [fuenteEdificiosLista, setFuenteEdificiosLista] = useState(false);
+  const mapRef = useRef<MapRef>(null);
 
   // lee el header del pmtiles en runtime y sincroniza viewState+bounds.
   useEffect(() => {
@@ -271,14 +291,7 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
 
   // Maneja el click en un feature del mapa (edificio o zona)
   const handleClick = useCallback(
-    async (
-      e: ViewStateChangeEvent["target"] extends never ? never : unknown,
-    ) => {
-      // react-map-gl pasa MapLayerMouseEvent con features
-      const event = e as unknown as {
-        features?: Array<{ properties: Record<string, unknown> }>;
-      };
-
+    async (event: MapLayerMouseEvent) => {
       // toma el primer feature clickeado (si hay)
       const feature = event.features?.[0];
 
@@ -287,21 +300,18 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
 
       // Si hay propiedades, intentamos extraer el nombre y tipo
       if (feature?.properties) {
-        // Extrae propiedades relevantes del feature
-        const props = feature.properties as {
-          fid?: number;
-          nombre_zona?: string;
-          nombre?: string;
-          tipo_edificio?: string;
-        };
+        const lugar = obtenerLugarDesdeFeature(feature);
+        if (!lugar) return;
+
+        const props = feature.properties;
 
         // Si es un edificio, intenta resolverlo por nombre usando el servicio de catálogo
-        const nombre = props.nombre_zona ?? props.nombre ?? "Edificio";
+        const nombre = lugar.nombre;
 
         // Solo procede si hay un nombre válido
         if (String(nombre).trim()) {
           // Normaliza el tipo de edificio y decide si es un edificio o zona
-          const tipo = String(props.tipo_edificio ?? "")
+          const tipo = String(lugar.tipo ?? "")
             .trim()
             .toLowerCase();
 
@@ -332,7 +342,7 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
 
               // Llama a onEdificioClick con un objeto básico si no se pudo obtener el detalle
               onEdificioClick({
-                id: props.fid ?? -1,
+                id: typeof props?.fid === "number" ? props.fid : -1,
                 nombre: String(nombre),
                 tipo: "EDIFICIO",
               });
@@ -342,23 +352,66 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
 
           // Si no es un edificio, simplemente llama a onEdificioClick con el nombre y tipo
           onEdificioClick({
-            id: props.fid ?? -1,
+            id: typeof props?.fid === "number" ? props.fid : -1,
             nombre: String(nombre),
-            tipo: String(props.tipo_edificio ?? "ZONA"),
+            tipo: lugar.tipo,
           });
         }
       }
     },
-    // Dependencias: onEdificioClick no cambia, por lo que no hay dependencias adicionales
     [onEdificioClick],
   );
+
+  useEffect(() => {
+    if (
+      !mapaListo ||
+      !fuenteEdificiosLista ||
+      !lugarSeleccionado ||
+      !mapRef.current
+    )
+      return;
+
+    const lugarParaCentrar =
+      lugarSeleccionado.tipo.trim().toUpperCase() === "ZONA"
+        ? lugarSeleccionado
+        : {
+            id: edificioDetalle?.id ?? lugarSeleccionado.id,
+            nombre: edificioDetalle?.nombre ?? lugarSeleccionado.nombre,
+            tipo: "EDIFICIO",
+          };
+    const features = mapRef.current
+      .getMap()
+      .querySourceFeatures("campus-edificios") as MapFeature[];
+    const feature = encontrarFeatureParaLugar(features, lugarParaCentrar);
+    const featureBounds = obtenerBoundsDeFeature(feature ?? undefined);
+
+    if (!featureBounds) {
+      console.warn(
+        "[MapaCampus] no se encontró geometría para centrar el lugar:",
+        lugarParaCentrar,
+      );
+      return;
+    }
+
+    mapRef.current.fitBounds(featureBounds, {
+      padding: NAVEGACION_MAPA.padding,
+      duration: NAVEGACION_MAPA.duracionMs,
+      maxZoom: NAVEGACION_MAPA.zoomMaximo,
+    });
+  }, [
+    edificioDetalle,
+    fuenteEdificiosLista,
+    lugarSeleccionado,
+    mapaListo,
+  ]);
 
   return (
     <div className="w-full h-screen h-dvh bg-[#111111] relative overflow-hidden">
       <Map
+        ref={mapRef}
         {...viewState}
         onMove={handleMove}
-        onClick={handleClick as unknown as (e: unknown) => void}
+        onClick={handleClick}
         interactiveLayerIds={["campus-edificios", "campus-deportes"]}
         mapLib={maplibregl as unknown as typeof maplibregl}
         mapStyle={estiloClaro}
@@ -370,7 +423,16 @@ export function MapaCampus({ onEdificioClick }: MapaCampusProps) {
           console.error("[MapaCampus] MapLibre error:", msg, e);
         }}
         onLoad={() => {
+          setMapaListo(true);
           console.log("[MapaCampus] mapa claro cargado, bounds:", bounds);
+        }}
+        onSourceData={(event) => {
+          if (
+            event.sourceId === "campus-edificios" &&
+            event.isSourceLoaded
+          ) {
+            setFuenteEdificiosLista(true);
+          }
         }}
         style={{ width: "100%", height: "100%" }}
         reuseMaps

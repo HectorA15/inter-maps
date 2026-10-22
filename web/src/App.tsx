@@ -19,7 +19,11 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white dark:bg-gray-900">
-      <MapaCampus onEdificioClick={seleccionarLugar} />
+      <MapaCampus
+        onEdificioClick={seleccionarLugar}
+        lugarSeleccionado={lugarSeleccionado}
+        edificioDetalle={edificioDetalle}
+      />
 
       <div className="absolute top-5 right-4 z-10">
         <ColorTema temaActual={tema} onCambiarTema={cambiarTema} />

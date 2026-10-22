@@ -65,12 +65,12 @@ public class CatalogoService {
     }
 
     public EdificioDTO obtenerEdificioPorNombre(String nombre) {
-        String nombreNormalizado = com.intermaps.util.GeoUtils.normalizarTexto(nombre).toLowerCase();
-        return edificioRepository.buscarPorNombreOAlias(nombre).stream()
-                .filter(edificio -> edificio.getNombre().equalsIgnoreCase(nombreNormalizado)
+        String nombreNormalizado = GeoUtils.normalizarParaBusqueda(nombre);
+        return edificioRepository.buscarPorNombreOAlias(nombreNormalizado).stream()
+                .filter(edificio -> edificio.getNombreBusqueda().equals(nombreNormalizado)
                         || edificio.getAlias().stream()
-                        .anyMatch(alias -> com.intermaps.util.GeoUtils.normalizarTexto(alias)
-                                .equalsIgnoreCase(nombreNormalizado)))
+                        .anyMatch(alias -> GeoUtils.normalizarParaBusqueda(alias)
+                                .equals(nombreNormalizado)))
                 .findFirst()
                 .map(EdificioMapper::toDTO)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -103,12 +103,12 @@ public class CatalogoService {
      * @return Una Lista de SearchResultDTO que contiene los resultados mezclados de edificios y espacios de la búsqueda
      */
     public List<SearchResultDTO> obtenerSearchResult(String nombre) {
+        String termino = GeoUtils.normalizarParaBusqueda(nombre);
         List<SearchResultDTO> resultadosCatalogo = Stream.concat(
-                edificioRepository.buscarPorNombreOAlias(nombre).stream().map(SearchMapper::toDTO),
-                espacioRepository.buscarPorNombreOAlias(nombre).stream().map(SearchMapper::toDTO)
+                edificioRepository.buscarPorNombreOAlias(termino).stream().map(SearchMapper::toDTO),
+                espacioRepository.buscarPorNombreOAlias(termino).stream().map(SearchMapper::toDTO)
         ).toList();
 
-        String termino = GeoUtils.normalizarTexto(nombre).toLowerCase();
         List<SearchResultDTO> resultadosZonas = buscarZonas(termino);
         return Stream.concat(resultadosCatalogo.stream(), resultadosZonas.stream()).toList();
     }

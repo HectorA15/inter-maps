@@ -3,6 +3,7 @@ package com.intermaps.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.intermaps.util.GeoUtils;
 
 import java.util.Set;
 
@@ -20,6 +21,10 @@ public class Espacio {
     private Long id;
 
     private String nombre;
+
+    @Column(name = "nombre_busqueda", nullable = false)
+    private String nombreBusqueda;
+
     private String tipo;
     private String descripcion;
 
@@ -37,4 +42,12 @@ public class Espacio {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "planta_id")
     private Planta planta;
+
+    @PrePersist
+    @PreUpdate
+    private void actualizarNombreBusqueda() {
+        if (nombre != null) {
+            nombreBusqueda = GeoUtils.normalizarParaBusqueda(nombre);
+        }
+    }
 }

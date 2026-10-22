@@ -13,7 +13,13 @@ public interface EdificioRepository extends JpaRepository<Edificio, Long> {
      * Busca edificios por nombre o alias, utilizando una búsqueda parcial.
      * Utiliza LOWER() para ignorar mayúsculas y minúsculas.
      */
-    @Query("SELECT DISTINCT e FROM Edificio e LEFT JOIN e.alias a WHERE LOWER(e.nombre) LIKE LOWER(CONCAT('%', :termino, '%')) OR LOWER(a) LIKE LOWER(CONCAT('%', :termino, '%'))")
+    @Query("""
+            SELECT DISTINCT e FROM Edificio e
+            LEFT JOIN e.alias a
+            WHERE e.nombreBusqueda LIKE CONCAT('%', :termino, '%')
+               OR LOWER(e.nombre) LIKE LOWER(CONCAT('%', :termino, '%'))
+               OR LOWER(a) LIKE LOWER(CONCAT('%', :termino, '%'))
+            """)
     List<Edificio> buscarPorNombreOAlias(@Param("termino") String termino);
 
 

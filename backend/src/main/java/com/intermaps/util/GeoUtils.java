@@ -1,6 +1,7 @@
 package com.intermaps.util;
 
 import java.text.Normalizer;
+import java.util.Locale;
 
 public class GeoUtils {
 
@@ -35,5 +36,10 @@ public class GeoUtils {
         String nfd = Normalizer.normalize(texto, Normalizer.Form.NFD);
         // Elimina los acentos (diacríticos)
         return nfd.replaceAll("\\p{M}", "");
+    }
+
+    public static String normalizarParaBusqueda(String texto) {
+        if (texto == null) return null;
+        return normalizarTexto(texto).trim().toLowerCase(Locale.ROOT);
     }
 }
