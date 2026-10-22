@@ -418,11 +418,20 @@ export function MapaCampus({
         maxBounds={bounds}
         minZoom={13}
         maxZoom={21}
+        pitch={0}
+        maxPitch={0}
+        dragRotate={false}
+        pitchWithRotate={false}
+        touchPitch={false}
         onError={(e: unknown) => {
           const msg = e instanceof Error ? e.message : String(e);
           console.error("[MapaCampus] MapLibre error:", msg, e);
         }}
         onLoad={() => {
+          const mapa = mapRef.current?.getMap();
+          mapa?.dragRotate.disable();
+          mapa?.touchPitch.disable();
+          mapa?.touchZoomRotate.disableRotation();
           setMapaListo(true);
           console.log("[MapaCampus] mapa claro cargado, bounds:", bounds);
         }}

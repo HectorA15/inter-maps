@@ -17,6 +17,11 @@ const datosLocal: SearchResult[] = [
   { id: 3, nombre: "Laboratorio de Redes", tipo: "ESPACIO" },
 ];
 
+const datosConEdificio: SearchResult[] = [
+  { id: 10, nombre: "Baño", tipo: "ESPACIO", edificioNombre: "Edificio 3" },
+  { id: 11, nombre: "Baño", tipo: "ESPACIO", edificioNombre: "Nodos" },
+];
+
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 describe("Buscador", () => {
@@ -54,6 +59,15 @@ describe("Buscador", () => {
     const input = screen.getByPlaceholderText(/Buscar lugar/);
     await userEvent.type(input, "EDIFICIO");
     expect(await screen.findByText("Edificio A")).toBeInTheDocument();
+  });
+
+  it("muestra el nombre del edificio asociado a cada espacio", async () => {
+    render(<Buscador datos={datosConEdificio} />);
+    const input = screen.getByPlaceholderText(/Buscar lugar/);
+    await userEvent.type(input, "baño");
+
+    expect(await screen.findByText("Edificio 3")).toBeInTheDocument();
+    expect(await screen.findByText("Nodos")).toBeInTheDocument();
   });
 
   it("muestra Sin resultados cuando no hay match local", async () => {

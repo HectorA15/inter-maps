@@ -29,6 +29,7 @@ export interface SearchResult {
   id: number;
   nombre: string;
   tipo: string;
+  edificioNombre?: string | null;
 }
 
 // Mapeo estricto de ErrorResponse

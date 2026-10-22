@@ -14,7 +14,8 @@ public class SearchMapper {
         return new SearchResultDTO(
                 edificio.getId(),
                 edificio.getNombre(),
-                "EDIFICIO"
+                "EDIFICIO",
+                null
         );
 
     }
@@ -23,7 +24,8 @@ public class SearchMapper {
         return new SearchResultDTO(
                 espacio.getId(),
                 espacio.getNombre(),
-                "ESPACIO"
+                "ESPACIO",
+                espacio.getEdificio() == null ? null : espacio.getEdificio().getNombre()
         );
     }
 }
