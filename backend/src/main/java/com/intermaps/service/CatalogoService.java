@@ -129,7 +129,8 @@ public class CatalogoService {
                     .map(properties -> new SearchResultDTO(
                             properties.path("fid").asLong(),
                             properties.path("nombre_zona").asText(),
-                            "ZONA"))
+                            "ZONA",
+                            null))
                     .toList();
         } catch (IOException e) {
             throw new IllegalStateException("No se pudieron buscar las zonas del mapa.", e);

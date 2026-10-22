@@ -153,6 +153,11 @@ export function Buscador({
     return trimmed;
   };
 
+  const obtenerEdificioAsociado = (nombre?: string | null): string | null => {
+    const nombreLimpio = nombre?.trim();
+    return nombreLimpio || null;
+  };
+
   return (
     <div
       className="relative w-full max-w-[640px] font-sans"
@@ -252,6 +257,11 @@ export function Buscador({
                 <span className="truncate">
                   {capitalizarNombre(item.nombre)}
                 </span>
+                {obtenerEdificioAsociado(item.edificioNombre) && (
+                  <span className="ml-3 shrink-0 text-xs font-medium text-gray-500/70">
+                    {obtenerEdificioAsociado(item.edificioNombre)}
+                  </span>
+                )}
               </li>
             ))
           ) : (
