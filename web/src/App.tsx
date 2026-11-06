@@ -85,6 +85,7 @@ function App() {
         onEdificioClick={seleccionarLugar}
         lugarSeleccionado={lugarSeleccionado}
         edificioDetalle={edificioDetalle}
+        tema={tema}
         anotaciones={anotaciones}
         anotacionEnfocada={marcadorEnfocado}
         onCentroCambio={setCentroMapa}

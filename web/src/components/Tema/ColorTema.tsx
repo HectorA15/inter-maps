@@ -5,14 +5,14 @@ interface ColorTemaProps {
 
 export function ColorTema({ temaActual, onCambiarTema }: ColorTemaProps) {
   return (
-    <div className="flex w-16 h-8 bg-gray-200 rounded-[8px] overflow-hidden border border-gray-300">
+    <div className="flex h-8 w-16 overflow-hidden rounded-[8px] border border-gray-300 bg-gray-200 dark:border-gray-600 dark:bg-gray-800">
       {/* Botón Izquierdo (Sol) */}
       <button
         onClick={() => onCambiarTema("claro")}
         className={`flex-1 flex justify-center items-center transition-colors cursor-pointer ${
           temaActual === "claro"
             ? "bg-gray-400 text-gray-900 shadow-inner" // Estado Activo
-            : "bg-gray-200 text-gray-400 hover:bg-gray-300" // Estado Inactivo
+            : "bg-gray-200 text-gray-400 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700" // Estado Inactivo
         }`}
         aria-label="Activar modo claro"
       >
@@ -40,7 +40,7 @@ export function ColorTema({ temaActual, onCambiarTema }: ColorTemaProps) {
       </button>
 
       {/* Línea divisoria */}
-      <div className="w-px bg-gray-300"></div>
+      <div className="w-px bg-gray-300 dark:bg-gray-600"></div>
 
       {/* Botón Derecho (Luna) */}
       <button
@@ -48,7 +48,7 @@ export function ColorTema({ temaActual, onCambiarTema }: ColorTemaProps) {
         className={`flex-1 flex justify-center items-center transition-colors cursor-pointer ${
           temaActual === "oscuro"
             ? "bg-gray-400 text-gray-900 shadow-inner" // Estado Activo
-            : "bg-gray-200 text-gray-400 hover:bg-gray-300" // Estado Inactivo
+            : "bg-gray-200 text-gray-400 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700" // Estado Inactivo
         }`}
         aria-label="Activar modo oscuro"
       >

@@ -23,6 +23,7 @@ import {
   type MapFeature,
 } from "./mapFeatures";
 import { NAVEGACION_MAPA } from "./mapConfig";
+import type { Tema } from "../../hooks/useTema";
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".
@@ -247,10 +248,54 @@ const estiloClaro: StyleSpecification = {
   ],
 };
 
+const estiloOscuro: StyleSpecification = {
+  ...estiloClaro,
+  layers: estiloClaro.layers.map((layer) => {
+    const paint: Record<string, unknown> = { ...(layer.paint ?? {}) };
+    const overrides: Record<string, Record<string, string>> = {
+      fondo: { "background-color": "#111827" },
+      agua: { "fill-color": "#183b52" },
+      tierra: { "fill-color": "#1f2937" },
+      calles: { "line-color": "#4b5563" },
+      "calles-nombres": {
+        "text-color": "#d1d5db",
+        "text-halo-color": "#111827",
+      },
+      "edificios-ciudad": {
+        "fill-color": "#374151",
+        "fill-outline-color": "#6b7280",
+      },
+      "campus-limite": { "fill-color": "#172b24" },
+      "campus-limite-borde": { "line-color": "#4b8064" },
+      "campus-agua-fill": { "fill-color": "#183b52" },
+      "campus-asfalto": {
+        "fill-color": "#4b5563",
+        "fill-outline-color": "#6b7280",
+      },
+      "campus-caminos": {
+        "fill-color": "#374151",
+        "fill-outline-color": "#6b7280",
+      },
+      "campus-edificios": {
+        "fill-color": "#6b7280",
+        "fill-outline-color": "#9ca3af",
+      },
+      "campus-edificios-resaltado": { "fill-color": "#60a5fa" },
+      "campus-deportes": {
+        "fill-color": "#28543d",
+        "fill-outline-color": "#4ade80",
+      },
+    };
+    Object.assign(paint, overrides[layer.id]);
+    return { ...layer, paint };
+  }),
+};
+
 interface MapaCampusProps {
   onEdificioClick: (item: SearchResult, detalle?: Edificio) => void;
   lugarSeleccionado?: SearchResult | null;
   edificioDetalle?: Edificio | null;
+  tema?: Tema;
   anotaciones?: Anotacion[];
   anotacionEnfocada?: Anotacion | null;
   onCentroCambio?: (centro: { latitude: number; longitude: number }) => void;
@@ -265,6 +310,7 @@ export function MapaCampus({
   onEdificioClick,
   lugarSeleccionado,
   edificioDetalle,
+  tema = "claro",
   anotaciones = [],
   anotacionEnfocada,
   onCentroCambio,
@@ -450,7 +496,7 @@ export function MapaCampus({
   ]);
 
   return (
-    <div className="w-full h-screen h-dvh bg-[#111111] relative overflow-hidden">
+    <div className="relative h-screen h-dvh w-full overflow-hidden bg-[#f8f9fa] dark:bg-gray-950">
       <Map
         ref={mapRef}
         {...viewState}
@@ -458,7 +504,7 @@ export function MapaCampus({
         onClick={handleClick}
         interactiveLayerIds={["campus-edificios", "campus-deportes"]}
         mapLib={maplibregl as unknown as typeof maplibregl}
-        mapStyle={estiloClaro}
+        mapStyle={tema === "oscuro" ? estiloOscuro : estiloClaro}
         maxBounds={bounds}
         minZoom={13}
         maxZoom={21}

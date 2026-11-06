@@ -164,9 +164,9 @@ export function Buscador({
       ref={contenedorRef}
     >
       {/* Contenedor del input con estados hover y focus-within */}
-      <div className="relative flex items-center w-full bg-white border border-[#dfe1e5] rounded-full shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:shadow-[0_2px_10px_rgba(32,33,36,0.2)] hover:border-transparent focus-within:shadow-[0_2px_10px_rgba(32,33,36,0.2)] focus-within:border-transparent transition duration-200 ease-out px-3.5 h-11 box-border">
+      <div className="relative flex h-11 w-full items-center rounded-full border border-[#dfe1e5] bg-white px-3.5 shadow-[0_1px_6px_rgba(32,33,36,0.1)] transition duration-200 ease-out hover:border-transparent hover:shadow-[0_2px_10px_rgba(32,33,36,0.2)] focus-within:border-transparent focus-within:shadow-[0_2px_10px_rgba(32,33,36,0.2)] dark:border-gray-600 dark:bg-gray-800 dark:shadow-black/30">
         <svg
-          className="text-[#9aa0a6] mr-2.5 select-none shrink-0"
+          className="mr-2.5 shrink-0 select-none text-[#9aa0a6] dark:text-gray-300"
           aria-hidden="true"
           width="18"
           height="18"
@@ -207,14 +207,14 @@ export function Buscador({
 
         {cargando && (
           <div
-            className="w-4 h-4 border-2 border-[#e8eaed] border-t-[#1a73e8] rounded-full animate-spin ml-1.5 shrink-0"
+            className="ml-1.5 h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-[#e8eaed] border-t-[#1a73e8] dark:border-gray-600 dark:border-t-blue-400"
             title="Cargando..."
           />
         )}
 
         {!cargando && textoBusqueda && (
           <button
-            className="bg-transparent border-none text-[#70757a] text-sm cursor-pointer p-1 ml-1.5 rounded-full flex items-center justify-center transition-colors duration-150 ease-out hover:bg-[#f1f3f4] hover:text-[#202124]"
+            className="ml-1.5 flex cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-1 text-sm text-[#70757a] transition-colors duration-150 ease-out hover:bg-[#f1f3f4] hover:text-[#202124] dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
             onClick={limpiarBusqueda}
             title="Limpiar"
             aria-label="Limpiar busqueda"
@@ -236,18 +236,18 @@ export function Buscador({
       </div>
 
       {mostrarDropdown && (
-        <ul className="absolute top-[calc(100%+6px)] left-0 right-0 z-[1000] bg-white rounded z-xl shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-[#e0e0e0] list-none m-0 py-2 max-h-[320px] overflow-y-auto">
+        <ul className="absolute left-0 right-0 top-[calc(100%+6px)] z-[1000] z-xl m-0 max-h-[320px] list-none overflow-y-auto rounded border border-[#e0e0e0] bg-white py-2 shadow-[0_4px_16px_rgba(0,0,0,0.15)] dark:border-gray-700 dark:bg-gray-800">
           {resultadosVisibles.length > 0 ? (
             resultadosVisibles.map((item, idx) => (
               <li
                 key={`${item.tipo}-${item.id}-${idx}`}
-                className={`shrink-0 flex items-center px-4 py-2.5 cursor-pointer text-sm text-[#3c4043] transition-colors duration-100 ease-out hover:bg-[#f1f3f4] ${
-                  idx === indiceSeleccionado ? "bg-[#f1f3f4]" : ""
+                className={`flex shrink-0 cursor-pointer items-center px-4 py-2.5 text-sm text-[#3c4043] transition-colors duration-100 ease-out hover:bg-[#f1f3f4] dark:text-gray-100 dark:hover:bg-gray-700 ${
+                  idx === indiceSeleccionado ? "bg-[#f1f3f4] dark:bg-gray-700" : ""
                 }`}
                 onClick={() => seleccionarItem(item)}
                 onMouseEnter={() => setIndiceSeleccionado(idx)}
               >
-                <span className="mr-2 text-gray-500">
+                <span className="mr-2 text-gray-500 dark:text-gray-300">
                   {item.tipo === "EDIFICIO" ? (
                     <MdDomain size={20} />
                   ) : (
@@ -258,14 +258,14 @@ export function Buscador({
                   {capitalizarNombre(item.nombre)}
                 </span>
                 {obtenerEdificioAsociado(item.edificioNombre) && (
-                  <span className="ml-3 shrink-0 text-xs font-medium text-gray-500/70">
+                  <span className="ml-3 shrink-0 text-xs font-medium text-gray-500/70 dark:text-gray-300">
                     {obtenerEdificioAsociado(item.edificioNombre)}
                   </span>
                 )}
               </li>
             ))
           ) : (
-            <li className="px-4 py-3.5 text-sm text-[#70757a] text-center italic">
+            <li className="px-4 py-3.5 text-center text-sm italic text-[#70757a] dark:text-gray-300">
               Sin resultados para "{textoBusqueda}"
             </li>
           )}

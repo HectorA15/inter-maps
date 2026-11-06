@@ -67,12 +67,12 @@ function EspaciosPiso({ pisoActivo, edificio }: EspaciosPisoProps) {
   return (
     <div className="grid grid-cols-1 gap-2">
       {pisoSeleccionado && (
-        <div className="mt-4 space-y-2 overflow-y-auto max-h-[calc(100vh-180px)] text-sm text-gray-600 font-semibold">
+        <div className="mt-4 max-h-[calc(100vh-180px)] space-y-2 overflow-y-auto text-sm font-semibold text-gray-600 dark:text-gray-300">
           {espaciosListos.length > 0 ? (
             espaciosListos.map((espacio) => (
               <div key={espacio.id}>
                 {espacio.tipo === "AULA" ? (
-                  <p className="rounded border border-gray-200 p-3">
+                  <p className="rounded border border-gray-200 p-3 dark:border-gray-700">
                     {espacio.nombre}
                   </p>
                 ) : (
@@ -81,7 +81,7 @@ function EspaciosPiso({ pisoActivo, edificio }: EspaciosPisoProps) {
               </div>
             ))
           ) : (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               No hay espacios registrados en este piso.
             </p>
           )}
