@@ -182,7 +182,7 @@ export function Buscador({
         </svg>
 
         <input
-          className="flex-1 border-none outline-none text-[15px] text-[#202124] bg-transparent p-0 placeholder-[#80868b]"
+          className="flex-1 border-none outline-none bg-transparent p-0 text-[15px] text-[#202124] placeholder:text-[#80868b] dark:text-gray-100 dark:placeholder:text-gray-300"
           type="text"
           placeholder={placeholder}
           value={textoBusqueda}

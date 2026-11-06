@@ -32,6 +32,41 @@ export interface SearchResult {
   edificioNombre?: string | null;
 }
 
+export type TipoMarcador = "MARCADOR";
+
+export interface Anotacion {
+  id: number;
+  nombre: string;
+  texto: string | null;
+  tipo: TipoMarcador | string;
+  color: string;
+  icono: string | null;
+  tamano: number;
+  latitud: number;
+  longitud: number;
+  edificioId: number | null;
+  espacioId: number | null;
+  tags: string[];
+  fechaCreacion: string | null;
+  fechaModificacion: string | null;
+  visibilidad: "PUBLICO" | "PRIVADO";
+}
+
+export interface AnotacionRequest {
+  nombre?: string;
+  texto?: string | null;
+  tipo?: TipoMarcador | string;
+  color?: string;
+  icono?: string | null;
+  tamano?: number;
+  latitud: number;
+  longitud: number;
+  edificioId?: number | null;
+  espacioId?: number | null;
+  tags?: string[];
+  visibilidad?: "PUBLICO" | "PRIVADO";
+}
+
 // Mapeo estricto de ErrorResponse
 export interface ApiError {
   timestamp: string; // En JSON, LocalDateTime llega como un string ISO 8601

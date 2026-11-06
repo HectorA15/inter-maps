@@ -1,4 +1,5 @@
 import type { Edificio, Espacio } from "../../interfaces/ApiInterfaces";
+import { ordenarPorNombre } from "../../utils/ordenar";
 
 interface EspaciosPisoProps {
   pisoActivo: string;
@@ -6,8 +7,14 @@ interface EspaciosPisoProps {
 }
 
 function agruparEspacios(espacios: Espacio[]) {
-  const aulas = espacios.filter((e) => e.tipo === "AULA");
-  const otros = espacios.filter((e) => e.tipo !== "AULA");
+  const aulas = ordenarPorNombre(
+    espacios.filter((e) => e.tipo === "AULA"),
+    (espacio) => espacio.nombre,
+  );
+  const otros = ordenarPorNombre(
+    espacios.filter((e) => e.tipo !== "AULA"),
+    (espacio) => espacio.nombre,
+  );
 
   const resultado = [];
 
