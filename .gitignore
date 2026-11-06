@@ -38,4 +38,6 @@ web/.env.*
 
 # Archivos generados localmente por el backend.
 backend/intermaps.db
+# Evita conservar una copia SQLite en la raíz si el backend se inicia desde allí.
+intermaps.db
 backend/logs/

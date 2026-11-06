@@ -35,14 +35,14 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
   return (
     <div
       className={`
-        fixed top-0 left-0 w-80 h-full bg-white shadow-2xl z-50 p-6
+        fixed top-0 left-0 z-50 h-full w-80 bg-white p-6 shadow-2xl dark:bg-gray-900
         transform transition-transform duration-300 ease-out
         ${item && !colapsado ? "panel-slide-in" : ""}
         ${item && !colapsado ? "translate-x-0" : "-translate-x-full"}
     `}
     >
       <button
-        className="absolute top-1/2 -translate-y-1/2 left-full flex justify-center items-center rounded-e-md bg-gray-100/80 border-y border-r border-gray-200 shadow-md w-3 h-[30%] text-gray-400 hover:text-gray-500 transition-colors cursor-pointer hover:bg-gray-100"
+        className="absolute left-full top-1/2 flex h-[30%] w-3 -translate-y-1/2 cursor-pointer items-center justify-center rounded-e-md border-y border-r border-gray-200 bg-gray-100/80 text-gray-400 shadow-md transition-colors hover:bg-gray-100 hover:text-gray-500 dark:border-gray-700 dark:bg-gray-800/80 dark:text-gray-400 dark:hover:bg-gray-700"
         onClick={() => {
           setColapsado(!colapsado);
         }}
@@ -52,7 +52,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
 
       {item && (
         <>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-gray-100">
             {item.nombre}
           </h2>
         </>
@@ -69,7 +69,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
         </>
       )}
       {item && pisos.length === 0 && (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           No hay pisos registrados para este edificio.
         </p>
       )}

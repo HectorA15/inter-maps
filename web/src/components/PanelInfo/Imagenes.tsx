@@ -47,7 +47,7 @@ export function Imagen({ dato }: ImagenProps) {
   const ImagenMostrar = ImagenesEdificios[dato.id] || [];
   return (
     <div>
-      <div className="w-full bg-gray-100 ">
+      <div className="w-full bg-gray-100 dark:bg-gray-800">
         <Swiper
           slidesPerView={1}
           grabCursor={true}

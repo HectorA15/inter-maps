@@ -45,3 +45,25 @@ body {
 .maplibregl-ctrl-attrib a {
   color: #aaa;
 }
+
+.dark .maplibregl-ctrl-attrib {
+  background: rgba(17, 24, 39, 0.85);
+  color: #d1d5db;
+}
+
+.dark .maplibregl-ctrl-attrib a {
+  color: #93c5fd;
+}
+
+.dark .swiper-button-next,
+.dark .swiper-button-prev {
+  color: #e5e7eb;
+}
+
+.dark .swiper-pagination-bullet {
+  background: #9ca3af;
+}
+
+.dark .swiper-pagination-bullet-active {
+  background: #60a5fa;
+}

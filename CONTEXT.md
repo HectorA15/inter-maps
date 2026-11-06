@@ -372,6 +372,9 @@ El frontend ya integra el CRUD de `Anotacion` con el mapa:
 - El tema claro es el predeterminado. El campo visible del marcador es el único
   nombre editable; `nombre` se conserva en la API por compatibilidad y se
   sincroniza con `texto`.
+- El tema oscuro se aplica a los paneles, buscador, selector de tema, galería y
+  controles de MapLibre. `MapaCampus` recibe `tema` y selecciona una paleta
+  oscura para las capas base y los overlays del campus.
 - Los vínculos se seleccionan desde listas del catálogo para edificios o
   espacios; un marcador solo conserva uno de esos vínculos a la vez.
 - Un marcador nuevo se crea vacío, rojo y en el centro actual del mapa.

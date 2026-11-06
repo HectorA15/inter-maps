@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Esta guía define el flujo mínimo para que varias personas trabajen en InterMaps sin modificar directamente la rama `main` ni depender de configuraciones locales que no están versionadas.
+Esta guía define el flujo mínimo para que varias personas trabajen en InterMaps sin modificar directamente la rama `web` ni depender de configuraciones locales que no están versionadas.
 
 ## Preparación inicial
 
@@ -33,13 +33,16 @@ El frontend utiliza el proxy de Vite para enviar `/api` a `http://localhost:8080
 
 ## Flujo de ramas
 
-La rama `main` debe contener únicamente código integrado y funcional.
+En el flujo actual, `web` es la rama principal de integración. `main` conserva
+la configuración base del proyecto y no debe recibir cambios directamente.
+
+La rama `web` debe contener únicamente código integrado y funcional.
 
 Antes de empezar una tarea:
 
 ```bash
-git switch main
-git pull --rebase origin main
+git switch web
+git pull --rebase origin web
 git switch -c feature/nombre-corto
 ```
 
@@ -72,11 +75,52 @@ Guardar un cambio relacionado en un commit:
 
 ```bash
 git add ruta/del/archivo
-git commit -m "fix: corregir carga de edificios"
+git commit -m "fix(catalog): correct building loading"
 git push -u origin feature/nombre-corto
 ```
 
-Después se crea un Pull Request hacia `main`. Otra persona debe revisar el cambio antes de integrarlo.
+Después se crea un Pull Request hacia `web`. Otra persona debe revisar el cambio antes de integrarlo.
+
+## Formato de commits
+
+Los commits nuevos deben usar **Conventional Commits** y escribirse en inglés.
+Los commits históricos pueden conservar su idioma original; no es necesario
+reescribir el historial compartido.
+
+Formato:
+
+```text
+<type>(<scope>): <imperative description>
+```
+
+Tipos permitidos:
+
+| Tipo | Uso |
+| --- | --- |
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de un error |
+| `refactor` | Reestructuración sin cambiar el comportamiento |
+| `docs` | Documentación |
+| `test` | Pruebas |
+| `chore` | Mantenimiento o configuración |
+| `perf` | Mejora de rendimiento |
+| `style` | Formato sin cambio de comportamiento |
+
+El `scope` debe identificar el área afectada. Debe usarse una descripción corta,
+en minúsculas, sin punto final y con un verbo en imperativo.
+
+Ejemplos:
+
+```text
+feat(markers): add persistent marker management
+fix(theme): improve dark mode placeholders
+refactor(map): synchronize marker panel animation
+docs(context): update project documentation
+test(markers): add marker mapper tests
+```
+
+Evitar mensajes vagos como `cambios`, `arreglos`, `update`, `prueba` o
+`terminado`. Cada commit debe representar un cambio relacionado y comprobable.
 
 ## Actualizar una rama mientras otras personas trabajan
 
@@ -84,7 +128,7 @@ Antes de continuar una tarea:
 
 ```bash
 git fetch origin
-git rebase origin/main
+git rebase origin/web
 ```
 
 Si Git informa conflictos:
@@ -104,7 +148,7 @@ No utilizar `git push --force` porque puede sobrescribir el trabajo de otra pers
 
 ## Reglas del equipo
 
-- No hacer commits directamente sobre `main`.
+- No hacer commits directamente sobre `web` ni `main`.
 - No subir `web/.env`, contraseñas, tokens ni archivos de logs.
 - No compartir `backend/intermaps.db` como fuente de datos entre desarrolladores.
 - Mantener los datos iniciales en `backend/src/main/resources/edificios.json`.

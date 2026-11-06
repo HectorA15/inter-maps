@@ -221,7 +221,7 @@ export function PanelMarcadores({
           <>
             <div className="flex-1 overflow-y-auto p-3">
               {cargando && (
-                <p className="p-3 text-sm text-gray-500">
+                <p className="p-3 text-sm text-gray-500 dark:text-gray-400">
                   Cargando marcadores...
                 </p>
               )}
@@ -305,11 +305,7 @@ export function PanelMarcadores({
                       setTipoVinculo("ninguno");
                       actualizarBorrador({ edificioId: null, espacioId: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${
-                      tipoVinculo === "ninguno"
-                        ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
-                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                    }`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "ninguno" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
                   >
                     Ninguno
                   </button>
@@ -319,11 +315,7 @@ export function PanelMarcadores({
                       setTipoVinculo("edificio");
                       actualizarBorrador({ espacioId: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${
-                      tipoVinculo === "edificio"
-                        ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
-                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                    }`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "edificio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
                   >
                     Edificio
                   </button>
@@ -333,11 +325,7 @@ export function PanelMarcadores({
                       setTipoVinculo("espacio");
                       actualizarBorrador({ edificioId: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${
-                      tipoVinculo === "espacio"
-                        ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
-                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                    }`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "espacio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
                   >
                     Espacio
                   </button>
@@ -350,9 +338,9 @@ export function PanelMarcadores({
                         event.target.value ? Number(event.target.value) : null,
                       )
                     }
-                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-gray-800 dark:border-gray-600 dark:text-gray-100"
+                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 dark:border-gray-600"
                   >
-                    <option value="" className="text-gray-500 dark:bg-gray-800 dark:text-gray-300">
+                    <option value="" className="dark:bg-gray-800 dark:text-gray-200">
                       Selecciona un edificio
                     </option>
                     {edificiosOrdenados.map((edificio) => (
@@ -370,9 +358,9 @@ export function PanelMarcadores({
                         event.target.value ? Number(event.target.value) : null,
                       )
                     }
-                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-gray-800 dark:border-gray-600 dark:text-gray-100"
+                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 dark:border-gray-600"
                   >
-                    <option value="" className="text-gray-500 dark:bg-gray-800 dark:text-gray-300">
+                    <option value="" className="dark:bg-gray-800 dark:text-gray-200">
                       Selecciona un espacio
                     </option>
                     {espacios.map((espacio) => (
@@ -414,7 +402,7 @@ export function PanelMarcadores({
                   <button
                     type="button"
                     onClick={agregarTag}
-                    className="rounded-lg bg-gray-100 px-3 dark:bg-gray-800"
+                    className="rounded-lg bg-gray-100 px-3 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
                   >
                     +
                   </button>
