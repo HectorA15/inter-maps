@@ -362,19 +362,27 @@ Durante desarrollo, Vite redirige `/api` al backend en `http://localhost:8080`.
 
 Los nuevos servicios de anotaciones deben reutilizar este cliente y sus tipos. No crear otro cliente Axios sin una razón concreta.
 
-## Anotaciones en el frontend: siguiente integración
+## Anotaciones administrables
 
-La base backend ya permite CRUD. Para mostrar y editar globos, la implementación recomendada es:
+El frontend ya integra el CRUD de `Anotacion` con el mapa:
 
-1. Crear `Anotacion` y `AnotacionRequest` en `web/src/interfaces/`.
-2. Añadir métodos de anotaciones a `apiClient.ts`.
-3. Crear un hook `useAnotaciones` para cargar y mutar datos.
-4. Representar anotaciones como `GeoJSONSource` de puntos en MapLibre.
-5. Usar una capa `symbol` o `circle` para dibujar iconos y una capa `symbol` separada para texto.
-6. Crear un panel de edición que primero coloque por clic.
-7. Añadir arrastre después de que la creación, actualización y persistencia funcionen.
+- `useAnotaciones` carga, crea, actualiza y elimina marcadores mediante la API.
+- `PanelMarcadores` se abre desde una pestaña lateral con icono SVG, lista los
+  marcadores y permite editar el texto, color, tags y vínculo.
+- El tema claro es el predeterminado. El campo visible del marcador es el único
+  nombre editable; `nombre` se conserva en la API por compatibilidad y se
+  sincroniza con `texto`.
+- Los vínculos se seleccionan desde listas del catálogo para edificios o
+  espacios; un marcador solo conserva uno de esos vínculos a la vez.
+- Un marcador nuevo se crea vacío, rojo y en el centro actual del mapa.
+- Los cambios de propiedades se guardan automáticamente con debounce.
+- Los marcadores se pueden arrastrar y la nueva posición se guarda al terminar
+  el arrastre.
+- El tamaño visual se adapta al zoom y el panel incluye clases `dark:` para el
+  futuro tema oscuro.
 
-No guardar anotaciones únicamente en `localStorage`. La fuente de verdad debe ser el backend.
+La fuente de verdad es el backend; no guardar anotaciones únicamente en
+`localStorage`.
 
 ## Comandos de validación
 
@@ -437,11 +445,14 @@ IMPORTANTE. Seguir las siguientes reglas al momento de agregar codigo
 
 ## Riesgos y decisiones pendientes
 
-1. `schema.sql` reinicia tablas al arrancar. Esto es útil para datos de desarrollo, pero no es persistencia de producción.
+1. `schema.sql` usa `CREATE TABLE IF NOT EXISTS` y
+   `AnotacionSchemaMigration` agrega columnas faltantes en SQLite existente;
+   todavía se necesita una estrategia formal de migraciones para producción.
 2. `Anotacion.PRIVADO` todavía no puede asociarse a un usuario.
 3. No existe aún autenticación ni autorización administrativa.
 4. Los SVG son recursos estáticos del backend; aún no hay subida de archivos.
-5. El editor Drag & Drop todavía no existe. Primero debe funcionar el flujo de colocar, guardar, actualizar y volver a cargar.
+5. El editor permite arrastrar marcadores, pero todavía no existe autenticación
+   ni una separación de permisos administrativos.
 6. El layer de resaltado de edificios puede requerir implementación si se desea seleccionar visualmente una feature.
 7. `pisosTotales` del JSON todavía no se utiliza para construir las plantas.
 8. Los IDs definidos en el JSON de catálogo no se conservan durante la ingesta;
@@ -449,5 +460,5 @@ IMPORTANTE. Seguir las siguientes reglas al momento de agregar codigo
    que se asignan explícitamente.
 9. `Edificio.sinonimos` existe en la entidad y en el esquema, pero todavía no
    se carga desde el JSON ni participa en las búsquedas.
-10. La ingesta inicial omite la carga si ya existe algún edificio y el esquema
-    actual reinicia las tablas al arrancar; esto debe revisarse antes de producción.
+10. La ingesta inicial omite la carga si ya existe algún edificio; esto debe
+    revisarse junto con una estrategia formal de migraciones antes de producción.

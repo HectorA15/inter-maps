@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Tabs } from "./Tabs";
 import { Imagen } from "./Imagenes";
 import EspaciosPiso from "./EspaciosPiso";
+import { ordenarPorNombre } from "../../utils/ordenar";
 
 interface PanelInfoProps {
   item: Edificio | null;
@@ -15,7 +16,10 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
   const [pisoActivo, setPisoActivo] = useState("");
   const [idAnterior, setIdAnterior] = useState(item?.id);
 
-  const pisos = item && Array.isArray(item.pisos) ? item.pisos : [];
+  const pisos =
+    item && Array.isArray(item.pisos)
+      ? ordenarPorNombre(item.pisos, (piso) => piso.nombre)
+      : [];
   const datoParaImagen = busqueda || item;
 
   // verifica si el id del edifcio seleccionado cambio

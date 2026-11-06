@@ -1,5 +1,13 @@
 import axios from "axios";
-import type { Edificio, Espacio, SearchResult, SpringPage, RutaGeoJson } from "../interfaces/ApiInterfaces";
+import type {
+    Anotacion,
+    AnotacionRequest,
+    Edificio,
+    Espacio,
+    SearchResult,
+    SpringPage,
+    RutaGeoJson,
+} from "../interfaces/ApiInterfaces";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL || "/api/v1",
@@ -56,3 +64,24 @@ export const NavegacionService = {
         return response.data;
     },
 };
+
+export const AnotacionesService = {
+    obtenerTodas: async (): Promise<Anotacion[]> => {
+        const response = await api.get<Anotacion[]>("/anotaciones");
+        return response.data;
+    },
+
+    crear: async (request: AnotacionRequest): Promise<Anotacion> => {
+        const response = await api.post<Anotacion>("/anotaciones", request);
+        return response.data;
+    },
+
+    actualizar: async (id: number, request: AnotacionRequest): Promise<Anotacion> => {
+        const response = await api.put<Anotacion>(`/anotaciones/${id}`, request);
+        return response.data;
+    },
+
+    eliminar: async (id: number): Promise<void> => {
+        await api.delete(`/anotaciones/${id}`);
+    },
+};

@@ -4,9 +4,9 @@ import com.intermaps.util.Visibilidad;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 public record AnotacionRequestDTO(
-        @NotBlank
         @Size(max = 100)
         String nombre,
 
@@ -31,6 +31,12 @@ public record AnotacionRequestDTO(
         @NotNull
         Double longitud,
 
-        Visibilidad visibilidad
+        Visibilidad visibilidad,
+
+        Long edificioId,
+
+        Long espacioId,
+
+        List<@Size(max = 40) String> tags
 ) {
 }

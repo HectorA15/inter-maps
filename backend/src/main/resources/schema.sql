@@ -1,32 +1,22 @@
-DROP TABLE IF EXISTS aristas;
-DROP TABLE IF EXISTS anotaciones;
-DROP TABLE IF EXISTS espacio_aliases;
-DROP TABLE IF EXISTS espacios;
-DROP TABLE IF EXISTS nodos;
-DROP TABLE IF EXISTS edificio_sinonimos;
-DROP TABLE IF EXISTS edificio_aliases;
-DROP TABLE IF EXISTS plantas;
-DROP TABLE IF EXISTS edificios;
-
-CREATE TABLE edificios (
+CREATE TABLE IF NOT EXISTS edificios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre VARCHAR(255) NOT NULL,
     nombre_busqueda VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE edificio_aliases (
+CREATE TABLE IF NOT EXISTS edificio_aliases (
     edificio_id INTEGER NOT NULL,
     alias VARCHAR(255),
     FOREIGN KEY (edificio_id) REFERENCES edificios (id)
 );
 
-CREATE TABLE edificio_sinonimos (
+CREATE TABLE IF NOT EXISTS edificio_sinonimos (
     edificio_id INTEGER NOT NULL,
     sinonimo VARCHAR(255),
     FOREIGN KEY (edificio_id) REFERENCES edificios (id)
 );
 
-CREATE TABLE plantas (
+CREATE TABLE IF NOT EXISTS plantas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nivel INTEGER,
     nombre VARCHAR(255),
@@ -35,7 +25,7 @@ CREATE TABLE plantas (
     FOREIGN KEY (edificio_id) REFERENCES edificios (id)
 );
 
-CREATE TABLE espacios (
+CREATE TABLE IF NOT EXISTS espacios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre VARCHAR(255) NOT NULL,
     nombre_busqueda VARCHAR(255) NOT NULL,
@@ -49,13 +39,13 @@ CREATE TABLE espacios (
     FOREIGN KEY (planta_id) REFERENCES plantas (id)
 );
 
-CREATE TABLE espacio_aliases (
+CREATE TABLE IF NOT EXISTS espacio_aliases (
     espacio_id INTEGER NOT NULL,
     alias VARCHAR(255),
     FOREIGN KEY (espacio_id) REFERENCES espacios (id)
 );
 
-CREATE TABLE nodos (
+CREATE TABLE IF NOT EXISTS nodos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     latitud FLOAT,
     longitud FLOAT,
@@ -67,7 +57,7 @@ CREATE TABLE nodos (
     FOREIGN KEY (espacio_id) REFERENCES espacios (id)
 );
 
-CREATE TABLE aristas (
+CREATE TABLE IF NOT EXISTS aristas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nodo_origen_id INTEGER NOT NULL,
     nodo_destino_id INTEGER NOT NULL,
@@ -76,9 +66,9 @@ CREATE TABLE aristas (
     FOREIGN KEY (nodo_destino_id) REFERENCES nodos (id)
 );
 
-CREATE TABLE anotaciones (
+CREATE TABLE IF NOT EXISTS anotaciones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100) NOT NULL DEFAULT '',
     texto VARCHAR(20),
     tipo VARCHAR(50) NOT NULL,
     color VARCHAR(20),
@@ -86,7 +76,15 @@ CREATE TABLE anotaciones (
     tamano INTEGER NOT NULL DEFAULT 24,
     latitud FLOAT NOT NULL,
     longitud FLOAT NOT NULL,
+    edificio_id INTEGER,
+    espacio_id INTEGER,
     fecha_creacion TIMESTAMP,
     fecha_modificacion TIMESTAMP,
     visibilidad VARCHAR(20) NOT NULL DEFAULT 'PUBLICO'
+);
+
+CREATE TABLE IF NOT EXISTS anotacion_tags (
+    anotacion_id INTEGER NOT NULL,
+    tag VARCHAR(40) NOT NULL,
+    FOREIGN KEY (anotacion_id) REFERENCES anotaciones (id) ON DELETE CASCADE
 );

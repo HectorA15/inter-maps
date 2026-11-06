@@ -15,6 +15,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.JoinColumn;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -52,6 +57,17 @@ public class Anotacion {
 
     @Column(nullable = false)
     private double longitud;
+
+    @Column(name = "edificio_id")
+    private Long edificioId;
+
+    @Column(name = "espacio_id")
+    private Long espacioId;
+
+    @ElementCollection
+    @CollectionTable(name = "anotacion_tags", joinColumns = @JoinColumn(name = "anotacion_id"))
+    @Column(name = "tag", nullable = false, length = 40)
+    private Set<String> tags = new LinkedHashSet<>();
 
 
     @CreatedDate

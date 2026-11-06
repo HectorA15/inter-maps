@@ -5,15 +5,8 @@ export type Tema = "claro" | "oscuro";
 
 // Este hook maneja el tema de la aplicación (claro u oscuro) y aplica la clase correspondiente al elemento raíz del documento.
 export function useTema() {
-  // Estado para almacenar el tema actual, inicializado según la preferencia del sistema del usuario.
-  const [tema, setTema] = useState<Tema>(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "oscuro"
-        : "claro";
-    }
-    return "claro";
-  });
+  // El tema claro es el estado inicial; el usuario puede cambiarlo manualmente.
+  const [tema, setTema] = useState<Tema>("claro");
 
   // useEffect para aplicar la clase "dark" al elemento raíz del documento cuando el tema es "oscuro".
   useEffect(() => {

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Base necesaria para que MapLibre ocupe 100vh sin colapsar */
 html,
 body,

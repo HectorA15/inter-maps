@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import Map, {
+  Marker,
+  type MarkerDragEvent,
   type MapLayerMouseEvent,
   type MapRef,
   type ViewStateChangeEvent,
@@ -8,7 +10,11 @@ import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
+import type {
+  Anotacion,
+  Edificio,
+  SearchResult,
+} from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
 import {
   encontrarFeatureParaLugar,
@@ -135,10 +141,21 @@ const estiloClaro: StyleSpecification = {
         ["get", "kind"],
         ["literal", ["major_road", "arterial", "highway", "trunk"]],
       ],
+      minzoom: 14,
       layout: {
         "text-field": ["get", "name"],
         "text-font": ["Noto Sans Regular"],
-        "text-size": 11,
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          9,
+          17,
+          11,
+          19,
+          12,
+        ],
         "symbol-placement": "line",
         "text-keep-upright": true,
       },
@@ -234,12 +251,25 @@ interface MapaCampusProps {
   onEdificioClick: (item: SearchResult, detalle?: Edificio) => void;
   lugarSeleccionado?: SearchResult | null;
   edificioDetalle?: Edificio | null;
+  anotaciones?: Anotacion[];
+  anotacionEnfocada?: Anotacion | null;
+  onCentroCambio?: (centro: { latitude: number; longitude: number }) => void;
+  onAnotacionSeleccionada?: (anotacion: Anotacion) => void;
+  onAnotacionMovida?: (
+    anotacion: Anotacion,
+    coordenadas: { latitude: number; longitude: number },
+  ) => void;
 }
 
 export function MapaCampus({
   onEdificioClick,
   lugarSeleccionado,
   edificioDetalle,
+  anotaciones = [],
+  anotacionEnfocada,
+  onCentroCambio,
+  onAnotacionSeleccionada,
+  onAnotacionMovida,
 }: MapaCampusProps) {
   const [viewState, setViewState] = useState(FALLBACK_CENTER);
   const [bounds, setBounds] =
@@ -285,9 +315,23 @@ export function MapaCampus({
 
   // Maneja el movimiento del mapa (drag, zoom, etc.)
   const handleMove = useCallback(
-    (evt: ViewStateChangeEvent) => setViewState(evt.viewState),
-    [],
+    (evt: ViewStateChangeEvent) => {
+      setViewState(evt.viewState);
+      onCentroCambio?.({
+        latitude: evt.viewState.latitude,
+        longitude: evt.viewState.longitude,
+      });
+    },
+    [onCentroCambio],
   );
+
+  useEffect(() => {
+    if (!anotacionEnfocada || !mapRef.current) return;
+    mapRef.current.flyTo({
+      center: [anotacionEnfocada.longitud, anotacionEnfocada.latitud],
+      duration: NAVEGACION_MAPA.duracionMs,
+    });
+  }, [anotacionEnfocada]);
 
   // Maneja el click en un feature del mapa (edificio o zona)
   const handleClick = useCallback(
@@ -432,6 +476,13 @@ export function MapaCampus({
           mapa?.dragRotate.disable();
           mapa?.touchPitch.disable();
           mapa?.touchZoomRotate.disableRotation();
+          const centro = mapa?.getCenter();
+          if (centro) {
+            onCentroCambio?.({
+              latitude: centro.lat,
+              longitude: centro.lng,
+            });
+          }
           setMapaListo(true);
           console.log("[MapaCampus] mapa claro cargado, bounds:", bounds);
         }}
@@ -445,7 +496,77 @@ export function MapaCampus({
         }}
         style={{ width: "100%", height: "100%" }}
         reuseMaps
-      />
+      >
+        {anotaciones.map((anotacion) => {
+          if (viewState.zoom < NAVEGACION_MAPA.anotacionesZoomMinimo) {
+            return null;
+          }
+          const rangoFade =
+            NAVEGACION_MAPA.anotacionesFadeInicio -
+            NAVEGACION_MAPA.anotacionesZoomMinimo;
+          const opacidad = Math.min(
+            1,
+            Math.max(
+              0,
+              (viewState.zoom - NAVEGACION_MAPA.anotacionesZoomMinimo) /
+                rangoFade,
+            ),
+          );
+          const escala = Math.min(
+            NAVEGACION_MAPA.anotacionesEscalaMaxima,
+            Math.max(
+              NAVEGACION_MAPA.anotacionesEscalaMinima,
+              viewState.zoom / 18,
+            ),
+          );
+          const texto = anotacion.texto?.trim() ?? "";
+          return (
+            <Marker
+              key={anotacion.id}
+              longitude={anotacion.longitud}
+              latitude={anotacion.latitud}
+              anchor="bottom"
+              draggable
+              onClick={(event) => {
+                event.originalEvent.stopPropagation();
+                onAnotacionSeleccionada?.(anotacion);
+              }}
+              onDragEnd={(event: MarkerDragEvent) => {
+                onAnotacionMovida?.(anotacion, {
+                  latitude: event.lngLat.lat,
+                  longitude: event.lngLat.lng,
+                });
+              }}
+            >
+              <button
+                type="button"
+                aria-label={`Marcador ${texto || anotacion.nombre || "sin texto"}`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onAnotacionSeleccionada?.(anotacion);
+                }}
+                className="relative flex min-h-7 min-w-7 items-center justify-center rounded-xl border-2 border-white px-2 py-1 text-xs font-semibold text-white shadow-lg transition-transform hover:scale-105 dark:border-gray-900"
+                style={{
+                  backgroundColor: anotacion.color,
+                  transform: `scale(${escala})`,
+                  transformOrigin: "center bottom",
+                  opacity: opacidad,
+                  transition: "opacity 120ms linear",
+                }}
+              >
+                {texto && (
+                  <span className="max-w-40 truncate">{texto}</span>
+                )}
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-white dark:border-gray-900"
+                  style={{ backgroundColor: anotacion.color }}
+                />
+              </button>
+            </Marker>
+          );
+        })}
+      </Map>
     </div>
   );
 }
