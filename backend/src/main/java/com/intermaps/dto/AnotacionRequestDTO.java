@@ -1,6 +1,7 @@
 package com.intermaps.dto;
 
 import com.intermaps.util.Visibilidad;
+import com.intermaps.util.AutorAnotacion;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -48,6 +49,8 @@ public record AnotacionRequestDTO(
         @Size(max = 100)
         String zonaNombre,
 
-        List<@Size(max = 40) String> tags
+        List<@Size(max = 40) String> tags,
+
+        AutorAnotacion creadoPor
 ) {
 }

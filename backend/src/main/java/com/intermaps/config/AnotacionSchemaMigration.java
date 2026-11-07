@@ -45,6 +45,11 @@ public class AnotacionSchemaMigration implements CommandLineRunner {
                     "ALTER TABLE anotaciones ADD COLUMN nivel_zoom INTEGER NOT NULL DEFAULT 1"
             );
         }
+        if (!columnas.contains("creado_por")) {
+            jdbcTemplate.execute(
+                    "ALTER TABLE anotaciones ADD COLUMN creado_por VARCHAR(20) NOT NULL DEFAULT 'ADMIN'"
+            );
+        }
     }
 
     private boolean esSQLite() {

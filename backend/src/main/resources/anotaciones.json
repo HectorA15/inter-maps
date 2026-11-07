@@ -12,7 +12,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "3",
@@ -27,7 +28,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "7",
@@ -42,7 +44,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "8",
@@ -57,7 +60,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "9",
@@ -72,7 +76,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Biblioteca",
@@ -87,7 +92,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Cafeteria",
@@ -102,7 +108,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "5",
@@ -117,7 +124,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "18",
@@ -130,7 +138,8 @@
     "edificioId": 15,
     "nivelZoom": 1,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "14",
@@ -145,7 +154,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "12",
@@ -160,7 +170,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "15",
@@ -175,7 +186,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "16",
@@ -190,7 +202,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "19",
@@ -205,7 +218,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "24",
@@ -220,7 +234,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "22",
@@ -235,7 +250,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "20",
@@ -248,7 +264,8 @@
     "edificioId": 17,
     "nivelZoom": 1,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Nodos",
@@ -263,7 +280,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Entrada",
@@ -279,7 +297,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "entrada"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Entrada",
@@ -295,7 +314,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "entrada"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Entrada",
@@ -311,7 +331,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "entrada"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "6",
@@ -326,7 +347,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Campo de Baseball",
@@ -342,7 +364,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Campo de Futbol",
@@ -358,7 +381,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Padel",
@@ -374,7 +398,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Volleyball",
@@ -390,7 +415,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Cancha de Futbol",
@@ -406,7 +432,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Gimnasio",
@@ -422,7 +449,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "deportes"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Centro Calidad",
@@ -436,7 +464,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "Vigilancia",
@@ -451,7 +480,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "edificio"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -466,7 +496,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "baño"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -480,7 +511,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "baño"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -495,7 +527,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "baño"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -508,7 +541,8 @@
     "espacioId": 81,
     "nivelZoom": 4,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -521,7 +555,8 @@
     "espacioId": 154,
     "nivelZoom": 4,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -534,7 +569,8 @@
     "espacioId": 124,
     "nivelZoom": 4,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -546,7 +582,8 @@
     "longitud": -100.24645715042314,
     "nivelZoom": 4,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -561,7 +598,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "baño"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "WC",
@@ -576,7 +614,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "baño"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -591,7 +630,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "estacionamiento"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -606,7 +646,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "estacionamiento"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -621,7 +662,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "estacionamiento"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -635,7 +677,8 @@
     "espacioId": 60,
     "nivelZoom": 4,
     "visibilidad": "PUBLICO",
-    "tags": []
+    "tags": [],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -650,7 +693,8 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "tienda"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   },
   {
     "nombre": "",
@@ -665,6 +709,7 @@
     "visibilidad": "PUBLICO",
     "tags": [
       "tienda"
-    ]
+    ],
+    "creadoPor": "ADMIN"
   }
 ]

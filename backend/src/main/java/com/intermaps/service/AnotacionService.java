@@ -3,6 +3,7 @@ package com.intermaps.service;
 import com.intermaps.dto.AnotacionDTO;
 import com.intermaps.dto.AnotacionRequestDTO;
 import com.intermaps.entity.Anotacion;
+import com.intermaps.util.AutorAnotacion;
 import com.intermaps.exception.RecursoNoEncontradoException;
 import com.intermaps.mapper.AnotacionMapper;
 import com.intermaps.repository.AnotacionRepository;
@@ -37,7 +38,9 @@ public class AnotacionService {
             AnotacionRequestDTO request
     ) {
         Anotacion anotacion = buscarPorId(id);
+        AutorAnotacion creadoPor = anotacion.getCreadoPor();
         AnotacionMapper.actualizarEntidad(anotacion, request);
+        anotacion.setCreadoPor(creadoPor);
         return AnotacionMapper.toDTO(anotacionRepository.save(anotacion));
     }
 

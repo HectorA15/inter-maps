@@ -1,6 +1,7 @@
 package com.intermaps.dto;
 
 import com.intermaps.util.Visibilidad;
+import com.intermaps.util.AutorAnotacion;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +24,7 @@ public record AnotacionDTO(
         List<String> tags,
         LocalDateTime fechaCreacion,
         LocalDateTime fechaModificacion,
-        Visibilidad visibilidad
+        Visibilidad visibilidad,
+        AutorAnotacion creadoPor
 ) {
 }

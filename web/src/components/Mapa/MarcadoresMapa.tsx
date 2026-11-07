@@ -13,6 +13,7 @@ import { obtenerEtiquetaIcono } from "../Marcadores/iconosMarcador";
 interface MarcadoresMapaProps {
   anotaciones: Anotacion[];
   zoom: number;
+  modoAdmin: boolean;
   lugarBajoCursor: SearchResult | null;
   lugarSeleccionado?: SearchResult | null;
   onSeleccionar?: (anotacion: Anotacion) => void;
@@ -42,6 +43,7 @@ function estaVinculado(
 export function MarcadoresMapa({
   anotaciones,
   zoom,
+  modoAdmin,
   lugarBajoCursor,
   lugarSeleccionado,
   onSeleccionar,
@@ -110,6 +112,8 @@ export function MarcadoresMapa({
         }
         const estaDesapareciendo =
           marcadoresVisibles[anotacion.id] === true && zoom < zoomMinimo;
+        const puedeEditar =
+          modoAdmin || anotacion.creadoPor === "ESTUDIANTE";
         const coordenadas =
           posicionesLocales[anotacion.id] ?? {
             latitude: anotacion.latitud,
@@ -134,15 +138,17 @@ export function MarcadoresMapa({
             longitude={coordenadas.longitude}
             latitude={coordenadas.latitude}
             anchor="bottom"
-            draggable
+            draggable={puedeEditar}
             onClick={(event) => {
               event.originalEvent.stopPropagation();
               onSeleccionar?.(anotacion);
             }}
             onDragStart={() => {
+              if (!puedeEditar) return;
               setAnotacionArrastrada(anotacion.id);
             }}
             onDrag={(event: MarkerDragEvent) => {
+              if (!puedeEditar) return;
               setPosicionesLocales((actuales) => ({
                 ...actuales,
                 [anotacion.id]: {
@@ -152,6 +158,7 @@ export function MarcadoresMapa({
               }));
             }}
             onDragEnd={(event: MarkerDragEvent) => {
+              if (!puedeEditar) return;
               setAnotacionArrastrada(null);
               const resultado = onMover?.(anotacion, {
                 latitude: event.lngLat.lat,

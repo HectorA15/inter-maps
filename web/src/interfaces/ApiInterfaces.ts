@@ -55,6 +55,7 @@ export interface Anotacion {
   fechaCreacion: string | null;
   fechaModificacion: string | null;
   visibilidad: "PUBLICO" | "PRIVADO";
+  creadoPor: "ADMIN" | "ESTUDIANTE";
 }
 
 export interface AnotacionRequest {
@@ -73,6 +74,7 @@ export interface AnotacionRequest {
   zonaNombre?: string | null;
   tags?: string[];
   visibilidad?: "PUBLICO" | "PRIVADO";
+  creadoPor?: "ADMIN" | "ESTUDIANTE";
 }
 
 // Mapeo estricto de ErrorResponse

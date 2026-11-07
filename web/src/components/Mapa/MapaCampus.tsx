@@ -300,6 +300,7 @@ interface MapaCampusProps {
   lugarSeleccionado?: SearchResult | null;
   edificioDetalle?: Edificio | null;
   tema?: Tema;
+  modoAdmin?: boolean;
   anotaciones?: Anotacion[];
   anotacionEnfocada?: Anotacion | null;
   onCentroCambio?: (centro: { latitude: number; longitude: number }) => void;
@@ -315,6 +316,7 @@ export function MapaCampus({
   lugarSeleccionado,
   edificioDetalle,
   tema = "claro",
+  modoAdmin = true,
   anotaciones = [],
   anotacionEnfocada,
   onCentroCambio,
@@ -589,6 +591,7 @@ export function MapaCampus({
         <MarcadoresMapa
           anotaciones={anotaciones}
           zoom={viewState.zoom}
+          modoAdmin={modoAdmin}
           lugarBajoCursor={lugarBajoCursor}
           lugarSeleccionado={lugarSeleccionado}
           onSeleccionar={onAnotacionSeleccionada}

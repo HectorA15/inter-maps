@@ -2,6 +2,7 @@ package com.intermaps.entity;
 
 import java.time.LocalDateTime;
 import com.intermaps.util.Visibilidad;
+import com.intermaps.util.AutorAnotacion;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -91,6 +92,10 @@ public class Anotacion {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Visibilidad visibilidad = Visibilidad.PUBLICO;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "creado_por", nullable = false, length = 20)
+    private AutorAnotacion creadoPor = AutorAnotacion.ADMIN;
     
     
 }

@@ -4,6 +4,7 @@ import com.intermaps.dto.AnotacionDTO;
 import com.intermaps.dto.AnotacionRequestDTO;
 import com.intermaps.entity.Anotacion;
 import com.intermaps.util.Visibilidad;
+import com.intermaps.util.AutorAnotacion;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public final class AnotacionMapper {
                 anotacion.getTags().stream().toList(),
                 anotacion.getFechaCreacion(),
                 anotacion.getFechaModificacion(),
-                anotacion.getVisibilidad()
+                anotacion.getVisibilidad(),
+                anotacion.getCreadoPor()
         );
     }
 
@@ -71,6 +73,11 @@ public final class AnotacionMapper {
                 request.visibilidad() == null
                         ? Visibilidad.PUBLICO
                         : request.visibilidad()
+        );
+        anotacion.setCreadoPor(
+                request.creadoPor() == null
+                        ? AutorAnotacion.ADMIN
+                        : request.creadoPor()
         );
     }
 

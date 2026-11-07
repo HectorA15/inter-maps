@@ -2,6 +2,7 @@ package com.intermaps.mapper;
 
 import com.intermaps.dto.AnotacionRequestDTO;
 import com.intermaps.entity.Anotacion;
+import com.intermaps.util.AutorAnotacion;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -28,13 +29,15 @@ class AnotacionMapperTest {
                 null,
                 null,
                 null,
-                List.of()
+                List.of(),
+                null
         ));
 
         assertEquals("", anotacion.getNombre());
         assertEquals("MARCADOR", anotacion.getTipo());
         assertEquals("#e03131", anotacion.getColor());
         assertEquals(1, anotacion.getNivelZoom());
+        assertEquals(AutorAnotacion.ADMIN, anotacion.getCreadoPor());
         assertTrue(anotacion.getTags().isEmpty());
     }
 
@@ -55,7 +58,8 @@ class AnotacionMapperTest {
                 null,
                 null,
                 null,
-                List.of("edificio", "entrada")
+                List.of("edificio", "entrada"),
+                null
         ));
 
         assertEquals(3L, anotacion.getEdificioId());
@@ -79,7 +83,8 @@ class AnotacionMapperTest {
                 null,
                 null,
                 null,
-                List.of()
+                List.of(),
+                null
         ));
 
         assertEquals(5, anotacion.getNivelZoom());

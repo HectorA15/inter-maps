@@ -27,7 +27,11 @@ export function useAnotaciones() {
     };
   }, []);
 
-  const crearAnotacion = useCallback(async (latitud: number, longitud: number) => {
+  const crearAnotacion = useCallback(async (
+    latitud: number,
+    longitud: number,
+    creadoPor: "ADMIN" | "ESTUDIANTE" = "ADMIN",
+  ) => {
     const creada = await AnotacionesService.crear({
       nombre: "",
       texto: "",
@@ -38,6 +42,7 @@ export function useAnotaciones() {
       longitud,
       tags: [],
       visibilidad: "PUBLICO",
+      creadoPor,
     });
     setAnotaciones((actuales) => [...actuales, creada]);
     return creada;
@@ -64,6 +69,7 @@ export function useAnotaciones() {
         zonaNombre: anotacion.zonaNombre,
         tags: anotacion.tags,
         visibilidad: anotacion.visibilidad,
+        creadoPor: anotacion.creadoPor,
         ...cambios,
       };
       const actualizada = await AnotacionesService.actualizar(anotacion.id, request);

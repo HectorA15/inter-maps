@@ -14,6 +14,7 @@ import {
 
 interface PanelMarcadoresProps {
   abierto: boolean;
+  modoAdmin: boolean;
   anotaciones: Anotacion[];
   seleccionado: Anotacion | null;
   cargando: boolean;
@@ -55,6 +56,7 @@ function IconoMarcador() {
 
 export function PanelMarcadores({
   abierto,
+  modoAdmin,
   anotaciones,
   seleccionado,
   cargando,
@@ -270,7 +272,9 @@ export function PanelMarcadores({
               Marcadores
             </h2>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Ubicaciones visibles del mapa
+              {modoAdmin
+                ? "Administración de ubicaciones"
+                : "Solo lectura para ubicaciones de administración"}
             </p>
           </div>
           <button

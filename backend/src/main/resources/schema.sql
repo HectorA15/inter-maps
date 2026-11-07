@@ -89,7 +89,8 @@ CREATE TABLE IF NOT EXISTS anotaciones (
     espacio_id INTEGER,
     fecha_creacion TIMESTAMP,
     fecha_modificacion TIMESTAMP,
-    visibilidad VARCHAR(20) NOT NULL DEFAULT 'PUBLICO'
+    visibilidad VARCHAR(20) NOT NULL DEFAULT 'PUBLICO',
+    creado_por VARCHAR(20) NOT NULL DEFAULT 'ADMIN'
 );
 
 CREATE TABLE IF NOT EXISTS anotacion_tags (
