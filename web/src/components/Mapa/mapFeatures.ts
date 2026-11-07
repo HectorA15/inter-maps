@@ -1,4 +1,4 @@
-import type { SearchResult } from "../../interfaces/ApiInterfaces";
+import type { Edificio, SearchResult } from "../../interfaces/ApiInterfaces";
 
 export interface MapFeature {
   geometry?: {
@@ -39,6 +39,56 @@ export function obtenerLugarDesdeFeature(
         ? properties.tipo_edificio.trim()
         : "ZONA",
   };
+}
+
+/**
+ * Convierte un feature del GeoJSON en una referencia compatible con los
+ * vínculos de los marcadores. Los edificios usan el ID de la base de datos;
+ * las zonas usan el `fid` del GeoJSON porque no tienen registro de edificio.
+ */
+export function obtenerLugarParaVinculo(
+  feature: MapFeature | undefined,
+  edificios: Edificio[],
+): SearchResult | null {
+  const properties = feature?.properties;
+  const nombre =
+    typeof properties?.nombre_zona === "string"
+      ? properties.nombre_zona.trim()
+      : typeof properties?.nombre === "string"
+        ? properties.nombre.trim()
+        : "";
+
+  if (!nombre) return null;
+
+  const tipo =
+    typeof properties?.tipo_edificio === "string"
+      ? properties.tipo_edificio.trim().toUpperCase()
+      : "";
+
+  if (tipo === "EDIFICIO") {
+    const nombreNormalizado = normalizarTexto(nombre);
+    const edificio = edificios.find(
+      (item) =>
+        normalizarTexto(item.nombre) === nombreNormalizado ||
+        item.alias.some((alias) => normalizarTexto(alias) === nombreNormalizado),
+    );
+
+    return edificio
+      ? {
+          id: edificio.id,
+          nombre: edificio.nombre,
+          tipo: "EDIFICIO",
+        }
+      : null;
+  }
+
+  return typeof properties?.fid === "number"
+    ? {
+        id: properties.fid,
+        nombre,
+        tipo: "ZONA",
+      }
+    : null;
 }
 
 function actualizarBounds(

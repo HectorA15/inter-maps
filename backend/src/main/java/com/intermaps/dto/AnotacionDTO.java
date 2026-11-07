@@ -12,6 +12,7 @@ public record AnotacionDTO(
         String tipo,
         String color,
         String icono,
+        int nivelZoom,
         int tamano,
         double latitud,
         double longitud,

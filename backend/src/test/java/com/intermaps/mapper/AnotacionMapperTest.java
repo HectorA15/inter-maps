@@ -20,6 +20,7 @@ class AnotacionMapperTest {
                 null,
                 null,
                 null,
+                null,
                 25.0,
                 -100.0,
                 null,
@@ -33,6 +34,7 @@ class AnotacionMapperTest {
         assertEquals("", anotacion.getNombre());
         assertEquals("MARCADOR", anotacion.getTipo());
         assertEquals("#e03131", anotacion.getColor());
+        assertEquals(1, anotacion.getNivelZoom());
         assertTrue(anotacion.getTags().isEmpty());
     }
 
@@ -43,6 +45,7 @@ class AnotacionMapperTest {
                 "3",
                 "MARCADOR",
                 "#1971c2",
+                null,
                 null,
                 24,
                 25.0,
@@ -57,5 +60,28 @@ class AnotacionMapperTest {
 
         assertEquals(3L, anotacion.getEdificioId());
         assertEquals(List.of("edificio", "entrada"), anotacion.getTags().stream().toList());
+    }
+
+    @Test
+    void limitaNivelDeZoomAlRangoPermitido() {
+        Anotacion anotacion = AnotacionMapper.toEntity(new AnotacionRequestDTO(
+                "Entrada",
+                null,
+                "MARCADOR",
+                null,
+                null,
+                7,
+                null,
+                25.0,
+                -100.0,
+                null,
+                null,
+                null,
+                null,
+                null,
+                List.of()
+        ));
+
+        assertEquals(5, anotacion.getNivelZoom());
     }
 }

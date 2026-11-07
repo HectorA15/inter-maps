@@ -6,6 +6,11 @@ import type {
 } from "../../interfaces/ApiInterfaces";
 import { CatalogoService } from "../../services/apiClient";
 import { ordenarPorNombre } from "../../utils/ordenar";
+import { IconoMarcador as IconoMarcadorSVG } from "./IconoMarcador";
+import {
+  OPCIONES_ICONO,
+  obtenerEtiquetaIcono,
+} from "./iconosMarcador";
 
 interface PanelMarcadoresProps {
   abierto: boolean;
@@ -65,6 +70,7 @@ export function PanelMarcadores({
   const [zonas, setZonas] = useState<EspacioCatalogo[]>([]);
   const [borrador, setBorrador] = useState<Anotacion | null>(null);
   const [nuevoTag, setNuevoTag] = useState("");
+  const [tagsSeleccionados, setTagsSeleccionados] = useState<string[]>([]);
   const [tipoVinculo, setTipoVinculo] = useState<
     "ninguno" | "edificio" | "espacio" | "zona"
   >("ninguno");
@@ -134,6 +140,8 @@ export function PanelMarcadores({
       onActualizar(actual, {
         texto: borrador.texto,
         color: borrador.color,
+        icono: borrador.icono,
+        nivelZoom: borrador.nivelZoom,
         edificioId: borrador.edificioId,
         espacioId: borrador.espacioId,
         zonaId: borrador.zonaId,
@@ -171,8 +179,21 @@ export function PanelMarcadores({
   const anotacionesOrdenadas = useMemo(
     () =>
       ordenarPorNombre(
-        anotaciones,
-        (anotacion) => anotacion.texto || anotacion.nombre || "",
+        anotaciones.filter((anotacion) =>
+          tagsSeleccionados.every((tag) => anotacion.tags.includes(tag)),
+        ),
+        (anotacion) =>
+          anotacion.texto ||
+          anotacion.nombre ||
+          obtenerEtiquetaIcono(anotacion.icono) ||
+          "",
+      ),
+    [anotaciones, tagsSeleccionados],
+  );
+  const tagsDisponibles = useMemo(
+    () =>
+      [...new Set(anotaciones.flatMap((anotacion) => anotacion.tags))].sort(
+        (a, b) => a.localeCompare(b),
       ),
     [anotaciones],
   );
@@ -271,11 +292,62 @@ export function PanelMarcadores({
                 </p>
               )}
               {error && <p className="p-3 text-sm text-red-600">{error}</p>}
+              {tagsDisponibles.length > 0 && (
+                <div className="mb-3 rounded-xl border border-gray-200 p-3 dark:border-gray-700">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                      Filtrar por tags
+                    </span>
+                    {tagsSeleccionados.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setTagsSeleccionados([])}
+                        className="text-[11px] text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+                      >
+                        Limpiar
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {tagsDisponibles.map((tag) => {
+                      const seleccionado = tagsSeleccionados.includes(tag);
+                      return (
+                        <button
+                          type="button"
+                          key={tag}
+                          aria-pressed={seleccionado}
+                          onClick={() =>
+                            setTagsSeleccionados((actuales) =>
+                              seleccionado
+                                ? actuales.filter((item) => item !== tag)
+                                : [...actuales, tag],
+                            )
+                          }
+                          className={`rounded-full px-2.5 py-1 text-[11px] ${
+                            seleccionado
+                              ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
+                              : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               {!cargando && anotaciones.length === 0 && (
                 <p className="p-3 text-sm text-gray-500 dark:text-gray-400">
                   Todavía no hay marcadores.
                 </p>
               )}
+              {!cargando &&
+                anotaciones.length > 0 &&
+                anotacionesOrdenadas.length === 0 && (
+                  <p className="p-3 text-sm text-gray-500 dark:text-gray-400">
+                    No hay marcadores con los tags seleccionados.
+                  </p>
+                )}
               <div className="space-y-2">
                 {anotacionesOrdenadas.map((anotacion) => (
                   <button
@@ -292,6 +364,7 @@ export function PanelMarcadores({
                       <span className="block truncate text-sm font-medium text-gray-800 dark:text-gray-100">
                         {anotacion.texto ||
                           anotacion.nombre ||
+                          obtenerEtiquetaIcono(anotacion.icono) ||
                           "Marcador sin nombre"}
                       </span>
                       <span className="mt-1 flex flex-wrap gap-1">
@@ -332,12 +405,73 @@ export function PanelMarcadores({
                 Texto del marcador
                 <input
                   value={borrador.texto ?? ""}
+                  disabled={Boolean(borrador.icono)}
                   onChange={(event) =>
                     actualizarBorrador({ texto: event.target.value })
                   }
-                  className="mt-1 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 placeholder:text-gray-400 dark:border-gray-600 dark:placeholder:text-gray-300"
-                  placeholder="Ej. 3 o Baños"
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 placeholder:text-gray-400 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:placeholder:text-gray-300 dark:disabled:bg-gray-800 dark:disabled:text-gray-500"
+                  placeholder="Ej. 3 o Entrada"
                 />
+              </label>
+              <div>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Icono del marcador
+                </span>
+                <div className="mt-2 grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    aria-pressed={!borrador.icono}
+                    onClick={() => actualizarBorrador({ icono: null })}
+                    className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-2 text-xs ${
+                      !borrador.icono
+                        ? "border-gray-900 bg-gray-900 text-white dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900"
+                        : "border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                    }`}
+                  >
+                    <span className="text-base leading-none">T</span>
+                    Texto
+                  </button>
+                  {OPCIONES_ICONO.map((opcion) => (
+                    <button
+                      type="button"
+                      key={opcion.id}
+                      aria-label={opcion.etiqueta}
+                      aria-pressed={borrador.icono === opcion.id}
+                      onClick={() =>
+                        actualizarBorrador({ icono: opcion.id, texto: "" })
+                      }
+                      className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-2 text-xs ${
+                        borrador.icono === opcion.id
+                          ? "border-gray-900 bg-gray-900 text-white dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900"
+                          : "border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                      }`}
+                    >
+                      <IconoMarcadorSVG icono={opcion.id} />
+                      {opcion.etiqueta}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <label className="block text-sm text-gray-700 dark:text-gray-300">
+                Distancia de visibilidad
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  value={borrador.nivelZoom ?? 1}
+                  onChange={(event) =>
+                    actualizarBorrador({
+                      nivelZoom: Number(event.target.value),
+                    })
+                  }
+                  className="mt-2 w-full accent-gray-900 dark:accent-gray-100"
+                />
+                <span className="mt-1 flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                  <span>Lejos</span>
+                  <span>Nivel {borrador.nivelZoom ?? 1}</span>
+                  <span>Cerca</span>
+                </span>
               </label>
               <div>
                 <span className="text-sm text-gray-700 dark:text-gray-300">

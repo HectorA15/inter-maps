@@ -12,9 +12,8 @@ interface ImagenProps {
 export function Imagen({ dato }: ImagenProps) {
   if (!dato) return null;
 
-  const ImagenMostrar = "imagenes" in dato && Array.isArray(dato.imagenes)
-    ? dato.imagenes
-    : [];
+  const ImagenMostrar =
+    "imagenes" in dato && Array.isArray(dato.imagenes) ? dato.imagenes : [];
   const imagenFallback = "/Imagenes/Prueba.jpg";
 
   if (ImagenMostrar.length === 0) {
@@ -58,7 +57,6 @@ export function Imagen({ dato }: ImagenProps) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="custom-pagination !static flex justify-center mt-0"></div>
       </div>
     </div>
   );

@@ -1,7 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import Map, {
-  Marker,
-  type MarkerDragEvent,
   type MapLayerMouseEvent,
   type MapRef,
   type ViewStateChangeEvent,
@@ -21,9 +19,11 @@ import {
   encontrarFeatureParaLugar,
   obtenerBoundsDeFeature,
   obtenerLugarDesdeFeature,
+  obtenerLugarParaVinculo,
   type MapFeature,
 } from "./mapFeatures";
 import { NAVEGACION_MAPA } from "./mapConfig";
+import { MarcadoresMapa } from "./MarcadoresMapa";
 import type { Tema } from "../../hooks/useTema";
 
 maplibregl.setWorkerUrl(mapLibreWorkerUrl);
@@ -34,6 +34,7 @@ const protocol = new Protocol();
 type MapLibreWithProtocol = typeof maplibregl & {
   addProtocol: (name: string, handler: typeof protocol.tile) => void;
 };
+
 try {
   (maplibregl as unknown as MapLibreWithProtocol).addProtocol(
     "pmtiles",
@@ -325,7 +326,27 @@ export function MapaCampus({
     useState<[number, number, number, number]>(FALLBACK_BOUNDS);
   const [mapaListo, setMapaListo] = useState(false);
   const [fuenteEdificiosLista, setFuenteEdificiosLista] = useState(false);
+  // Lugar que está debajo del cursor. Este estado es temporal y se limpia
+  // cuando el cursor abandona una capa interactiva del mapa.
+  const [lugarBajoCursor, setLugarBajoCursor] = useState<SearchResult | null>(
+    null,
+  );
+  // El GeoJSON identifica edificios por nombre/fid, mientras que los
+  // marcadores guardan el ID de la base de datos. Cargamos el catálogo para
+  // resolver esa relación sin asumir que ambos IDs coinciden.
+  const [edificiosCatalogo, setEdificiosCatalogo] = useState<Edificio[]>([]);
   const mapRef = useRef<MapRef>(null);
+
+  useEffect(() => {
+    CatalogoService.obtenerEdificios(0, 1000)
+      .then((pagina) => setEdificiosCatalogo(pagina.content))
+      .catch((error: unknown) =>
+        console.error(
+          "[MapaCampus] no se pudo cargar el catálogo para el hover:",
+          error,
+        ),
+      );
+  }, []);
 
   // lee el header del pmtiles en runtime y sincroniza viewState+bounds.
   useEffect(() => {
@@ -510,12 +531,7 @@ export function MapaCampus({
       duration: NAVEGACION_MAPA.duracionMs,
       maxZoom: NAVEGACION_MAPA.zoomMaximo,
     });
-  }, [
-    edificioDetalle,
-    fuenteEdificiosLista,
-    lugarSeleccionado,
-    mapaListo,
-  ]);
+  }, [edificioDetalle, fuenteEdificiosLista, lugarSeleccionado, mapaListo]);
 
   return (
     <div className="relative h-screen h-dvh w-full overflow-hidden bg-[#f8f9fa] dark:bg-gray-950">
@@ -555,85 +571,29 @@ export function MapaCampus({
           console.log("[MapaCampus] mapa claro cargado, bounds:", bounds);
         }}
         onSourceData={(event) => {
-          if (
-            event.sourceId === "campus-edificios" &&
-            event.isSourceLoaded
-          ) {
+          if (event.sourceId === "campus-edificios" && event.isSourceLoaded) {
             setFuenteEdificiosLista(true);
           }
+        }}
+        onMouseMove={(event) => {
+          setLugarBajoCursor(
+            obtenerLugarParaVinculo(event.features?.[0], edificiosCatalogo),
+          );
+        }}
+        onMouseLeave={() => {
+          setLugarBajoCursor(null);
         }}
         style={{ width: "100%", height: "100%" }}
         reuseMaps
       >
-        {anotaciones.map((anotacion) => {
-          if (viewState.zoom < NAVEGACION_MAPA.anotacionesZoomMinimo) {
-            return null;
-          }
-          const rangoFade =
-            NAVEGACION_MAPA.anotacionesFadeInicio -
-            NAVEGACION_MAPA.anotacionesZoomMinimo;
-          const opacidad = Math.min(
-            1,
-            Math.max(
-              0,
-              (viewState.zoom - NAVEGACION_MAPA.anotacionesZoomMinimo) /
-                rangoFade,
-            ),
-          );
-          const escala = Math.min(
-            NAVEGACION_MAPA.anotacionesEscalaMaxima,
-            Math.max(
-              NAVEGACION_MAPA.anotacionesEscalaMinima,
-              viewState.zoom / 18,
-            ),
-          );
-          const texto = anotacion.texto?.trim() ?? "";
-          return (
-            <Marker
-              key={anotacion.id}
-              longitude={anotacion.longitud}
-              latitude={anotacion.latitud}
-              anchor="bottom"
-              draggable
-              onClick={(event) => {
-                event.originalEvent.stopPropagation();
-                onAnotacionSeleccionada?.(anotacion);
-              }}
-              onDragEnd={(event: MarkerDragEvent) => {
-                onAnotacionMovida?.(anotacion, {
-                  latitude: event.lngLat.lat,
-                  longitude: event.lngLat.lng,
-                });
-              }}
-            >
-              <button
-                type="button"
-                aria-label={`Marcador ${texto || anotacion.nombre || "sin texto"}`}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onAnotacionSeleccionada?.(anotacion);
-                }}
-                className="relative flex min-h-7 min-w-7 items-center justify-center rounded-xl border-2 border-white px-2 py-1 text-xs font-semibold text-white shadow-lg transition-transform hover:scale-105 dark:border-gray-900"
-                style={{
-                  backgroundColor: anotacion.color,
-                  transform: `scale(${escala})`,
-                  transformOrigin: "center bottom",
-                  opacity: opacidad,
-                  transition: "opacity 120ms linear",
-                }}
-              >
-                {texto && (
-                  <span className="max-w-40 truncate">{texto}</span>
-                )}
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-white dark:border-gray-900"
-                  style={{ backgroundColor: anotacion.color }}
-                />
-              </button>
-            </Marker>
-          );
-        })}
+        <MarcadoresMapa
+          anotaciones={anotaciones}
+          zoom={viewState.zoom}
+          lugarBajoCursor={lugarBajoCursor}
+          lugarSeleccionado={lugarSeleccionado}
+          onSeleccionar={onAnotacionSeleccionada}
+          onMover={onAnotacionMovida}
+        />
       </Map>
     </div>
   );

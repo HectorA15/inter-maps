@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   encontrarFeatureParaLugar,
+  obtenerLugarParaVinculo,
   obtenerBoundsDeFeature,
 } from "./mapFeatures";
 
@@ -79,5 +80,31 @@ describe("mapFeatures", () => {
         tipo: "EDIFICIO",
       }),
     ).toBe(edificio);
+  });
+
+  it("resuelve el ID de base de datos de un edificio desde su nombre GeoJSON", () => {
+    const feature = {
+      properties: {
+        fid: 3,
+        nombre_zona: "Edificio 3",
+        tipo_edificio: "Edificio",
+      },
+    };
+
+    expect(
+      obtenerLugarParaVinculo(feature, [
+        {
+          id: 2,
+          nombre: "Edificio 3",
+          alias: ["3"],
+          imagenes: [],
+          pisos: [],
+        },
+      ]),
+    ).toEqual({
+      id: 2,
+      nombre: "Edificio 3",
+      tipo: "EDIFICIO",
+    });
   });
 });

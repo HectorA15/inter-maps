@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS anotaciones (
     tipo VARCHAR(50) NOT NULL,
     color VARCHAR(20),
     icono VARCHAR(50),
+    nivel_zoom INTEGER NOT NULL DEFAULT 1,
     tamano INTEGER NOT NULL DEFAULT 24,
     latitud FLOAT NOT NULL,
     longitud FLOAT NOT NULL,

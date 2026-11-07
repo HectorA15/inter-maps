@@ -40,6 +40,11 @@ public class AnotacionSchemaMigration implements CommandLineRunner {
         if (!columnas.contains("zona_nombre")) {
             jdbcTemplate.execute("ALTER TABLE anotaciones ADD COLUMN zona_nombre VARCHAR(100)");
         }
+        if (!columnas.contains("nivel_zoom")) {
+            jdbcTemplate.execute(
+                    "ALTER TABLE anotaciones ADD COLUMN nivel_zoom INTEGER NOT NULL DEFAULT 1"
+            );
+        }
     }
 
     private boolean esSQLite() {

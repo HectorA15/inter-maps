@@ -20,6 +20,7 @@ public final class AnotacionMapper {
                 anotacion.getTipo(),
                 anotacion.getColor(),
                 anotacion.getIcono(),
+                anotacion.getNivelZoom(),
                 anotacion.getTamano(),
                 anotacion.getLatitud(),
                 anotacion.getLongitud(),
@@ -53,6 +54,11 @@ public final class AnotacionMapper {
                 ? "#e03131"
                 : request.color());
         anotacion.setIcono(request.icono());
+        anotacion.setNivelZoom(
+                request.nivelZoom() == null
+                        ? 1
+                        : Math.max(1, Math.min(5, request.nivelZoom()))
+        );
         anotacion.setTamano(request.tamano() == null ? 24 : request.tamano());
         anotacion.setLatitud(request.latitud());
         anotacion.setLongitud(request.longitud());

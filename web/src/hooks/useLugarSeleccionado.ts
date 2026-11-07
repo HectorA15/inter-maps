@@ -27,12 +27,9 @@ export function useLugarSeleccionado() {
 
   // Esta función maneja la selección de un lugar, ya sea un edificio, un espacio o una zona.
   const [edificioDetalle, setEdificioDetalle] = useState<Edificio | null>(null);
-  const [numeroSeleccion, setNumeroSeleccion] = useState(0);
 
   // Esta función maneja la selección de un lugar, ya sea un edificio, un espacio o una zona.
   const seleccionarLugar = async (item: SearchResult, detalle?: Edificio) => {
-    setNumeroSeleccion((actual) => actual + 1);
-
     try {
       // Si se proporciona un detalle completo del edificio, lo usamos directamente.
       if (detalle) {
@@ -83,7 +80,6 @@ export function useLugarSeleccionado() {
   return {
     lugarSeleccionado,
     edificioDetalle,
-    numeroSeleccion,
     seleccionarLugar,
   };
 }

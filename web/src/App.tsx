@@ -14,7 +14,6 @@ function App() {
   const {
     lugarSeleccionado,
     edificioDetalle,
-    numeroSeleccion,
     seleccionarLugar,
   } = useLugarSeleccionado();
 
@@ -104,11 +103,6 @@ function App() {
       </div>
 
       <PanelInfo
-        key={
-          edificioDetalle
-            ? `${edificioDetalle.id}-${edificioDetalle.pisos.length}-${numeroSeleccion}`
-            : `sin-edificio-${numeroSeleccion}`
-        }
         item={edificioDetalle}
         busqueda={lugarSeleccionado}
       />

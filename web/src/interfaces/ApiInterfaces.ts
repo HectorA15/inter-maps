@@ -43,6 +43,7 @@ export interface Anotacion {
   tipo: TipoMarcador | string;
   color: string;
   icono: string | null;
+  nivelZoom: number;
   tamano: number;
   latitud: number;
   longitud: number;
@@ -62,6 +63,7 @@ export interface AnotacionRequest {
   tipo?: TipoMarcador | string;
   color?: string;
   icono?: string | null;
+  nivelZoom?: number;
   tamano?: number;
   latitud: number;
   longitud: number;

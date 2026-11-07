@@ -4,6 +4,8 @@ import com.intermaps.util.Visibilidad;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import java.util.List;
 
 public record AnotacionRequestDTO(
@@ -22,6 +24,10 @@ public record AnotacionRequestDTO(
 
         @Size(max = 50)
         String icono,
+
+        @Min(1)
+        @Max(5)
+        Integer nivelZoom,
 
         Integer tamano,
 

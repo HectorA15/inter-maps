@@ -35,7 +35,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
   return (
     <div
       className={`
-        fixed top-0 left-0 z-50 h-full w-100 bg-white shadow-2xl dark:bg-gray-900
+        fixed top-0 left-0 z-50 h-full w-110 bg-white shadow-2xl dark:bg-gray-900
         transform transition-transform duration-300 ease-out
         ${item && !colapsado ? "panel-slide-in" : ""}
         ${item && !colapsado ? "translate-x-0" : "-translate-x-full"}
@@ -53,7 +53,7 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
 
         <div className="p-6">
           {item && (
-            <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-gray-100">
+            <h2 className="mb-4 text-2xl text-gray-800 dark:text-gray-100">
               {item.nombre}
             </h2>
           )}
@@ -67,11 +67,6 @@ function PanelInfo({ item, busqueda }: PanelInfoProps) {
               />
               <EspaciosPiso pisoActivo={pisoActivo} edificio={item} />
             </>
-          )}
-          {item && pisos.length === 0 && (
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              No hay pisos registrados para este edificio.
-            </p>
           )}
         </div>
       </div>

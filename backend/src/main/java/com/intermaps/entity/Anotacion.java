@@ -50,6 +50,9 @@ public class Anotacion {
     @Column(length = 50)
     private String icono;
 
+    @Column(name = "nivel_zoom", nullable = false)
+    private int nivelZoom = 1;
+
     private int tamano;
 
     @Column(nullable = false)

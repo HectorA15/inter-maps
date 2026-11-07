@@ -30,6 +30,28 @@ body {
   animation: panel-slide-in 300ms ease-out;
 }
 
+@keyframes marcador-hundirse {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translateY(-6px) scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(22px) scale(0.35);
+    opacity: 0;
+  }
+}
+
+.marcador-hundirse {
+  animation: marcador-hundirse 180ms ease-in forwards;
+  pointer-events: none;
+}
+
 /* Asegura que el canvas de MapLibre llene su contenedor */
 .maplibregl-map {
   width: 100%;
