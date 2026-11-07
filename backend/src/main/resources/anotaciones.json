@@ -1,32 +1,670 @@
 [
-  {"nombre":"1","texto":"1","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.6639809915483,"longitud":-100.24311026875351,"edificioId":1,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"3","texto":"3","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.6646479154723,"longitud":-100.24333510547811,"edificioId":2,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"7","texto":"7","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.664577805234856,"longitud":-100.2438232908848,"edificioId":6,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"8","texto":"8","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66433846303488,"longitud":-100.24385011297521,"edificioId":7,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"9","texto":"9","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66412329640302,"longitud":-100.243844748558,"edificioId":8,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Biblioteca","texto":"Biblioteca","tipo":"MARCADOR","color":"#865e3c","tamano":24,"latitud":25.66447143098378,"longitud":-100.2445608983645,"edificioId":10,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Cafeteria","texto":"Cafeteria","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.663765490361982,"longitud":-100.2441719780571,"edificioId":9,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"5","texto":"5","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.664872751527852,"longitud":-100.24382865530323,"edificioId":4,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"18","texto":"18","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.665025059574234,"longitud":-100.24460917812648,"edificioId":15,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"14","texto":"14","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.664236923774794,"longitud":-100.24484521251956,"edificioId":12,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"12","texto":"12","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66388637090155,"longitud":-100.24468696218761,"edificioId":11,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"15","texto":"15","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66449318936037,"longitud":-100.24497664076152,"edificioId":13,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"16","texto":"16","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.664785264958113,"longitud":-100.24504518136371,"edificioId":14,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"19","texto":"19","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66506374095151,"longitud":-100.24520999294582,"edificioId":16,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"24","texto":"24","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.665041982688237,"longitud":-100.2457320503905,"edificioId":20,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"22","texto":"22","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66463582752381,"longitud":-100.2459358982756,"edificioId":18,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"20","texto":"20","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66421758296289,"longitud":-100.24540482089063,"edificioId":17,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Nodos","texto":"Nodos","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.66454823293128,"longitud":-100.24654713063612,"edificioId":19,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Entrada","texto":"Entrada","tipo":"MARCADOR","color":"#ffbe6f","tamano":24,"latitud":25.663989766911612,"longitud":-100.24581220536604,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Entrada","texto":"Entrada","tipo":"MARCADOR","color":"#ffbe6f","tamano":24,"latitud":25.66550569652874,"longitud":-100.24558988820846,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Entrada","texto":"Entrada","tipo":"MARCADOR","color":"#ffbe6f","tamano":24,"latitud":25.663487132539956,"longitud":-100.24381556689336,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"6","texto":"6","tipo":"MARCADOR","color":"#e03131","tamano":24,"latitud":25.6647276960653,"longitud":-100.24398154121774,"edificioId":5,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Campo de Baseball","texto":"Campo de Baseball","tipo":"MARCADOR","color":"#26a269","tamano":24,"latitud":25.665642103719904,"longitud":-100.24443433857301,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Campo de Futbol","texto":"Campo de Futbol","tipo":"MARCADOR","color":"#26a269","tamano":24,"latitud":25.666039336135285,"longitud":-100.24292506316594,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Padel","texto":"Padel","tipo":"MARCADOR","color":"#1a5fb4","tamano":24,"latitud":25.666153647374642,"longitud":-100.243511626856,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Volleyball","texto":"Volleyball","tipo":"MARCADOR","color":"#26a269","tamano":24,"latitud":25.66512847824322,"longitud":-100.24320088944546,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Cancha de Futbol","texto":"Cancha de Futbol","tipo":"MARCADOR","color":"#26a269","tamano":24,"latitud":25.66512198446155,"longitud":-100.24358138037593,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Gimnasio","texto":"Gimnasio","tipo":"MARCADOR","color":"#c64600","tamano":24,"latitud":25.664619450054957,"longitud":-100.24295287011071,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Centro Calidad","texto":"Centro Calidad","tipo":"MARCADOR","color":"#5e5c64","tamano":24,"latitud":25.664824772437115,"longitud":-100.24293457501017,"visibilidad":"PUBLICO","tags":[]},
-  {"nombre":"Vigilancia","texto":"Vigilancia","tipo":"MARCADOR","color":"#5e5c64","tamano":24,"latitud":25.66496480511846,"longitud":-100.24269043769061,"edificioId":3,"visibilidad":"PUBLICO","tags":[]}
+  {
+    "nombre": "1",
+    "texto": "1",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.6639809915483,
+    "longitud": -100.24311026875351,
+    "edificioId": 1,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "3",
+    "texto": "3",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664636744677992,
+    "longitud": -100.24331283981914,
+    "edificioId": 2,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "7",
+    "texto": "7",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664560736514602,
+    "longitud": -100.24381652527612,
+    "edificioId": 6,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "8",
+    "texto": "8",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664331064546076,
+    "longitud": -100.2438433473825,
+    "edificioId": 7,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "9",
+    "texto": "9",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66412556819951,
+    "longitud": -100.24385944064608,
+    "edificioId": 8,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "Biblioteca",
+    "texto": "Biblioteca",
+    "tipo": "MARCADOR",
+    "color": "#865e3c",
+    "tamano": 24,
+    "latitud": 25.66447143098378,
+    "longitud": -100.2445608983645,
+    "edificioId": 10,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "Cafeteria",
+    "texto": "Cafeteria",
+    "tipo": "MARCADOR",
+    "color": "#b5835a",
+    "tamano": 24,
+    "latitud": 25.663765490361982,
+    "longitud": -100.2441719780571,
+    "edificioId": 9,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "5",
+    "texto": "5",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664870188573133,
+    "longitud": -100.24380847864455,
+    "edificioId": 4,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "18",
+    "texto": "18",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.665025059574234,
+    "longitud": -100.24460917812648,
+    "edificioId": 15,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "14",
+    "texto": "14",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664236923774794,
+    "longitud": -100.24484521251956,
+    "edificioId": 12,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "12",
+    "texto": "12",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66386718110941,
+    "longitud": -100.24470319971425,
+    "edificioId": 11,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "15",
+    "texto": "15",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66449318936037,
+    "longitud": -100.24497664076152,
+    "edificioId": 13,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "16",
+    "texto": "16",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664785264958113,
+    "longitud": -100.24504518136371,
+    "edificioId": 14,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "19",
+    "texto": "19",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66501969861217,
+    "longitud": -100.24521210308582,
+    "edificioId": 16,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "24",
+    "texto": "24",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66504171750391,
+    "longitud": -100.24575617035985,
+    "edificioId": 20,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "22",
+    "texto": "22",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.664611454552812,
+    "longitud": -100.2459501669728,
+    "edificioId": 18,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "20",
+    "texto": "20",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66420100814385,
+    "longitud": -100.24539439797748,
+    "edificioId": 17,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "Nodos",
+    "texto": "Nodos",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66454823293128,
+    "longitud": -100.24654713063612,
+    "edificioId": 19,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "Entrada",
+    "texto": "Entrada",
+    "tipo": "MARCADOR",
+    "color": "#ffbe6f",
+    "tamano": 24,
+    "latitud": 25.663989766911612,
+    "longitud": -100.24581220536604,
+    "zonaId": 36,
+    "zonaNombre": "Entrada Oeste",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "entrada"
+    ]
+  },
+  {
+    "nombre": "Entrada",
+    "texto": "Entrada",
+    "tipo": "MARCADOR",
+    "color": "#ffbe6f",
+    "tamano": 24,
+    "latitud": 25.66550569652874,
+    "longitud": -100.24558988820846,
+    "zonaId": 32,
+    "zonaNombre": "Entrada norte",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "entrada"
+    ]
+  },
+  {
+    "nombre": "Entrada",
+    "texto": "Entrada",
+    "tipo": "MARCADOR",
+    "color": "#ffbe6f",
+    "tamano": 24,
+    "latitud": 25.663487132539956,
+    "longitud": -100.24381556689336,
+    "zonaId": 35,
+    "zonaNombre": "Entrada Sur",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "entrada"
+    ]
+  },
+  {
+    "nombre": "6",
+    "texto": "6",
+    "tipo": "MARCADOR",
+    "color": "#a51d2d",
+    "tamano": 24,
+    "latitud": 25.66471425375549,
+    "longitud": -100.24398550444434,
+    "edificioId": 5,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "Campo de Baseball",
+    "texto": "Campo de Baseball",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.665658314439113,
+    "longitud": -100.2444536704569,
+    "zonaId": 31,
+    "zonaNombre": "Campo de baseball",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Campo de Futbol",
+    "texto": "Campo de Futbol",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.666039336135285,
+    "longitud": -100.24292506316594,
+    "zonaId": 33,
+    "zonaNombre": "Campo de futbol",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Padel",
+    "texto": "Padel",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.666153647374642,
+    "longitud": -100.243511626856,
+    "zonaId": 29,
+    "zonaNombre": "Padel",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Volleyball",
+    "texto": "Volleyball",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.66512847824322,
+    "longitud": -100.24320088944546,
+    "zonaId": 30,
+    "zonaNombre": "Volleyball",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Cancha de Futbol",
+    "texto": "Cancha de Futbol",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.66512297177269,
+    "longitud": -100.24358052760344,
+    "zonaId": 34,
+    "zonaNombre": "Cancha de futbol",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Gimnasio",
+    "texto": "Gimnasio",
+    "tipo": "MARCADOR",
+    "color": "#26a269",
+    "tamano": 24,
+    "latitud": 25.664619450054957,
+    "longitud": -100.24295287011071,
+    "zonaId": 28,
+    "zonaNombre": "Gimnasio",
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "deportes"
+    ]
+  },
+  {
+    "nombre": "Centro Calidad",
+    "texto": "Centro Calidad",
+    "tipo": "MARCADOR",
+    "color": "#5e5c64",
+    "tamano": 24,
+    "latitud": 25.664824772437115,
+    "longitud": -100.24293457501017,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "Vigilancia",
+    "texto": "Vigilancia",
+    "tipo": "MARCADOR",
+    "color": "#5e5c64",
+    "tamano": 24,
+    "latitud": 25.66496480511846,
+    "longitud": -100.24269043769061,
+    "edificioId": 3,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "edificio"
+    ]
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.664260282554707,
+    "longitud": -100.24548095520728,
+    "espacioId": 109,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "baño"
+    ]
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.664470401152755,
+    "longitud": -100.24443447759538,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "baño"
+    ]
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.665101238050852,
+    "longitud": -100.24521086384526,
+    "espacioId": 102,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "baño"
+    ]
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.665007360271787,
+    "longitud": -100.24470450523461,
+    "espacioId": 81,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.66501915099549,
+    "longitud": -100.24566877555193,
+    "espacioId": 154,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.664604890759705,
+    "longitud": -100.2458967505483,
+    "espacioId": 124,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.66445684178005,
+    "longitud": -100.24645715042314,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.664096457882295,
+    "longitud": -100.2439922823584,
+    "espacioId": 47,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "baño"
+    ]
+  },
+  {
+    "nombre": "WC",
+    "texto": "WC",
+    "tipo": "MARCADOR",
+    "color": "#1a5fb4",
+    "tamano": 24,
+    "latitud": 25.664608151656083,
+    "longitud": -100.24346506379916,
+    "espacioId": 12,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "baño"
+    ]
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#000000",
+    "icono": "parking",
+    "tamano": 24,
+    "latitud": 25.664211856139175,
+    "longitud": -100.24595198490883,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "estacionamiento"
+    ]
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#000000",
+    "icono": "parking",
+    "tamano": 24,
+    "latitud": 25.66362652911188,
+    "longitud": -100.24339298612684,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "estacionamiento"
+    ]
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#000000",
+    "icono": "parking",
+    "tamano": 24,
+    "latitud": 25.66487948559771,
+    "longitud": -100.2461342208691,
+    "nivelZoom": 1,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "estacionamiento"
+    ]
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#9a9996",
+    "icono": "first-aid",
+    "tamano": 24,
+    "latitud": 25.664241182356164,
+    "longitud": -100.24472130253255,
+    "espacioId": 60,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": []
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#f5c211",
+    "icono": "store",
+    "tamano": 24,
+    "latitud": 25.66426125294082,
+    "longitud": -100.24495379371517,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "tienda"
+    ]
+  },
+  {
+    "nombre": "",
+    "texto": "",
+    "tipo": "MARCADOR",
+    "color": "#f8e45c",
+    "icono": "store",
+    "tamano": 24,
+    "latitud": 25.66384495604808,
+    "longitud": -100.2441702545813,
+    "nivelZoom": 4,
+    "visibilidad": "PUBLICO",
+    "tags": [
+      "tienda"
+    ]
+  }
 ]

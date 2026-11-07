@@ -16,6 +16,7 @@ import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,27 +32,52 @@ public class AnotacionIngestionService implements CommandLineRunner {
 
     @Override
     public void run(String @NonNull ... args) {
-        if (anotacionRepository.count() > 0) {
-            log.info("Los marcadores ya existen en la base de datos. Saltando ingesta.");
-            return;
-        }
-
         try {
             List<AnotacionRequestDTO> requests = objectMapper.readValue(
                     anotacionesFile.getInputStream(),
                     new TypeReference<>() {
                     }
             );
-            List<Anotacion> anotaciones = requests.stream()
+            List<Anotacion> existentes = anotacionRepository.findAll();
+            List<Anotacion> faltantes = requests.stream()
                     .map(AnotacionMapper::toEntity)
+                    .filter(semilla -> existentes.stream()
+                            .noneMatch(existente -> esLaMismaSemilla(existente, semilla)))
                     .toList();
-            anotacionRepository.saveAll(anotaciones);
-            log.info("Se cargaron {} marcadores iniciales.", anotaciones.size());
+
+            if (faltantes.isEmpty()) {
+                log.info("Los marcadores iniciales ya están sincronizados.");
+                return;
+            }
+
+            anotacionRepository.saveAll(faltantes);
+            log.info("Se agregaron {} marcadores iniciales faltantes.", faltantes.size());
         } catch (Exception exception) {
             throw new IllegalStateException(
                     "No se pudieron cargar los marcadores iniciales.",
                     exception
             );
         }
+    }
+
+    private boolean esLaMismaSemilla(Anotacion existente, Anotacion semilla) {
+        boolean mismaReferencia = (semilla.getEdificioId() != null
+                && Objects.equals(existente.getEdificioId(), semilla.getEdificioId()))
+                || (semilla.getEspacioId() != null
+                && Objects.equals(existente.getEspacioId(), semilla.getEspacioId()))
+                || (semilla.getZonaId() != null
+                && Objects.equals(existente.getZonaId(), semilla.getZonaId()));
+        boolean mismasCoordenadas = Double.compare(
+                existente.getLatitud(),
+                semilla.getLatitud()
+        ) == 0 && Double.compare(
+                existente.getLongitud(),
+                semilla.getLongitud()
+        ) == 0;
+
+        return Objects.equals(existente.getNombre(), semilla.getNombre())
+                && Objects.equals(existente.getTexto(), semilla.getTexto())
+                && Objects.equals(existente.getIcono(), semilla.getIcono())
+                && (mismaReferencia || mismasCoordenadas);
     }
 }
