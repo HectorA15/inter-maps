@@ -55,4 +55,29 @@ describe("mapFeatures", () => {
       }),
     ).toBe(feature);
   });
+
+  it("no confunde un edificio con una zona que comparte fid", () => {
+    const edificio = {
+      properties: {
+        fid: 3,
+        nombre_zona: "Edificio 3",
+        tipo_edificio: "Edificio",
+      },
+    };
+    const entrada = {
+      properties: {
+        fid: 3,
+        nombre_zona: "Entrada norte",
+        tipo_edificio: "Entrada",
+      },
+    };
+
+    expect(
+      encontrarFeatureParaLugar([entrada, edificio], {
+        id: 3,
+        nombre: "Edificio 3",
+        tipo: "EDIFICIO",
+      }),
+    ).toBe(edificio);
+  });
 });

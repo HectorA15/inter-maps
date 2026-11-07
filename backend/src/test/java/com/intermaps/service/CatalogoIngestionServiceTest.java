@@ -41,7 +41,7 @@ class CatalogoIngestionServiceTest {
         InputStream jsonStream = new ByteArrayInputStream("[]".getBytes());
         when(resource.getInputStream()).thenReturn(jsonStream);
 
-        EdificioRaw raw = new EdificioRaw(1L, "1", List.of("edif-uno"), List.of(new EspacioRaw(10L, "Baño", "sanitario", "desc", List.of("baños"), 2)));
+        EdificioRaw raw = new EdificioRaw(1L, "1", List.of("edif-uno"), List.of("/Imagenes/Prueba.jpg"), List.of(new EspacioRaw(10L, "Baño", "sanitario", "desc", List.of("baños"), 2)));
         when(objectMapper.readValue(any(InputStream.class), any(TypeReference.class))).thenReturn(List.of(raw));
 
         when(edificioRepository.save(any(Edificio.class))).thenAnswer(invocation -> invocation.getArgument(0));
@@ -56,6 +56,7 @@ class CatalogoIngestionServiceTest {
         assertEquals("1", finalGuardado.getNombre());
         assertEquals("1", finalGuardado.getNombreBusqueda());
         assertEquals(Set.of("edif-uno"), finalGuardado.getAlias());
+        assertEquals(List.of("/Imagenes/Prueba.jpg"), finalGuardado.getImagenes());
         assertFalse(finalGuardado.getEspacios().isEmpty());
         assertEquals(1, finalGuardado.getEspacios().size());
         assertEquals("Baño", finalGuardado.getEspacios().get(0).getNombre());

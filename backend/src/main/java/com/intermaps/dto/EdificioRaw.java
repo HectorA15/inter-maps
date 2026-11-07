@@ -12,6 +12,7 @@ public record EdificioRaw(
         Long id,
         String nombre,
         List<String> alias,
+        List<String> imagenes,
         List<EspacioRaw> espacios
 ) {
 }

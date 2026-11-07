@@ -62,10 +62,11 @@ export function PanelMarcadores({
   onEliminar,
 }: PanelMarcadoresProps) {
   const [edificios, setEdificios] = useState<Edificio[]>([]);
+  const [zonas, setZonas] = useState<EspacioCatalogo[]>([]);
   const [borrador, setBorrador] = useState<Anotacion | null>(null);
   const [nuevoTag, setNuevoTag] = useState("");
   const [tipoVinculo, setTipoVinculo] = useState<
-    "ninguno" | "edificio" | "espacio"
+    "ninguno" | "edificio" | "espacio" | "zona"
   >("ninguno");
   const seleccionadoRef = useRef(seleccionado);
 
@@ -83,6 +84,28 @@ export function PanelMarcadores({
   }, [abierto, edificios.length]);
 
   useEffect(() => {
+    if (!abierto || zonas.length > 0) return;
+    CatalogoService.obtenerZonas()
+      .then((lugares) =>
+        setZonas(
+          lugares.map((lugar) => ({
+            id: lugar.id,
+            nombre: lugar.nombre,
+            tipo: lugar.tipo,
+            descripcion: "",
+            alias: [],
+            piso: 0,
+            edificioId: 0,
+            edificioNombre: "Zona del mapa",
+          })),
+        ),
+      )
+      .catch((err: unknown) =>
+        console.error("Error al cargar zonas de marcadores:", err),
+      );
+  }, [abierto, zonas.length]);
+
+  useEffect(() => {
     // The local editor state must reset when a different marker is selected.
     const actual = seleccionadoRef.current;
     setBorrador(actual);
@@ -90,9 +113,11 @@ export function PanelMarcadores({
     setTipoVinculo(
       actual?.espacioId != null
         ? "espacio"
-        : actual?.edificioId != null
-          ? "edificio"
-          : "ninguno",
+        : actual?.zonaId != null
+          ? "zona"
+          : actual?.edificioId != null
+            ? "edificio"
+            : "ninguno",
     );
   }, [seleccionado?.id]);
 
@@ -111,6 +136,8 @@ export function PanelMarcadores({
         color: borrador.color,
         edificioId: borrador.edificioId,
         espacioId: borrador.espacioId,
+        zonaId: borrador.zonaId,
+        zonaNombre: borrador.zonaNombre,
         tags: borrador.tags,
       }).catch((err: unknown) =>
         console.error("Error al guardar marcador:", err),
@@ -156,10 +183,16 @@ export function PanelMarcadores({
 
   const referenciaEdificio = borrador?.edificioId ?? "";
   const referenciaEspacio = borrador?.espacioId ?? "";
+  const referenciaZona = borrador?.zonaId ?? "";
 
   const seleccionarEdificio = (id: number | null) => {
     setTipoVinculo("edificio");
-    actualizarBorrador({ edificioId: id, espacioId: null });
+    actualizarBorrador({
+      edificioId: id,
+      espacioId: null,
+      zonaId: null,
+      zonaNombre: null,
+    });
   };
 
   const seleccionarEspacio = (id: number | null) => {
@@ -167,6 +200,18 @@ export function PanelMarcadores({
     actualizarBorrador({
       edificioId: null,
       espacioId: id,
+      zonaId: null,
+      zonaNombre: null,
+    });
+  };
+
+  const seleccionarZona = (zona: EspacioCatalogo | null) => {
+    setTipoVinculo("zona");
+    actualizarBorrador({
+      edificioId: null,
+      espacioId: null,
+      zonaId: zona?.id ?? null,
+      zonaNombre: zona?.nombre ?? null,
     });
   };
 
@@ -303,9 +348,9 @@ export function PanelMarcadores({
                     type="button"
                     onClick={() => {
                       setTipoVinculo("ninguno");
-                      actualizarBorrador({ edificioId: null, espacioId: null });
+                      actualizarBorrador({ edificioId: null, espacioId: null, zonaId: null, zonaNombre: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "ninguno" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "ninguno" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"}`}
                   >
                     Ninguno
                   </button>
@@ -313,9 +358,9 @@ export function PanelMarcadores({
                     type="button"
                     onClick={() => {
                       setTipoVinculo("edificio");
-                      actualizarBorrador({ espacioId: null });
+                      actualizarBorrador({ espacioId: null, zonaId: null, zonaNombre: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "edificio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "edificio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"}`}
                   >
                     Edificio
                   </button>
@@ -323,11 +368,28 @@ export function PanelMarcadores({
                     type="button"
                     onClick={() => {
                       setTipoVinculo("espacio");
-                      actualizarBorrador({ edificioId: null });
+                      actualizarBorrador({ edificioId: null, zonaId: null, zonaNombre: null });
                     }}
-                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "espacio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 dark:bg-gray-800"}`}
+                    className={`rounded-lg px-3 py-2 text-xs ${tipoVinculo === "espacio" ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900" : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"}`}
                   >
                     Espacio
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTipoVinculo("zona");
+                      actualizarBorrador({
+                        edificioId: null,
+                        espacioId: null,
+                      });
+                    }}
+                    className={`rounded-lg px-3 py-2 text-xs ${
+                      tipoVinculo === "zona"
+                        ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
+                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
+                    }`}
+                  >
+                    Zona
                   </button>
                 </div>
                 {tipoVinculo === "edificio" && (
@@ -338,7 +400,7 @@ export function PanelMarcadores({
                         event.target.value ? Number(event.target.value) : null,
                       )
                     }
-                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 dark:border-gray-600"
+                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                   >
                     <option value="" className="dark:bg-gray-800 dark:text-gray-200">
                       Selecciona un edificio
@@ -358,7 +420,7 @@ export function PanelMarcadores({
                         event.target.value ? Number(event.target.value) : null,
                       )
                     }
-                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 dark:border-gray-600"
+                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                   >
                     <option value="" className="dark:bg-gray-800 dark:text-gray-200">
                       Selecciona un espacio
@@ -366,6 +428,26 @@ export function PanelMarcadores({
                     {espacios.map((espacio) => (
                       <option value={espacio.id} key={espacio.id}>
                         {espacio.nombre} — {espacio.edificioNombre}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                {tipoVinculo === "zona" && (
+                  <select
+                    value={referenciaZona}
+                    onChange={(event) =>
+                      seleccionarZona(
+                        zonas.find((zona) => zona.id === Number(event.target.value)) ?? null,
+                      )
+                    }
+                    className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                  >
+                    <option value="" className="bg-white text-gray-500 dark:bg-gray-800 dark:text-gray-200">
+                      Selecciona una zona
+                    </option>
+                    {zonas.map((zona) => (
+                      <option value={zona.id} key={`${zona.tipo}-${zona.id}`}>
+                        {zona.nombre}
                       </option>
                     ))}
                   </select>

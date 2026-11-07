@@ -37,6 +37,11 @@ public record AnotacionRequestDTO(
 
         Long espacioId,
 
+        Long zonaId,
+
+        @Size(max = 100)
+        String zonaNombre,
+
         List<@Size(max = 40) String> tags
 ) {
 }

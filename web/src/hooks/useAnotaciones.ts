@@ -58,6 +58,8 @@ export function useAnotaciones() {
         longitud: anotacion.longitud,
         edificioId: anotacion.edificioId,
         espacioId: anotacion.espacioId,
+        zonaId: anotacion.zonaId,
+        zonaNombre: anotacion.zonaNombre,
         tags: anotacion.tags,
         visibilidad: anotacion.visibilidad,
         ...cambios,

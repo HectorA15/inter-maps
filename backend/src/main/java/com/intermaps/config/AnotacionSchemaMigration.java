@@ -34,6 +34,12 @@ public class AnotacionSchemaMigration implements CommandLineRunner {
         if (!columnas.contains("espacio_id")) {
             jdbcTemplate.execute("ALTER TABLE anotaciones ADD COLUMN espacio_id INTEGER");
         }
+        if (!columnas.contains("zona_id")) {
+            jdbcTemplate.execute("ALTER TABLE anotaciones ADD COLUMN zona_id INTEGER");
+        }
+        if (!columnas.contains("zona_nombre")) {
+            jdbcTemplate.execute("ALTER TABLE anotaciones ADD COLUMN zona_nombre VARCHAR(100)");
+        }
     }
 
     private boolean esSQLite() {

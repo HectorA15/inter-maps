@@ -15,6 +15,7 @@ public class SearchMapper {
                 edificio.getId(),
                 edificio.getNombre(),
                 "EDIFICIO",
+                null,
                 null
         );
 
@@ -25,7 +26,8 @@ public class SearchMapper {
                 espacio.getId(),
                 espacio.getNombre(),
                 "ESPACIO",
-                espacio.getEdificio() == null ? null : espacio.getEdificio().getNombre()
+                espacio.getEdificio() == null ? null : espacio.getEdificio().getNombre(),
+                null
         );
     }
 }

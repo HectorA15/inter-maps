@@ -25,6 +25,8 @@ class AnotacionMapperTest {
                 null,
                 null,
                 null,
+                null,
+                null,
                 List.of()
         ));
 
@@ -47,6 +49,8 @@ class AnotacionMapperTest {
                 -100.0,
                 null,
                 3L,
+                null,
+                null,
                 null,
                 List.of("edificio", "entrada")
         ));

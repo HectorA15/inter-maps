@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Servicio encargado de la ingesta inicial de datos del catálogo desde archivos JSON hacia la base de datos SQLite.
@@ -81,17 +82,18 @@ public class CatalogoIngestionService implements CommandLineRunner {
      *
      */
     private void iniciarEdificios() {
-        if (edificioRepository.count() > 0) {
-            log.info("El catálogo ya existe en la base de datos. Saltando ingesta.");
-            return;
-        }
-
         try {
             List<EdificioRaw> edificiosRaw = objectMapper.readValue(
                     edificiosFile.getInputStream(),
                     new TypeReference<>() {
                     }
             );
+
+            if (edificioRepository.count() > 0) {
+                sincronizarImagenes(edificiosRaw);
+                log.info("El catálogo ya existe en la base de datos. Se sincronizaron sus imágenes.");
+                return;
+            }
 
             for (EdificioRaw edificioRaw : edificiosRaw) {
                 procesarEdificio(edificioRaw);
@@ -101,6 +103,22 @@ public class CatalogoIngestionService implements CommandLineRunner {
         } catch (Exception e) {
             log.error("Error fatal: No se pudieron cargar los edificios y espacios", e);
         }
+    }
+
+    private void sincronizarImagenes(List<EdificioRaw> edificiosRaw) {
+        Map<String, List<String>> imagenesPorNombre = edificiosRaw.stream()
+                .collect(Collectors.toMap(
+                        raw -> raw.nombre().trim(),
+                        raw -> raw.imagenes() == null ? List.of() : raw.imagenes()
+                ));
+
+        edificioRepository.findAll().forEach(edificio -> {
+            List<String> imagenes = imagenesPorNombre.get(edificio.getNombre());
+            if (imagenes != null && !imagenes.equals(edificio.getImagenes())) {
+                edificio.setImagenes(imagenes);
+                edificioRepository.save(edificio);
+            }
+        });
     }
 
 
@@ -114,6 +132,7 @@ public class CatalogoIngestionService implements CommandLineRunner {
         edificioNuevo.setNombre(edificioRaw.nombre().trim());
         edificioNuevo.setNombreBusqueda(GeoUtils.normalizarParaBusqueda(edificioRaw.nombre()));
         edificioNuevo.setAlias(edificioRaw.alias() == null ? Set.of() : new LinkedHashSet<>(edificioRaw.alias()));
+        edificioNuevo.setImagenes(edificioRaw.imagenes() == null ? List.of() : edificioRaw.imagenes());
 
         final Edificio edificioGuardado = edificioRepository.save(edificioNuevo);
 

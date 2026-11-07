@@ -49,6 +49,11 @@ public class CatalogoController {
         return ResponseEntity.ok(catalogoService.obtenerSearchResult(nombre));
     }
 
+    @GetMapping("/zonas")
+    public ResponseEntity<List<SearchResultDTO>> obtenerZonas() {
+        return ResponseEntity.ok(catalogoService.obtenerZonas());
+    }
+
 
     /**
      * Endpoint para obtener un espacio por su ID.
