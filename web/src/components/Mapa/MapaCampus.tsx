@@ -8,6 +8,7 @@ import Map, {
 } from "react-map-gl/maplibre";
 import * as maplibregl from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
+import mapLibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
 import { PMTiles, FetchSource, Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type {
@@ -24,6 +25,8 @@ import {
 } from "./mapFeatures";
 import { NAVEGACION_MAPA } from "./mapConfig";
 import type { Tema } from "../../hooks/useTema";
+
+maplibregl.setWorkerUrl(mapLibreWorkerUrl);
 
 // Registro del protocolo pmtiles.
 // Guard via try/catch: StrictMode en dev monta dos veces y addProtocol lanzaria "already exists".

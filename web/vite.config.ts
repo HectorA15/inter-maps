@@ -91,10 +91,6 @@ export default defineConfig({
     },
   },
 
-  optimizeDeps: {
-    exclude: ["maplibre-gl"],
-  },
-
   // @ts-expect-error vitest types no incluidos en vite UserConfig
   test: {
     environment: "jsdom",
