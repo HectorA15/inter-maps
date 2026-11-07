@@ -25,6 +25,8 @@ public final class AnotacionMapper {
                 anotacion.getLongitud(),
                 anotacion.getEdificioId(),
                 anotacion.getEspacioId(),
+                anotacion.getZonaId(),
+                anotacion.getZonaNombre(),
                 anotacion.getTags().stream().toList(),
                 anotacion.getFechaCreacion(),
                 anotacion.getFechaModificacion(),
@@ -56,6 +58,8 @@ public final class AnotacionMapper {
         anotacion.setLongitud(request.longitud());
         anotacion.setEdificioId(request.edificioId());
         anotacion.setEspacioId(request.espacioId());
+        anotacion.setZonaId(request.zonaId());
+        anotacion.setZonaNombre(request.zonaNombre());
         anotacion.setTags(normalizarTags(request.tags()));
         anotacion.setVisibilidad(
                 request.visibilidad() == null

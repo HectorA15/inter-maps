@@ -49,6 +49,7 @@ export function useLugarSeleccionado() {
           id: item.id,
           nombre: item.nombre,
           alias: [],
+          imagenes: item.imagenes ?? [],
           pisos: [],
         });
         return;

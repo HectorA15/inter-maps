@@ -9,6 +9,7 @@
     {
       "type": "Feature",
       "properties": {
+        "fid": 35,
         "nombre_zona": "Entrada Sur",
         "tipo_edificio": "Entrada"
       },
@@ -30,6 +31,7 @@
     {
       "type": "Feature",
       "properties": {
+        "fid": 36,
         "nombre_zona": "Entrada Oeste",
         "tipo_edificio": "Entrada"
       },

@@ -5,38 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const ImagenesEdificios: Record<number, string[]> = {
-  19: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  22: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  20: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  16: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  13: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  12: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  11: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  15: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  4: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  9: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  1: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  2: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  18: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  28: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  3: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  30: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  7: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  8: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  17: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  32: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  14: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  10: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  6: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  5: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  34: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  [-1]: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  31: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  33: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-  29: ["/Imagenes/Prueba.jpg", "/Imagenes/Prueba.jpg"],
-};
-
 interface ImagenProps {
   dato: SearchResult | Edificio | null;
 }
@@ -44,7 +12,21 @@ interface ImagenProps {
 export function Imagen({ dato }: ImagenProps) {
   if (!dato) return null;
 
-  const ImagenMostrar = ImagenesEdificios[dato.id] || [];
+  const ImagenMostrar = "imagenes" in dato && Array.isArray(dato.imagenes)
+    ? dato.imagenes
+    : [];
+  const imagenFallback = "/Imagenes/Prueba.jpg";
+
+  if (ImagenMostrar.length === 0) {
+    return (
+      <img
+        src={imagenFallback}
+        className="h-64 w-full object-cover"
+        alt={`Imagen no disponible de ${dato.nombre}`}
+      />
+    );
+  }
+
   return (
     <div>
       <div className="w-full bg-gray-100 dark:bg-gray-800">
@@ -60,14 +42,18 @@ export function Imagen({ dato }: ImagenProps) {
               "--swiper-navigation-size": "32px",
             } as React.CSSProperties
           }
-          className="w-full h-auto mt-4 rounded-md shadow-sm"
+          className="h-auto w-full shadow-sm"
         >
           {ImagenMostrar.map((ruta, index) => (
             <SwiperSlide key={index}>
               <img
                 src={ruta}
-                className="w-full h-48 object-cover rounded-md"
+                className="h-64 w-full object-cover"
                 alt={`Vista de ${dato.nombre} ${index + 1}`}
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = imagenFallback;
+                }}
               />
             </SwiperSlide>
           ))}

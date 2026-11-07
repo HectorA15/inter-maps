@@ -39,6 +39,11 @@ public class Edificio {
     @Column(name = "sinonimo")
     private Set<String> sinonimos = new LinkedHashSet<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "edificio_imagenes", joinColumns = @JoinColumn(name = "edificio_id"))
+    @Column(name = "ruta")
+    private List<String> imagenes = new ArrayList<>();
+
     @OneToMany(mappedBy = "edificio", fetch = FetchType.LAZY)
     private List<Planta> plantas = new ArrayList<>();
 

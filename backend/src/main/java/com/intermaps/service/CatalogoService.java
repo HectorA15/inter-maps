@@ -3,6 +3,7 @@ package com.intermaps.service;
 import com.intermaps.dto.EdificioDTO;
 import com.intermaps.dto.EspacioDTO;
 import com.intermaps.dto.SearchResultDTO;
+import com.intermaps.dto.ZonaRaw;
 import com.intermaps.exception.RecursoNoEncontradoException;
 import com.intermaps.mapper.EdificioMapper;
 import com.intermaps.mapper.EspacioMapper;
@@ -39,6 +40,9 @@ public class CatalogoService {
 
     @Value("classpath:edificios.geojson")
     private Resource edificiosGeoJson;
+
+    @Value("classpath:zonas.json")
+    private Resource zonasFile;
 
     /**
      * Consulta los edificios en la base de datos de forma paginada y los transforma a DTOs.
@@ -113,27 +117,57 @@ public class CatalogoService {
         return Stream.concat(resultadosCatalogo.stream(), resultadosZonas.stream()).toList();
     }
 
+    public List<SearchResultDTO> obtenerZonas() {
+        return leerZonas().toList();
+    }
+
     private List<SearchResultDTO> buscarZonas(String termino) {
+        return leerZonas()
+                .filter(zona -> {
+                    String nombre = GeoUtils.normalizarTexto(zona.nombre()).toLowerCase();
+                    String nombreAlternativo = nombre.replace("baseball", "beisbol");
+                    return nombre.contains(termino) || nombreAlternativo.contains(termino);
+                })
+                .toList();
+    }
+
+    private Stream<SearchResultDTO> leerZonas() {
         try (var inputStream = edificiosGeoJson.getInputStream()) {
             JsonNode features = objectMapper.readTree(inputStream).path("features");
+            List<ZonaRaw> metadatos = leerMetadatosZonas();
             return java.util.stream.StreamSupport.stream(features.spliterator(), false)
                     .map(feature -> feature.path("properties"))
-                    .filter(properties -> "deportes".equalsIgnoreCase(
-                            properties.path("tipo_edificio").asText().trim()))
                     .filter(properties -> {
-                        String nombre = GeoUtils.normalizarTexto(
-                                properties.path("nombre_zona").asText()).toLowerCase();
-                        String nombreAlternativo = nombre.replace("baseball", "beisbol");
-                        return nombre.contains(termino) || nombreAlternativo.contains(termino);
+                        String tipo = properties.path("tipo_edificio").asText().trim();
+                        return tipo.equalsIgnoreCase("deportes")
+                                || tipo.equalsIgnoreCase("entrada");
                     })
-                    .map(properties -> new SearchResultDTO(
-                            properties.path("fid").asLong(),
-                            properties.path("nombre_zona").asText(),
-                            "ZONA",
-                            null))
-                    .toList();
+                    .filter(properties -> properties.path("nombre_zona").isTextual())
+                    .map(properties -> {
+                        String nombre = properties.path("nombre_zona").asText().trim();
+                        ZonaRaw metadata = metadatos.stream()
+                                .filter(zona -> GeoUtils.normalizarParaBusqueda(zona.nombre())
+                                        .equals(GeoUtils.normalizarParaBusqueda(nombre)))
+                                .findFirst()
+                                .orElse(null);
+                        return new SearchResultDTO(
+                                metadata != null ? metadata.id() : properties.path("fid").asLong(),
+                                nombre,
+                                "ZONA",
+                                null,
+                                metadata == null ? List.of() : metadata.imagenes());
+                    });
         } catch (IOException e) {
-            throw new IllegalStateException("No se pudieron buscar las zonas del mapa.", e);
+            throw new IllegalStateException("No se pudieron leer las zonas del mapa.", e);
+        }
+    }
+
+    private List<ZonaRaw> leerMetadatosZonas() {
+        try (var inputStream = zonasFile.getInputStream()) {
+            return objectMapper.readValue(inputStream,
+                    new tools.jackson.core.type.TypeReference<List<ZonaRaw>>() {});
+        } catch (IOException e) {
+            throw new IllegalStateException("No se pudieron leer los metadatos de las zonas.", e);
         }
     }
 

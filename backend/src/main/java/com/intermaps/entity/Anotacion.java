@@ -64,6 +64,12 @@ public class Anotacion {
     @Column(name = "espacio_id")
     private Long espacioId;
 
+    @Column(name = "zona_id")
+    private Long zonaId;
+
+    @Column(name = "zona_nombre", length = 100)
+    private String zonaNombre;
+
     @ElementCollection
     @CollectionTable(name = "anotacion_tags", joinColumns = @JoinColumn(name = "anotacion_id"))
     @Column(name = "tag", nullable = false, length = 40)

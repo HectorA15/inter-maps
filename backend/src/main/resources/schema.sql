@@ -16,6 +16,12 @@ CREATE TABLE IF NOT EXISTS edificio_sinonimos (
     FOREIGN KEY (edificio_id) REFERENCES edificios (id)
 );
 
+CREATE TABLE IF NOT EXISTS edificio_imagenes (
+    edificio_id INTEGER NOT NULL,
+    ruta VARCHAR(500) NOT NULL,
+    FOREIGN KEY (edificio_id) REFERENCES edificios (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS plantas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nivel INTEGER,
@@ -53,6 +59,8 @@ CREATE TABLE IF NOT EXISTS nodos (
     es_entrada INTEGER,
     edificio_id INTEGER,
     espacio_id INTEGER,
+    zona_id INTEGER,
+    zona_nombre VARCHAR(100),
     FOREIGN KEY (edificio_id) REFERENCES edificios (id),
     FOREIGN KEY (espacio_id) REFERENCES espacios (id)
 );

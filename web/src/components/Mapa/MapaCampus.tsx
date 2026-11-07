@@ -440,7 +440,26 @@ export function MapaCampus({
             return;
           }
 
-          // Si no es un edificio, simplemente llama a onEdificioClick con el nombre y tipo
+          if (tipo !== "edificio" && tipo !== "espacio") {
+            try {
+              const zona = (await CatalogoService.obtenerZonas()).find(
+                (item) =>
+                  item.nombre.trim().toLowerCase() ===
+                  String(nombre).trim().toLowerCase(),
+              );
+              if (zona) {
+                onEdificioClick(zona);
+                return;
+              }
+            } catch (error) {
+              console.error(
+                "[MapaCampus] no se pudieron cargar los metadatos de la zona:",
+                nombre,
+                error,
+              );
+            }
+          }
+
           onEdificioClick({
             id: typeof props?.fid === "number" ? props.fid : -1,
             nombre: String(nombre),

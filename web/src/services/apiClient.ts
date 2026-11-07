@@ -54,6 +54,11 @@ export const CatalogoService = {
         });
         return response.data;
     },
+
+    obtenerZonas: async (): Promise<SearchResult[]> => {
+        const response = await api.get<SearchResult[]>("/catalogo/zonas");
+        return response.data;
+    },
 };
 
 export const NavegacionService = {

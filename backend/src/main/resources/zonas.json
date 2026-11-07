@@ -1,0 +1,60 @@
+[
+  {
+    "id": 35,
+    "nombre": "Entrada Sur",
+    "tipo": "ENTRADA",
+    "imagenes": ["/Imagenes/entrada-sur.jpg"]
+  },
+  {
+    "id": 36,
+    "nombre": "Entrada Oeste",
+    "tipo": "ENTRADA",
+    "imagenes": ["/Imagenes/entrada-oeste.jpg"]
+  },
+  {
+    "id": 33,
+    "nombre": "Campo de futbol",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/campo-futbol.jpg"]
+  },
+  {
+    "id": 34,
+    "nombre": "Cancha de futbol",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/cancha-futbol.jpg"]
+  },
+  {
+    "id": 29,
+    "nombre": "Padel",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/padel.jpg"]
+  },
+  {
+    "id": 30,
+    "nombre": "Volleyball",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/volleyball.jpg"]
+  },
+  {
+    "id": 31,
+    "nombre": "Campo de baseball",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/campo-baseball.jpg"]
+  },
+  {
+    "id": 32,
+    "nombre": "Entrada norte",
+    "tipo": "ENTRADA",
+    "imagenes": [
+      "/Imagenes/entrada-norte-1.jpg",
+      "/Imagenes/entrada-norte-2.jpg",
+      "/Imagenes/entrada-norte-3.jpg"
+    ]
+  },
+  {
+    "id": 28,
+    "nombre": "Gimnasio",
+    "tipo": "DEPORTES",
+    "imagenes": ["/Imagenes/gimnasio.jpg"]
+  }
+]

@@ -36,7 +36,8 @@
         "nombre": "Sala de Juntas",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 3",
@@ -108,7 +109,8 @@
         "nombre": "Sala de Maestros (Aula K)",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Vigilancia",
@@ -124,7 +126,8 @@
         "nombre": "Almacén",
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 5",
@@ -140,7 +143,8 @@
         "alias": ["extraescolares", "actividades extra"],
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 6",
@@ -152,7 +156,8 @@
         "alias": ["comedor"],
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 7",
@@ -214,7 +219,8 @@
         "tipo": "AULA",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 8",
@@ -250,7 +256,8 @@
         "nombre": "Aula D",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 9",
@@ -293,7 +300,8 @@
         "nombre": "Laboratorio de Física",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Cafeteria",
@@ -304,7 +312,8 @@
         "nombre": "Cafetería",
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Biblioteca",
@@ -319,7 +328,8 @@
         "nombre": "Sala de Titulación",
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 12",
@@ -331,7 +341,8 @@
         "tipo": "LABORATORIO",
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 14",
@@ -379,7 +390,8 @@
         "tipo": "AULA",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 15",
@@ -435,7 +447,8 @@
         "nombre": "Sociedad de Alumnos",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 16",
@@ -447,7 +460,8 @@
         "tipo": "LABORATORIO",
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 18",
@@ -543,7 +557,8 @@
         "tipo": "LABORATORIO",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 19",
@@ -579,7 +594,8 @@
         "alias": ["baño", "baños", "sanitario", "sanitarios"],
         "piso": 1
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 20",
@@ -648,7 +664,8 @@
         "nombre": "Mantenimiento de Equipos",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 22",
@@ -738,7 +755,8 @@
         "nombre": "Oficinas y Cubículos de Ciencias Básicas",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/edificio22-1.jpg"]
   },
   {
     "nombre": "Nodos",
@@ -793,7 +811,8 @@
         "nombre": "Terraza",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/Prueba.jpg"]
   },
   {
     "nombre": "Edificio 24",
@@ -927,6 +946,7 @@
         "nombre": "Oficinas de Ingeniería Industrial",
         "piso": 2
       }
-    ]
+    ],
+    "imagenes": ["/Imagenes/edificio24-1.jpg", "/Imagenes/edificio24-2.jpg"]
   }
 ]

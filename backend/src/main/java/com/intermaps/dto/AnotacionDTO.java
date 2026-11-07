@@ -17,6 +17,8 @@ public record AnotacionDTO(
         double longitud,
         Long edificioId,
         Long espacioId,
+        Long zonaId,
+        String zonaNombre,
         List<String> tags,
         LocalDateTime fechaCreacion,
         LocalDateTime fechaModificacion,

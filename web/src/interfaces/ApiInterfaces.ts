@@ -21,6 +21,7 @@ export interface Edificio {
   id: number;
   nombre: string;
   alias: string[];
+  imagenes: string[];
   pisos: Piso[];
 }
 
@@ -30,6 +31,7 @@ export interface SearchResult {
   nombre: string;
   tipo: string;
   edificioNombre?: string | null;
+  imagenes?: string[];
 }
 
 export type TipoMarcador = "MARCADOR";
@@ -46,6 +48,8 @@ export interface Anotacion {
   longitud: number;
   edificioId: number | null;
   espacioId: number | null;
+  zonaId: number | null;
+  zonaNombre: string | null;
   tags: string[];
   fechaCreacion: string | null;
   fechaModificacion: string | null;
@@ -63,6 +67,8 @@ export interface AnotacionRequest {
   longitud: number;
   edificioId?: number | null;
   espacioId?: number | null;
+  zonaId?: number | null;
+  zonaNombre?: string | null;
   tags?: string[];
   visibilidad?: "PUBLICO" | "PRIVADO";
 }
