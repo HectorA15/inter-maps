@@ -20,7 +20,7 @@ export function Imagen({ dato }: ImagenProps) {
     return (
       <img
         src={imagenFallback}
-        className="h-64 w-full object-cover"
+        className="h-48 w-full object-cover md:h-64"
         alt={`Imagen no disponible de ${dato.nombre}`}
       />
     );
@@ -47,7 +47,7 @@ export function Imagen({ dato }: ImagenProps) {
             <SwiperSlide key={index}>
               <img
                 src={ruta}
-                className="h-64 w-full object-cover"
+                className="h-48 w-full object-cover md:h-64"
                 alt={`Vista de ${dato.nombre} ${index + 1}`}
                 onError={(event) => {
                   event.currentTarget.onerror = null;
